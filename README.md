@@ -8,9 +8,10 @@
 
 ## 核心特色
 
-1. **双核心顶级审美（1:1 复刻 + 支持局部混搭）**
-   - **Apple / 最新 iOS & macOS 液态玻璃**：四层光学液态玻璃、连续嵌套圆角、一体化融合顶栏 + 精修右上角 Windows 窗口按钮、灵动岛胶囊、丝滑弹簧回弹。
-   - **最新 OriginOS 空间光影与原子交互**：自然弥散环境光影、模块化原子卡片（支持点击原位放大与沿原路弹回）、原子岛快捷面板、厚胶囊阻尼推杆与 Q 弹物理手感。
+1. **双核心顶级审美与跨平台范式（1:1 复刻 + 支持局部混搭）**
+   - **Apple OS 27 全生态液态玻璃**（融合 iOS 27 / macOS 27 Golden Gate / iPadOS 27 / watchOS 27 / visionOS 27）：均匀折射与高对比度精修、**Ultraclear ↔ Fully Tinted 无级透度滑块**、macOS 27 通边液态玻璃侧栏与统一工具条、watchOS 27 Smart Stack 迷你情景挂件与动态高频网格、visionOS 27 三分区控制中心与悬停聚焦展开、灵动岛胶囊与丝滑弹簧回弹。
+   - **OriginOS 7 空间光影与原子交互**：**Dynamic Translucent Material 三档动态半透明材质**（Realistic 拟真 / Natural 自然 / Soft 柔和）、**Dynamic Glow 光随手走实时交互光晕**、Fluid Motion 水滴拉伸与速度感知 Q 弹弹簧、模块化原子卡片原位放大、**Origin Workbench 多任务卡片工作台**、**Origin Island + Snap & Go 主动情景原子岛**、夜间护眼 4.0（以及受控可选的 Glint / Wiggle 轻趣味风味）。
+   - **按需加载的桌面 AI 与情景交互范式**：仅在做带 AI/智能建议的软件时启用，覆盖 Spotlight Ask AI、随处润色改写、情景建议胶囊、多模板摘要与高亮视图、AI 舒适阅读模式与透明可审计的代理隐私活动日志。
 2. **对零基础 Vibe Coding 极度友好**
    - 遇到模糊想法时，AI 先用大白话反问 2–4 个最关键的问题并附推荐方案，绝不甩一堆听不懂的程序员黑话。
    - 先快速做出**能点开体验的高颜值最小雏形**，再陪你边看边精修。
@@ -18,18 +19,18 @@
    - 写死离线打包铁律：严禁在线安装器，严禁弹窗提示安装 `.NET`、`VC++`、`Python` 或联网下载运行库；字体、图标与运行环境全部离线内嵌。
    - 默认交付离线一键安装版 `Setup.exe`（支持选安装路径、建桌面快捷方式、干净卸载），按需切换或加打绿色免安装版。
 4. **文件夹洁癖 + 模块化代码 + Git 安全网**
-   - 强制源码、素材、文档、打包产物分门别类，严禁根目录乱堆临时脚本、日志和 `_old`/`_bak` 备份；严禁把所有代码塞进超大单文件；删除已有文件必先列清单请示；大改前主动提醒做 Git 存档。
+   - 强制源码、素材、文档、打包产物分门别类，严禁根目录乱堆临时脚本、日志和 `_old`/`_bak` 备份；严禁把所有代码塞进超大单文件；删除已有文件前必须先列清单请示；大改前主动提醒做 Git 存档。
 
 ---
 
 ## 先看效果：双击打开两份离线样板间
 
-下面两份交互样板间**无需联网、无需安装任何环境**，直接用 Edge 或 Chrome 浏览器双击就能打开试玩，亲自体验按钮按压、开关、滑块、灵动岛/原子岛、原位放大与浅深切换：
+下面两份交互样板间**无需联网、无需安装任何环境**，直接用 Edge 或 Chrome 浏览器双击就能打开试玩，亲自体验无级液态玻璃、三档动态材质、通边侧栏、Smart Stack、三分区控制中心、Dynamic Glow、Origin Workbench、Snap & Go 原子岛与原位放大：
 
-- **Apple / iOS 液态玻璃样板间**：[.agents/skills/winforge/showcases/apple-liquid-glass.html](.agents/skills/winforge/showcases/apple-liquid-glass.html)
-- **OriginOS 光影原子样板间**：[.agents/skills/winforge/showcases/originos-atomic-light.html](.agents/skills/winforge/showcases/originos-atomic-light.html)
+- **Apple OS 27 全生态液态玻璃样板间**：[.agents/skills/winforge/showcases/apple-liquid-glass.html](.agents/skills/winforge/showcases/apple-liquid-glass.html)
+- **OriginOS 7 光影原子样板间**：[.agents/skills/winforge/showcases/originos-atomic-light.html](.agents/skills/winforge/showcases/originos-atomic-light.html)
 
-> 以后你觉得某个圆角、玻璃通透度或回弹手感还可以更好，直接打开样板间指出哪里要调，让 AI 同步改好样板间和规则手册，后面做的所有软件就会自动沿用你调好的新审美。
+> 以后你觉得某个圆角、玻璃通透度、三档材质或回弹手感还可以更好，直接打开样板间指出哪里要调，让 AI 同步改好样板间和规则手册，后面做的所有软件就会自动沿用你调好的新审美。
 
 ---
 
@@ -44,28 +45,28 @@
 
 ### 示例 1：6 大高频场景开场白模板
 
-#### 场景 A · Apple 液态玻璃风从零做新软件（适合效率/专注/笔记/工具类）
+#### 场景 A · Apple OS 27 全生态液态玻璃新软件（效率 / 笔记 / AI 助手 / 悬浮挂件）
 ```text
-用 winforge 帮我做一个 Windows 桌面番茄钟和待办工具。
-风格选 Apple 液态玻璃，浅色深色跟随系统。我现在只有个大概想法，先用大白话问清楚关键细节，顺便推荐最稳的程序架构，确认后再先出能点开的最小雏形。
+用 winforge 帮我做一个 Windows 桌面番茄钟与 AI 待办助手。
+风格选 Apple OS 27 液态玻璃：主窗口用 macOS 通边液态侧栏，支持无级玻璃透度调节和 Ctrl+K 呼出 Ask AI；迷你模式切成 watchOS Smart Stack 情景小挂件。先用大白话跟我对齐 3 个关键细节并推荐架构，确认后先出最小雏形。
 ```
 
-#### 场景 B · OriginOS 光影原子风从零做新软件（适合看板/文件整理/快捷控制）
+#### 场景 B · OriginOS 7 光影原子新软件（多任务看板 / 文件整理 / 文档阅读）
 ```text
-用 winforge 帮我做一个本地图片与截图整理工具，想要最新 OriginOS 光影原子风：
-主界面用原子卡片展示分类，点卡片能原位放大预览，顶部用原子岛显示整理进度。先跟我对齐一下需求和架构，最后打包成新电脑装完就能用的 Setup.exe。
+用 winforge 帮我做一个本地 PDF 与截图整理工作台，想要 OriginOS 7 光影原子风：
+支持 Realistic/Natural/Soft 三档动态材质和夜间护眼 4.0，主界面用原子卡片原位放大 + Origin Workbench 多任务切换，拖入截图时用顶部原子岛 Snap & Go 给一键归档建议。最后打包成新电脑装完即用的离线 Setup.exe。
 ```
 
-#### 场景 C · Apple + OriginOS 局部混搭
+#### 场景 C · Apple OS 27 + OriginOS 7 局部混搭
 ```text
 用 winforge 帮我做一个桌面快捷启动与剪贴板历史软件。
-视觉上想混搭一下：整体窗口骨架、按钮和导航用 Apple 液态玻璃，顶部状态提示和快捷展开用 OriginOS 原子岛手感，按钮按下去要 Q 弹跟手。
+视觉上混搭一下：整体窗口用 Apple macOS 27 通边液态玻璃侧栏和统一工具条，任务切换用 OriginOS 7 Workbench 卡片与 Dynamic Glow 随手光晕，控制面板参考 visionOS 三分区控制中心。
 ```
 
 #### 场景 D · 给已有旧软件“去 AI 味 + 颜值大升级”
 ```text
 用 winforge 帮我给当前这个 Windows 软件做一次颜值和交互精修：
-去掉原来的紫粉渐变、Emoji 图标和死板弹窗，按 Apple 液态玻璃规范重做一体化无割裂顶栏、圆润窗口按钮、按钮 6 种状态和物理弹簧动效。动手前先帮我做一次 Git 存档留底。
+去掉原来的紫粉渐变、Emoji 图标和死板弹窗，按 Apple OS 27 液态玻璃规范重做一体化无割裂顶栏、通边侧栏、圆润窗口按钮、按钮 6 种状态和物理弹簧动效。动手前先帮我做一次 Git 存档留底。
 ```
 
 #### 场景 E · 打包“新电脑装完即用”离线安装包
@@ -82,57 +83,17 @@
 
 ---
 
-### 示例 2：一次真实的 Vibe Coding 对话长什么样？
-
-当你只丢出一句很模糊的话时，加载了 **WinForge** 的 AI 会这样陪你推进，全程不说听不懂的黑话：
-
-> **你**：“用 winforge 帮我做一个好看的桌面倒计时软件。”
->
-> **AI（大白话短问 + 给建议）**：
-> “没问题！动手前先用 3 个小问题对齐一下方向（我都附了推荐方案，你直接说‘全按推荐’就行）：
-> 1. **常用方式**：你希望它是正常窗口打开用，还是平时能缩成一个小玻璃胶囊悬浮在桌面角落？（推荐：正常窗口 + 一键切换桌面迷你悬浮窗）
-> 2. **视觉风格**：选 **Apple 液态玻璃**（极简通透、灵动岛提醒）还是 **OriginOS 光影原子**（柔和弥散光、大数字原子卡片、Q 弹按钮）？（推荐：Apple 液态玻璃，做计时器非常耐看）
-> 3. **程序架构**：推荐用 **Electron**，好处是液态玻璃和弹簧动效还原度最高，而且打包出来的 `Setup.exe` 在任何新电脑上 100% 离线装完即用、绝不踩坑。
-> 确认后我先搭干净目录，很快做出一个你能直接点开体验的第一版！”
->
-> **你**：“风格换成 OriginOS 光影原子，其他都按推荐来。”
->
-> **AI（快速出高颜值雏形 + 安全存档 + 离线打包）**：
-> 先按规范建好 `src/styles/`、`src/components/`、`src/features/` 等分区并初始化 Git 存档 → 很快交付一个能直接双击运行、带有柔和晨光背景、原位放大原子卡片与 Q 弹按钮的第一版 → 陪你微调满意后，在 `release/` 生成 `FocusTimer-Setup.exe`，新电脑装完直接用。
-
----
-
-### 示例 3：普通 AI 写法 vs WinForge 1:1 复刻效果对比
+### 示例 2：普通 AI 写法 vs WinForge 1:1 复刻效果对比
 
 | 细节部位 | 普通 AI 容易写出来的“廉价感” | 使用 WinForge 后的真实落地效果 |
 |---|---|---|
-| **窗口顶栏** | 上面一条死板纯白/纯黑 Windows 原生标题栏，和界面割裂 | 一体化融合无边框顶栏，背景光影直通顶边，右上角精修圆润窗口按钮 |
-| **背景与玻璃** | 高饱和紫粉霓虹渐变，或一坨发灰浑浊的半透明框 | 低饱和柔和环境光 + 四层光学液态玻璃（柔焦 + 提亮 + 1px 内缘折射高光 + 柔和景深阴影） |
-| **图标与字体** | 满屏 `🚀✨⚙️📁` 系统 Emoji，换台电脑字体回退成丑陋宋体 | 统一圆润线宽的矢量 SVG 图标 + 随包离线内置的高颜值字体，任何新电脑观感一致 |
-| **按钮与动效** | 鼠标点下去毫无反应，弹窗生硬闪现，切页面直接硬切 | 完整 6 种交互状态，按压即时微缩 + 物理弹簧回弹，原子卡片支持原位放大与沿原路弹回 |
+| **窗口与导航** | 上面一条死板纯白/纯黑 Windows 原生标题栏，侧栏和内容硬线割裂 | 一体化无边框融合顶栏 + macOS 27 通边液态侧栏或悬浮水滴胶囊 + 精修右上角圆润窗口按钮 |
+| **背景与玻璃** | 高饱和紫粉霓虹渐变，或一坨发灰浑浊、看不清字的毛玻璃 | 低饱和柔和环境光 + Apple OS 27 无级透度液态玻璃 / OriginOS 7 三档动态材质 + 夜间护眼 4.0（正文对比度 ≥ 4.5:1） |
+| **图标与字体** | 满屏 `🚀✨⚙️📁` 系统 Emoji，换台电脑字体回退成丑陋宋体 | 统一圆润线宽的精细矢量 SVG 图标 + 随包离线内置的高颜值字体，任何新电脑观感一致 |
+| **按钮与动效** | 鼠标点下去毫无反应，弹窗生硬闪现，动画播到一半打断就瞬移 | 完整 6 态按钮 + Dynamic Glow 随手光晕 + 速度感知物理弹簧回弹 + 原子卡 FLIP 原位放大与无缝打断 |
+| **AI 与情景交互** | 硬塞一个花哨发光聊天框，自动改用户文件也不留记录 | 隐形融入的 Spotlight Ask AI、随处改写、Snap & Go 情景岛、AI 舒适阅读模式与透明中文隐私活动日志 |
 | **软件打包** | 发给朋友一双击就弹窗“请先安装 .NET / WebView2 / Python” | 默认离线一键安装 `Setup.exe`，字体、图标与运行环境全内置，断网新电脑装完即用 |
 | **项目文件夹** | 根目录堆满 `test2.js`、`backup_old/`、`1.png` 和 2000 行巨型文件 | 严格分区（源码 / 素材 / 文档 / `release/` 成品），模块化拆分 + 中文备注 + Git 存档 |
-
----
-
-### 示例 4：用 WinForge 生成的标准软件文件夹示例
-
-以后你让 AI 帮你写的每一个 Windows 软件，打开文件夹都会像这样清清爽爽：
-
-```text
-FocusTimer/
-├── README.md                    # 大白话说明：怎么运行、怎么重新打包 Setup.exe
-├── .gitignore                   # 自动屏蔽缓存和临时垃圾
-├── package.json                 # 项目主配置
-├── src/                         # 【源码区】职责清晰，改一处绝不连累别处
-│   ├── main/                    # 窗口无边框控制、置顶悬浮、本地保存设置
-│   ├── styles/                  # 视觉变量中心（颜色、玻璃参数、圆角、弹簧曲线）
-│   ├── components/              # 融合顶栏、原子岛、Q 弹按钮、阻尼滑块、开关
-│   └── features/                # 倒计时核心功能、自定义专注预设
-├── assets/                      # 【离线素材区】内置字体、软件图标 .ico、SVG 图标
-└── release/                     # 【成品交付区】打包好的离线安装包就在这里
-    └── FocusTimer-Setup.exe     # 拷到任何新 Windows 电脑，双击安装完直接用
-```
 
 ---
 
@@ -143,17 +104,18 @@ WinForge/
 ├── README.md                                            # 本说明文档与实战示例
 ├── LICENSE                                              # MIT 开源许可
 └── .agents/skills/winforge/                             # 完整可独立拷贝的 Skill 包
-    ├── SKILL.md                                         # 总指挥入口与行为铁律
+    ├── SKILL.md                                         # 总指挥入口、行为铁律与按需阅读地图
     ├── references/
     │   ├── workflow-and-vibe-coding.md                  # 模糊需求反问与 Vibe Coding 协作节奏
-    │   ├── style-apple-ios.md                           # Apple / 最新 iOS 液态玻璃 1:1 手册
-    │   ├── style-originos.md                            # 最新 OriginOS 光影原子 1:1 手册
+    │   ├── style-apple-ios.md                           # Apple OS 27 全生态液态玻璃 1:1 手册
+    │   ├── style-originos.md                            # OriginOS 7 空间光影与原子交互 1:1 手册
     │   ├── motion-and-craft-guardrails.md               # 背景/按键/按钮/动效细节与去 AI 味红线
+    │   ├── ai-and-contextual-patterns.md                # 【按需】桌面 AI 与情景交互范式手册
     │   ├── architecture-and-packaging.md                # 智能架构选型与离线 Setup.exe 打包铁律
     │   └── project-hygiene-and-standards.md             # 文件夹分区、模块化代码与 Git 安全网
     └── showcases/
-        ├── apple-liquid-glass.html                      # Apple 液态玻璃交互样板间
-        └── originos-atomic-light.html                   # OriginOS 光影原子交互样板间
+        ├── apple-liquid-glass.html                      # Apple OS 27 全生态液态玻璃交互样板间
+        └── originos-atomic-light.html                   # OriginOS 7 光影原子交互样板间
 ```
 
 ---

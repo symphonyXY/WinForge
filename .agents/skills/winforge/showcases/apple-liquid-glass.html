@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light" data-glass="liquid">
+<html lang="zh-CN" data-theme="light" data-env="mist" data-layout="sidebar">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WinForge 审美样板间 · Apple / iOS 液态玻璃</title>
+  <title>WinForge 审美样板间 · Apple OS 27 全生态液态玻璃</title>
   <style>
     /* =========================================================================
-       Apple / 最新 iOS & macOS 液态玻璃设计令牌（离线零外链，1:1 质感基准）
+       Apple OS 27 全生态液态玻璃设计令牌（离线零外链，1:1 质感基准）
+       覆盖：macOS 27 通边侧栏/统一工具栏 · iOS 27 无级液态玻璃 ·
+            watchOS 27 Smart Stack · visionOS 27 三分区控制中心与悬停展开
        ========================================================================= */
     :root {
       --font-sans: "SF Pro Display", "SF Pro Text", "Inter", "Segoe UI Variable", "Segoe UI", "PingFang SC", "Microsoft YaHei UI", sans-serif;
@@ -14,41 +16,44 @@
       --spring-smooth: cubic-bezier(0.22, 1, 0.36, 1);
       --ease-press: cubic-bezier(0.2, 0, 0, 1);
 
-      /* 浅色默认（Light） */
-      --stage-bg: #e7ebf2;
-      --window-bg: #f5f5f7;
-      --window-border: rgba(0, 0, 0, 0.08);
-      --window-shadow: 0 30px 80px -20px rgba(15, 23, 42, 0.22), 0 4px 18px rgba(15, 23, 42, 0.07);
-
-      --orb-1: rgba(120, 185, 255, 0.34);
-      --orb-2: rgba(196, 178, 255, 0.26);
-      --orb-3: rgba(255, 214, 176, 0.24);
-
-      --surface: rgba(255, 255, 255, 0.84);
-      --surface-solid: #ffffff;
-      --surface-subtle: rgba(15, 23, 42, 0.045);
-      --surface-hover: rgba(15, 23, 42, 0.075);
-
-      --glass-bg: rgba(255, 255, 255, 0.62);
-      --glass-strong: rgba(255, 255, 255, 0.78);
+      /* 连续液态玻璃变量（由滑块 0..100 驱动：Ultraclear ↔ Standard ↔ Fully Tinted） */
+      --glass-alpha: 0.64;
+      --glass-strong-alpha: 0.80;
       --glass-blur: 24px;
       --glass-sat: 190%;
-      --glass-border: rgba(255, 255, 255, 0.75);
-      --glass-outer-stroke: rgba(15, 23, 42, 0.07);
-      --glass-specular: inset 0 1px 0 rgba(255, 255, 255, 0.92), inset 0 -1px 0 rgba(255, 255, 255, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+
+      /* 浅色默认（Light） */
+      --stage-bg: #e6ebf2;
+      --window-bg: #f5f5f7;
+      --window-border: rgba(0, 0, 0, 0.08);
+      --window-shadow: 0 32px 86px -20px rgba(15, 23, 42, 0.22), 0 4px 18px rgba(15, 23, 42, 0.07);
+
+      --orb-1: rgba(118, 185, 255, 0.38);
+      --orb-2: rgba(196, 178, 255, 0.28);
+      --orb-3: rgba(255, 214, 176, 0.26);
+
+      --glass-rgb: 255, 255, 255;
+      --glass-tint-rgb: 244, 247, 252;
+      --glass-bg: rgba(var(--glass-rgb), var(--glass-alpha));
+      --glass-strong: rgba(var(--glass-tint-rgb), var(--glass-strong-alpha));
+      --glass-outer-stroke: rgba(15, 23, 42, 0.08);
+      --glass-specular: inset 0 1px 0 rgba(255, 255, 255, 0.94), inset 0 -1px 0 rgba(255, 255, 255, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.44);
       --glass-shadow: 0 14px 36px -10px rgba(15, 23, 42, 0.14), 0 2px 8px rgba(15, 23, 42, 0.05);
 
-      --pill-indicator: rgba(255, 255, 255, 0.88);
+      --surface-solid: #ffffff;
+      --surface-subtle: rgba(15, 23, 42, 0.048);
+      --surface-hover: rgba(15, 23, 42, 0.085);
+
+      --pill-indicator: rgba(255, 255, 255, 0.92);
       --pill-indicator-shadow: 0 4px 14px rgba(15, 23, 42, 0.10), inset 0 1px 0 rgba(255, 255, 255, 1);
 
       --text-primary: #1d1d1f;
-      --text-secondary: #6e6e73;
+      --text-secondary: #5f5f66;
       --text-muted: #86868b;
 
       --accent: #007aff;
       --accent-hover: #0066d6;
       --accent-soft: rgba(0, 122, 255, 0.12);
-      --accent-ring: rgba(0, 122, 255, 0.36);
 
       --success: #34c759;
       --warning: #ff9500;
@@ -58,9 +63,9 @@
       --keycap-border: rgba(15, 23, 42, 0.12);
       --keycap-shadow: 0 2px 0 rgba(15, 23, 42, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
-      --island-bg: rgba(24, 26, 32, 0.88);
+      --island-bg: rgba(22, 24, 30, 0.90);
       --island-text: #f5f5f7;
-      --island-muted: rgba(245, 245, 247, 0.66);
+      --island-muted: rgba(245, 245, 247, 0.68);
       --island-border: rgba(255, 255, 255, 0.14);
     }
 
@@ -70,35 +75,30 @@
       --window-border: rgba(255, 255, 255, 0.10);
       --window-shadow: 0 36px 96px -18px rgba(0, 0, 0, 0.78), 0 0 0 1px rgba(255, 255, 255, 0.06);
 
-      --orb-1: rgba(30, 110, 255, 0.24);
-      --orb-2: rgba(120, 95, 230, 0.20);
-      --orb-3: rgba(34, 175, 190, 0.16);
+      --orb-1: rgba(30, 110, 255, 0.28);
+      --orb-2: rgba(120, 95, 230, 0.22);
+      --orb-3: rgba(34, 175, 190, 0.18);
 
-      --surface: rgba(24, 27, 35, 0.80);
-      --surface-solid: #171a22;
-      --surface-subtle: rgba(255, 255, 255, 0.065);
-      --surface-hover: rgba(255, 255, 255, 0.11);
-
-      --glass-bg: rgba(34, 38, 50, 0.56);
-      --glass-strong: rgba(38, 43, 56, 0.76);
-      --glass-blur: 26px;
-      --glass-sat: 185%;
-      --glass-border: rgba(255, 255, 255, 0.18);
-      --glass-outer-stroke: rgba(255, 255, 255, 0.09);
-      --glass-specular: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      --glass-rgb: 32, 36, 48;
+      --glass-tint-rgb: 26, 30, 42;
+      --glass-outer-stroke: rgba(255, 255, 255, 0.10);
+      --glass-specular: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.09);
       --glass-shadow: 0 20px 46px -10px rgba(0, 0, 0, 0.62), 0 2px 10px rgba(0, 0, 0, 0.35);
 
-      --pill-indicator: rgba(255, 255, 255, 0.16);
+      --surface-solid: #171a22;
+      --surface-subtle: rgba(255, 255, 255, 0.068);
+      --surface-hover: rgba(255, 255, 255, 0.115);
+
+      --pill-indicator: rgba(255, 255, 255, 0.17);
       --pill-indicator-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.28);
 
       --text-primary: #f5f5f7;
-      --text-secondary: #a1a1a6;
-      --text-muted: #6e6e73;
+      --text-secondary: #a8a8ae;
+      --text-muted: #72727a;
 
       --accent: #0a84ff;
       --accent-hover: #3399ff;
       --accent-soft: rgba(10, 132, 255, 0.18);
-      --accent-ring: rgba(10, 132, 255, 0.45);
 
       --success: #30d158;
       --warning: #ff9f0a;
@@ -108,19 +108,30 @@
       --keycap-border: rgba(255, 255, 255, 0.12);
       --keycap-shadow: 0 2px 0 rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.14);
 
-      --island-bg: rgba(16, 18, 24, 0.92);
+      --island-bg: rgba(15, 17, 23, 0.94);
       --island-border: rgba(255, 255, 255, 0.16);
     }
 
-    [data-glass="clear"] {
-      --glass-bg: rgba(255, 255, 255, 0.42);
-      --glass-blur: 18px;
-      --glass-sat: 210%;
+    /* visionOS 27 氛围环境预设（Thórsmörk 极光 / 晨雾蓝 / 暖沙金） */
+    [data-env="aurora"] {
+      --orb-1: rgba(56, 214, 176, 0.36);
+      --orb-2: rgba(98, 136, 255, 0.32);
+      --orb-3: rgba(164, 118, 255, 0.26);
     }
-    [data-theme="dark"][data-glass="clear"] {
-      --glass-bg: rgba(34, 38, 50, 0.36);
-      --glass-blur: 20px;
-      --glass-sat: 200%;
+    [data-theme="dark"][data-env="aurora"] {
+      --orb-1: rgba(45, 212, 170, 0.26);
+      --orb-2: rgba(59, 130, 246, 0.24);
+      --orb-3: rgba(139, 92, 246, 0.20);
+    }
+    [data-env="warm"] {
+      --orb-1: rgba(255, 188, 132, 0.38);
+      --orb-2: rgba(255, 216, 168, 0.32);
+      --orb-3: rgba(168, 198, 255, 0.26);
+    }
+    [data-theme="dark"][data-env="warm"] {
+      --orb-1: rgba(234, 140, 72, 0.24);
+      --orb-2: rgba(196, 116, 92, 0.18);
+      --orb-3: rgba(74, 122, 210, 0.18);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -132,32 +143,30 @@
       -webkit-font-smoothing: antialiased;
       transition: background 260ms ease, color 220ms ease;
     }
-
     body {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 20px;
       overflow: hidden;
     }
 
-    /* 模拟 Windows 桌面应用无边框融合窗口 */
+    /* Windows 无边框融合主窗口 */
     .app-window {
       position: relative;
-      width: min(1140px, 100%);
-      height: min(740px, calc(100vh - 48px));
-      border-radius: 22px;
+      width: min(1220px, 100%);
+      height: min(780px, calc(100vh - 40px));
+      border-radius: 24px;
       background: var(--window-bg);
       border: 1px solid var(--window-border);
       box-shadow: var(--window-shadow);
       overflow: hidden;
       display: flex;
-      flex-direction: column;
       isolation: isolate;
       transition: background 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
     }
 
-    /* 克制柔光背景层（独立渲染，不干扰文字） */
+    /* 背景环境光晕层（独立低功耗合成） */
     .ambient-layer {
       position: absolute;
       inset: 0;
@@ -168,22 +177,137 @@
     .ambient-orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(84px);
+      filter: blur(86px);
       will-change: transform;
       animation: drift 18s ease-in-out infinite alternate;
+      transition: background 480ms ease;
     }
-    .orb-1 { width: 460px; height: 460px; top: -140px; left: -80px; background: var(--orb-1); }
-    .orb-2 { width: 420px; height: 420px; top: 80px; right: -100px; background: var(--orb-2); animation-delay: -5s; }
-    .orb-3 { width: 380px; height: 380px; bottom: -150px; left: 32%; background: var(--orb-3); animation-delay: -9s; }
+    .orb-1 { width: 480px; height: 480px; top: -150px; left: -90px; background: var(--orb-1); }
+    .orb-2 { width: 440px; height: 440px; top: 80px; right: -110px; background: var(--orb-2); animation-delay: -5s; }
+    .orb-3 { width: 400px; height: 400px; bottom: -160px; left: 34%; background: var(--orb-3); animation-delay: -9s; }
     @keyframes drift {
       from { transform: translate3d(0, 0, 0) scale(1); }
       to   { transform: translate3d(28px, 18px, 0) scale(1.06); }
     }
 
-    /* 一体化融合顶栏 */
+    /* macOS 27 Golden Gate 通边液态玻璃侧边栏（Edge-to-Edge Sidebar） */
+    .sidebar {
+      width: 224px;
+      flex-shrink: 0;
+      height: 100%;
+      padding: 16px 12px 14px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+      border-right: 1px solid var(--glass-outer-stroke);
+      box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.25);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: width 320ms var(--spring-smooth), padding 320ms var(--spring-smooth), opacity 220ms ease, background 180ms ease;
+      z-index: 15;
+    }
+    [data-layout="dock"] .sidebar {
+      width: 0;
+      padding-left: 0;
+      padding-right: 0;
+      opacity: 0;
+      border-right-color: transparent;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 6px 14px;
+      user-select: none;
+    }
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: linear-gradient(145deg, #329bff 0%, #0066d6 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.50), 0 5px 14px rgba(0, 122, 255, 0.30);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .brand-title { font-size: 13.5px; font-weight: 600; letter-spacing: -0.01em; }
+    .brand-sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+
+    .side-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 8px 10px 6px;
+      letter-spacing: 0.02em;
+    }
+    .side-nav { display: flex; flex-direction: column; gap: 3px; }
+    .side-item {
+      height: 36px;
+      padding: 0 11px;
+      border-radius: 11px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      transition: background 150ms ease, color 150ms ease, transform 200ms var(--spring-snappy);
+    }
+    .side-item:hover { background: var(--surface-subtle); color: var(--text-primary); }
+    .side-item.active {
+      background: var(--pill-indicator);
+      color: var(--text-primary);
+      font-weight: 600;
+      box-shadow: var(--pill-indicator-shadow);
+    }
+    .side-item:active { transform: scale(0.97); }
+    .side-pill-tag {
+      margin-left: auto;
+      font-size: 10.5px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .side-foot {
+      padding: 10px;
+      border-radius: 14px;
+      background: var(--surface-subtle);
+      border: 1px solid var(--glass-outer-stroke);
+    }
+    .side-foot-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* 主窗口右侧壳层 */
+    .main-shell {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* 一体化融合顶栏 + macOS 27 统一规范工具条（Uniform Toolbar） */
     .titlebar {
-      height: 54px;
-      padding: 0 14px 0 20px;
+      height: 56px;
+      padding: 0 14px 0 18px;
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
@@ -191,40 +315,34 @@
       position: relative;
       z-index: 20;
     }
-
-    .brand {
+    .toolbar-left {
       display: flex;
       align-items: center;
-      gap: 10px;
-      user-select: none;
+      gap: 8px;
     }
-    .brand-mark {
-      width: 28px;
-      height: 28px;
-      border-radius: 9px;
-      background: linear-gradient(145deg, #2d95ff 0%, #0066d6 100%);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 4px 12px rgba(0, 122, 255, 0.30);
-      display: grid;
-      place-items: center;
-      color: #fff;
+    .tool-icon-btn {
+      height: 32px;
+      padding: 0 11px;
+      border-radius: 999px;
+      border: 1px solid var(--glass-outer-stroke);
+      background: var(--glass-bg);
+      backdrop-filter: blur(18px) saturate(var(--glass-sat));
+      box-shadow: var(--glass-specular);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform 220ms var(--spring-snappy), background 150ms ease;
     }
-    .brand-title {
-      font-size: 13.5px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-    .brand-sub {
-      font-size: 11.5px;
-      color: var(--text-muted);
-      margin-left: 2px;
-    }
+    .tool-icon-btn:hover { background: var(--glass-strong); }
+    .tool-icon-btn:active { transform: scale(0.95); }
 
-    /* 居中灵动岛状态胶囊（Dynamic Pill） */
-    .dynamic-pill-wrap {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
+    /* 居中灵动岛状态胶囊 */
+    .dynamic-pill-wrap { position: relative; display: flex; justify-content: center; }
     .dynamic-pill {
       display: flex;
       align-items: center;
@@ -240,32 +358,29 @@
       cursor: pointer;
       font-size: 12.5px;
       font-weight: 500;
-      transition: transform 260ms var(--spring-snappy), box-shadow 220ms ease, padding 260ms var(--spring-snappy);
+      transition: transform 260ms var(--spring-snappy), box-shadow 220ms ease;
       user-select: none;
     }
     .dynamic-pill:hover { transform: scale(1.03); }
-    .dynamic-pill:active { transform: scale(0.96); transition-duration: 80ms; }
+    .dynamic-pill:active { transform: scale(0.96); transition-duration: 75ms; }
     .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
+      width: 7px; height: 7px; border-radius: 50%;
       background: var(--success);
       box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.24);
       flex-shrink: 0;
     }
 
-    /* 灵动岛展开浮卡 */
     .island-popover {
       position: absolute;
       top: 42px;
       left: 50%;
-      width: 316px;
+      width: 320px;
       padding: 16px;
       border-radius: 22px;
       background: var(--island-bg);
       color: var(--island-text);
       border: 1px solid var(--island-border);
-      box-shadow: 0 24px 56px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      box-shadow: 0 24px 56px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.16);
       backdrop-filter: blur(28px) saturate(180%);
       transform: translateX(-50%) scale(0.86) translateY(-8px);
       transform-origin: top center;
@@ -274,128 +389,52 @@
       transition: transform 320ms var(--spring-snappy), opacity 200ms ease;
       z-index: 40;
     }
-    .island-popover.open {
-      transform: translateX(-50%) scale(1) translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .island-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    .island-bar {
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.14);
-      overflow: hidden;
-      margin: 10px 0 14px;
-    }
-    .island-bar-fill {
-      height: 100%;
-      width: 74%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #30d158, #64d2ff);
-      transition: width 360ms var(--spring-smooth);
-    }
-    .island-actions {
-      display: flex;
-      gap: 8px;
-    }
+    .island-popover.open { transform: translateX(-50%) scale(1) translateY(0); opacity: 1; pointer-events: auto; }
+    .island-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .island-bar { height: 6px; border-radius: 999px; background: rgba(255, 255, 255, 0.14); overflow: hidden; margin: 10px 0 14px; }
+    .island-bar-fill { height: 100%; width: 76%; border-radius: 999px; background: linear-gradient(90deg, #30d158, #64d2ff); transition: width 360ms var(--spring-smooth); }
+    .island-actions { display: flex; gap: 8px; }
     .island-btn {
-      flex: 1;
-      height: 32px;
-      border: none;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
-      font-family: inherit;
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
+      flex: 1; height: 32px; border: none; border-radius: 10px;
+      background: rgba(255, 255, 255, 0.12); color: #fff;
+      font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer;
       transition: background 140ms ease, transform 200ms var(--spring-snappy);
     }
     .island-btn:hover { background: rgba(255, 255, 255, 0.20); }
     .island-btn:active { transform: scale(0.95); }
     .island-btn.primary { background: var(--accent); }
 
-    /* 顶栏右侧：主题快切 + 精修 Windows 窗口按钮 */
-    .titlebar-right {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 10px;
-    }
+    /* 顶栏右侧 */
+    .titlebar-right { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
     .top-chip-group {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 3px;
-      border-radius: 999px;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-outer-stroke);
-      box-shadow: var(--glass-specular);
-      backdrop-filter: blur(16px);
+      display: flex; align-items: center; gap: 3px; padding: 3px; border-radius: 999px;
+      background: var(--glass-bg); border: 1px solid var(--glass-outer-stroke);
+      box-shadow: var(--glass-specular); backdrop-filter: blur(16px);
     }
     .chip-btn {
-      height: 26px;
-      padding: 0 10px;
-      border-radius: 999px;
-      border: none;
-      background: transparent;
-      color: var(--text-secondary);
-      font-family: inherit;
-      font-size: 11.5px;
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: background 150ms ease, color 150ms ease, transform 200ms var(--spring-snappy);
+      height: 26px; padding: 0 10px; border-radius: 999px; border: none; background: transparent;
+      color: var(--text-secondary); font-family: inherit; font-size: 11.5px; font-weight: 500;
+      cursor: pointer; transition: background 150ms ease, color 150ms ease, transform 200ms var(--spring-snappy);
     }
     .chip-btn:hover { color: var(--text-primary); }
-    .chip-btn.active {
-      background: var(--pill-indicator);
-      color: var(--text-primary);
-      box-shadow: var(--pill-indicator-shadow);
-    }
+    .chip-btn.active { background: var(--pill-indicator); color: var(--text-primary); box-shadow: var(--pill-indicator-shadow); }
     .chip-btn:active { transform: scale(0.95); }
 
-    .win-controls {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding-left: 6px;
-      border-left: 1px solid var(--glass-outer-stroke);
-    }
+    .win-controls { display: flex; align-items: center; gap: 4px; padding-left: 6px; border-left: 1px solid var(--glass-outer-stroke); }
     .win-btn {
-      width: 32px;
-      height: 28px;
-      border: none;
-      border-radius: 8px;
-      background: transparent;
-      color: var(--text-secondary);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
+      width: 32px; height: 28px; border: none; border-radius: 8px; background: transparent;
+      color: var(--text-secondary); display: grid; place-items: center; cursor: pointer;
       transition: background 140ms ease, color 140ms ease, transform 180ms var(--spring-snappy);
     }
-    .win-btn:hover {
-      background: var(--surface-hover);
-      color: var(--text-primary);
-    }
-    .win-btn.close:hover {
-      background: var(--danger);
-      color: #fff;
-    }
+    .win-btn:hover { background: var(--surface-hover); color: var(--text-primary); }
+    .win-btn.close:hover { background: var(--danger); color: #fff; }
     .win-btn:active { transform: scale(0.92); }
 
-    /* 主内容滚动区（超细悬浮滚动条） */
+    /* 主工作区 */
     .workspace {
       flex: 1;
       overflow-y: auto;
-      padding: 10px 26px 96px;
+      padding: 8px 24px 92px;
       scrollbar-width: thin;
       scrollbar-color: rgba(128, 134, 148, 0.32) transparent;
     }
@@ -410,470 +449,332 @@
     }
 
     .page-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 18px;
-      gap: 16px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 16px; gap: 16px;
     }
-    .page-header h1 {
-      font-size: 24px;
-      font-weight: 600;
-      letter-spacing: -0.025em;
-      line-height: 1.25;
-    }
-    .page-header p {
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin-top: 4px;
-    }
+    .page-header h1 { font-size: 23px; font-weight: 600; letter-spacing: -0.025em; line-height: 1.25; }
+    .page-header p { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
 
-    /* 网格布局 */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
+    .grid-2 { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: 15px; margin-bottom: 15px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 15px; }
 
-    /* 液态玻璃卡片（嵌套圆角：外 22px = 内 14px + 内距 8px） */
+    /* Liquid Glass 27 卡片 */
     .glass-card {
       position: relative;
       border-radius: 22px;
-      padding: 20px;
+      padding: 18px 20px;
       background: var(--glass-bg);
       backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
       -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
       border: 1px solid var(--glass-outer-stroke);
       box-shadow: var(--glass-specular), var(--glass-shadow);
       overflow: hidden;
-      transition: transform 280ms var(--spring-smooth), box-shadow 260ms ease, background 220ms ease;
+      transition: transform 280ms var(--spring-smooth), box-shadow 260ms ease, background 180ms ease;
     }
     .glass-card::before {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.22), transparent 62%);
+      background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.24), transparent 62%);
       opacity: 0;
       pointer-events: none;
       transition: opacity 220ms ease;
     }
     [data-theme="dark"] .glass-card::before {
-      background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.08), transparent 62%);
+      background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.09), transparent 62%);
     }
     .glass-card:hover::before { opacity: 1; }
 
-    .card-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-    .card-title {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
+    .card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; }
+    .card-title { font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em; }
     .card-badge {
-      font-size: 11.5px;
-      font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--surface-subtle);
-      color: var(--text-secondary);
+      font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 999px;
+      background: var(--surface-subtle); color: var(--text-secondary); white-space: nowrap;
     }
 
-    /* 按钮全状态展示 */
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
+    /* 按钮全状态 */
+    .btn-row { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 12px; }
     .btn {
-      position: relative;
-      height: 36px;
-      padding: 0 16px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-family: inherit;
-      font-size: 13.5px;
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
+      position: relative; height: 35px; padding: 0 15px; border-radius: 999px;
+      border: 1px solid transparent; font-family: inherit; font-size: 13px; font-weight: 500;
+      cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 7px;
       user-select: none;
-      transition: transform 240ms var(--spring-snappy), background 150ms ease, box-shadow 180ms ease, border-color 150ms ease;
+      transition: transform 240ms var(--spring-snappy), background 150ms ease, box-shadow 180ms ease;
     }
-    .btn:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-    .btn:active:not(:disabled) {
-      transform: scale(0.962);
-      transition-duration: 75ms;
-      transition-timing-function: var(--ease-press);
-    }
-    .btn:disabled {
-      opacity: 0.42;
-      cursor: not-allowed;
-    }
-
+    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .btn:active:not(:disabled) { transform: scale(0.962); transition-duration: 75ms; transition-timing-function: var(--ease-press); }
+    .btn:disabled { opacity: 0.42; cursor: not-allowed; }
     .btn-primary {
       background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 88%, #fff) 0%, var(--accent) 100%);
       color: #fff;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.34), 0 6px 16px -4px rgba(0, 122, 255, 0.45);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.34), 0 6px 16px -4px rgba(0, 122, 255, 0.42);
     }
-    .btn-primary:hover:not(:disabled) {
-      background: linear-gradient(180deg, color-mix(in srgb, var(--accent-hover) 90%, #fff) 0%, var(--accent-hover) 100%);
-      transform: translateY(-0.5px);
-    }
-
+    .btn-primary:hover:not(:disabled) { transform: translateY(-0.5px); filter: brightness(1.04); }
     .btn-glass {
-      background: var(--glass-strong);
-      color: var(--text-primary);
+      background: var(--glass-strong); color: var(--text-primary);
       border-color: var(--glass-outer-stroke);
       box-shadow: var(--glass-specular), 0 4px 12px rgba(15, 23, 42, 0.06);
     }
-    .btn-glass:hover:not(:disabled) {
-      background: var(--surface-solid);
-      transform: translateY(-0.5px);
-    }
-    [data-theme="dark"] .btn-glass:hover:not(:disabled) {
-      background: rgba(54, 60, 76, 0.85);
-    }
-
-    .btn-tinted {
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-    .btn-tinted:hover:not(:disabled) {
-      background: color-mix(in srgb, var(--accent) 20%, transparent);
-    }
-
-    .btn-danger {
-      background: rgba(255, 59, 48, 0.12);
-      color: var(--danger);
-    }
-    .btn-danger:hover:not(:disabled) {
-      background: var(--danger);
-      color: #fff;
-    }
-
+    .btn-glass:hover:not(:disabled) { transform: translateY(-0.5px); }
+    .btn-tinted { background: var(--accent-soft); color: var(--accent); }
+    .btn-tinted:hover:not(:disabled) { background: color-mix(in srgb, var(--accent) 20%, transparent); }
+    .btn-danger { background: rgba(255, 59, 48, 0.12); color: var(--danger); }
+    .btn-danger:hover:not(:disabled) { background: var(--danger); color: #fff; }
     .spinner {
-      width: 14px;
-      height: 14px;
-      border: 2px solid currentColor;
-      border-right-color: transparent;
-      border-radius: 50%;
-      animation: spin 650ms linear infinite;
+      width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent;
+      border-radius: 50%; animation: spin 650ms linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* 分段控制器（带滑动玻璃胶囊） */
+    /* 分段控制器 */
     .segmented {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      padding: 4px;
-      border-radius: 14px;
-      background: var(--surface-subtle);
+      position: relative; display: grid; grid-template-columns: repeat(3, 1fr);
+      padding: 4px; border-radius: 14px; background: var(--surface-subtle);
       border: 1px solid var(--glass-outer-stroke);
     }
     .seg-indicator {
-      position: absolute;
-      top: 4px;
-      bottom: 4px;
-      left: 4px;
-      width: calc((100% - 8px) / 3);
-      border-radius: 10px;
-      background: var(--pill-indicator);
-      box-shadow: var(--pill-indicator-shadow);
-      transition: transform 300ms var(--spring-snappy);
-      pointer-events: none;
+      position: absolute; top: 4px; bottom: 4px; left: 4px;
+      width: calc((100% - 8px) / 3); border-radius: 10px;
+      background: var(--pill-indicator); box-shadow: var(--pill-indicator-shadow);
+      transition: transform 300ms var(--spring-snappy); pointer-events: none;
     }
     .seg-btn {
-      position: relative;
-      z-index: 1;
-      height: 30px;
-      border: none;
-      background: transparent;
-      color: var(--text-secondary);
-      font-family: inherit;
-      font-size: 12.5px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: color 180ms ease;
+      position: relative; z-index: 1; height: 29px; border: none; background: transparent;
+      color: var(--text-secondary); font-family: inherit; font-size: 12.5px; font-weight: 500;
+      cursor: pointer; transition: color 180ms ease;
     }
     .seg-btn.active { color: var(--text-primary); font-weight: 600; }
 
-    /* iOS 风格开关（按住滑块横向拉长 + 弹簧滑动） */
-    .control-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    /* 开关与滑块 */
+    .control-list { display: flex; flex-direction: column; gap: 10px; }
     .control-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 14px;
-      border-radius: 14px;
-      background: var(--surface-subtle);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 13px; border-radius: 14px; background: var(--surface-subtle);
     }
-    .control-label { font-size: 13.5px; font-weight: 500; }
+    .control-label { font-size: 13px; font-weight: 500; }
     .control-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
 
     .ios-switch {
-      position: relative;
-      width: 46px;
-      height: 26px;
-      border-radius: 999px;
-      border: none;
-      background: rgba(120, 120, 128, 0.28);
-      cursor: pointer;
-      padding: 2px;
-      transition: background 220ms ease;
-      flex-shrink: 0;
+      position: relative; width: 46px; height: 26px; border-radius: 999px; border: none;
+      background: rgba(120, 120, 128, 0.28); cursor: pointer; padding: 2px;
+      transition: background 220ms ease; flex-shrink: 0;
     }
     .ios-switch[aria-checked="true"] { background: var(--success); }
     .ios-switch .thumb {
-      display: block;
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22), 0 0 1px rgba(0, 0, 0, 0.12);
+      display: block; width: 22px; height: 22px; border-radius: 999px; background: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
       transition: transform 280ms var(--spring-snappy), width 140ms ease;
     }
     .ios-switch[aria-checked="true"] .thumb { transform: translateX(20px); }
     .ios-switch:active .thumb { width: 26px; }
     .ios-switch[aria-checked="true"]:active .thumb { transform: translateX(16px); }
 
-    /* Apple 精致滑块（悬停/拖动平滑增厚） */
-    .slider-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: var(--surface-subtle);
-    }
-    .slider-head {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-    }
-    .slider-val {
-      font-variant-numeric: tabular-nums;
-      font-weight: 600;
-      color: var(--accent);
-    }
+    .slider-wrap { display: flex; flex-direction: column; gap: 8px; padding: 11px 13px; border-radius: 14px; background: var(--surface-subtle); }
+    .slider-head { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; }
+    .slider-val { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--accent); }
     .apple-slider {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 6px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--accent) var(--pct, 68%), rgba(120, 120, 128, 0.24) var(--pct, 68%));
-      outline: none;
-      cursor: pointer;
-      transition: height 180ms var(--spring-snappy);
+      -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent) var(--pct, 50%), rgba(120, 120, 128, 0.24) var(--pct, 50%));
+      outline: none; cursor: pointer; transition: height 180ms var(--spring-snappy);
     }
     .apple-slider:hover, .apple-slider:active { height: 8px; }
     .apple-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.06);
+      -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24), 0 0 0 1px rgba(0, 0, 0, 0.06);
       transition: transform 200ms var(--spring-snappy);
     }
     .apple-slider:active::-webkit-slider-thumb { transform: scale(1.14); }
+    .slider-scale { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--text-muted); }
 
-    /* 物理键帽与按键反馈 */
+    /* 物理键帽 */
     .shortcut-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 14px;
-      border-radius: 14px;
-      background: var(--surface-subtle);
-      cursor: pointer;
-      transition: background 140ms ease, transform 200ms var(--spring-snappy);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 13px; border-radius: 14px; background: var(--surface-subtle);
+      cursor: pointer; transition: background 140ms ease, transform 200ms var(--spring-snappy);
     }
     .shortcut-item:hover { background: var(--surface-hover); }
     .shortcut-item:active { transform: scale(0.985); }
     .keycap-group { display: flex; gap: 5px; }
     .keycap {
-      min-width: 26px;
-      height: 24px;
-      padding: 0 7px;
-      border-radius: 7px;
-      background: var(--keycap-bg);
-      border: 1px solid var(--keycap-border);
-      box-shadow: var(--keycap-shadow);
-      font-size: 11.5px;
-      font-weight: 600;
-      color: var(--text-primary);
-      display: inline-grid;
-      place-items: center;
+      min-width: 26px; height: 24px; padding: 0 7px; border-radius: 7px;
+      background: var(--keycap-bg); border: 1px solid var(--keycap-border); box-shadow: var(--keycap-shadow);
+      font-size: 11px; font-weight: 600; color: var(--text-primary); display: inline-grid; place-items: center;
       transition: transform 90ms ease, box-shadow 90ms ease, color 120ms ease;
     }
-    .keycap.pressed {
-      transform: translateY(2px) scale(0.95);
-      box-shadow: 0 0 0 transparent;
-      color: var(--accent);
-      border-color: var(--accent);
+    .keycap.pressed { transform: translateY(2px) scale(0.95); box-shadow: none; color: var(--accent); border-color: var(--accent); }
+
+    /* watchOS 27 Smart Stack 情景堆叠卡片（后层隐藏文字只留玻璃外框露边，绝不透字重影） */
+    .stack-stage { position: relative; height: 146px; margin-bottom: 30px; }
+    .stack-card {
+      position: absolute; inset: 0; border-radius: 18px; padding: 16px;
+      background: color-mix(in srgb, var(--surface-solid) 88%, var(--glass-strong));
+      border: 1px solid var(--glass-outer-stroke);
+      box-shadow: var(--glass-specular), 0 10px 26px rgba(15, 23, 42, 0.11);
+      display: flex; flex-direction: column; justify-content: space-between;
+      cursor: pointer;
+      transition: transform 340ms var(--spring-snappy), opacity 240ms ease, background 220ms ease, box-shadow 240ms ease;
+    }
+    .stack-card > * {
+      transition: opacity 180ms ease, transform 260ms var(--spring-smooth);
+    }
+    .stack-card[data-pos="0"] {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+      z-index: 3;
+    }
+    .stack-card[data-pos="0"] > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stack-card[data-pos="1"] {
+      transform: translateY(12px) scale(0.955);
+      opacity: 0.82;
+      z-index: 2;
+      background: var(--glass-bg);
+      box-shadow: var(--glass-specular), 0 6px 16px rgba(15, 23, 42, 0.08);
+    }
+    .stack-card[data-pos="2"] {
+      transform: translateY(23px) scale(0.91);
+      opacity: 0.52;
+      z-index: 1;
+      background: var(--glass-bg);
+      box-shadow: var(--glass-specular), 0 4px 12px rgba(15, 23, 42, 0.05);
+    }
+    .stack-card[data-pos="1"] > *,
+    .stack-card[data-pos="2"] > * {
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
     }
 
-    /* 底部悬浮液态玻璃导航胶囊（弹性拉伸滑块） */
+    /* watchOS 27 Dynamic App Grid 动态高频网格 */
+    .watch-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items: center; padding: 6px 0;
+    }
+    .watch-orb {
+      aspect-ratio: 1; border-radius: 18px; border: 1px solid var(--glass-outer-stroke);
+      background: var(--glass-strong); box-shadow: var(--glass-specular);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      cursor: pointer; color: var(--text-primary); font-family: inherit;
+      transition: transform 260ms var(--spring-snappy), background 160ms ease;
+    }
+    .watch-orb.hot {
+      grid-column: span 2; aspect-ratio: auto; height: 74px; border-radius: 20px;
+      background: var(--accent-soft); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 26%, transparent);
+    }
+    .watch-orb:hover { transform: scale(1.05); }
+    .watch-orb:active { transform: scale(0.94); }
+    .watch-orb span { font-size: 11px; font-weight: 600; }
+
+    /* visionOS 27 三分区控制中心 */
+    .vision-zones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .vision-zone {
+      padding: 14px; border-radius: 18px; background: var(--surface-subtle);
+      border: 1px solid var(--glass-outer-stroke); display: flex; flex-direction: column; gap: 10px;
+    }
+    .zone-label { font-size: 11px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.03em; }
+
+    /* visionOS 27 悬停聚焦自动展开通知（380ms 防误触） */
+    .gaze-notice {
+      border-radius: 16px; padding: 12px 14px;
+      background: var(--glass-strong); border: 1px solid var(--glass-outer-stroke);
+      box-shadow: var(--glass-specular);
+      transition: box-shadow 260ms ease, border-color 220ms ease;
+    }
+    .gaze-notice.expanded { border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+    .gaze-extra {
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 320ms var(--spring-smooth), opacity 220ms ease, margin-top 240ms ease;
+    }
+    .gaze-notice.expanded .gaze-extra { max-height: 110px; opacity: 1; margin-top: 10px; }
+
+    /* 情景快捷建议胶囊 & Write Anywhere 改写条 */
+    .suggest-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .suggest-chip {
+      height: 30px; padding: 0 12px; border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+      background: var(--accent-soft); color: var(--accent);
+      font-family: inherit; font-size: 12px; font-weight: 500;
+      display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+      transition: transform 220ms var(--spring-snappy), background 150ms ease;
+    }
+    .suggest-chip:hover { background: color-mix(in srgb, var(--accent) 20%, transparent); transform: translateY(-1px); }
+    .suggest-chip:active { transform: scale(0.95); }
+
+    /* 底部悬浮液态玻璃导航胶囊（仅在 dock 模式或窄屏显示） */
     .floating-dock-wrap {
-      position: absolute;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      z-index: 25;
+      position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 25;
+      transition: transform 300ms var(--spring-smooth), opacity 220ms ease;
+    }
+    [data-layout="sidebar"] .floating-dock-wrap {
+      opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(20px);
     }
     .floating-dock {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 6px;
-      border-radius: 999px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(28px) saturate(200%);
-      -webkit-backdrop-filter: blur(28px) saturate(200%);
+      position: relative; display: flex; align-items: center; gap: 4px; padding: 6px;
+      border-radius: 999px; background: var(--glass-bg);
+      backdrop-filter: blur(28px) saturate(200%); -webkit-backdrop-filter: blur(28px) saturate(200%);
       border: 1px solid var(--glass-outer-stroke);
       box-shadow: var(--glass-specular), 0 18px 44px -10px rgba(15, 23, 42, 0.24);
     }
     .dock-indicator {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      height: 38px;
-      border-radius: 999px;
-      background: var(--pill-indicator);
-      box-shadow: var(--pill-indicator-shadow);
+      position: absolute; top: 6px; left: 6px; height: 36px; border-radius: 999px;
+      background: var(--pill-indicator); box-shadow: var(--pill-indicator-shadow);
       transition: transform 340ms var(--spring-snappy), width 300ms var(--spring-snappy);
       pointer-events: none;
     }
-    .dock-indicator.stretching {
-      transform: translateX(var(--dx, 0px)) scaleX(1.12);
-    }
+    .dock-indicator.stretching { transform: translateX(var(--dx, 0px)) scaleX(1.12); }
     .dock-item {
-      position: relative;
-      z-index: 1;
-      height: 38px;
-      padding: 0 18px;
-      border-radius: 999px;
-      border: none;
-      background: transparent;
-      color: var(--text-secondary);
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      position: relative; z-index: 1; height: 36px; padding: 0 15px; border-radius: 999px;
+      border: none; background: transparent; color: var(--text-secondary);
+      font-family: inherit; font-size: 12.5px; font-weight: 500; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 7px;
       transition: color 180ms ease, transform 200ms var(--spring-snappy);
     }
-    .dock-item:hover { color: var(--text-primary); }
     .dock-item.active { color: var(--text-primary); font-weight: 600; }
-    .dock-item:active { transform: scale(0.95); }
 
-    /* Ctrl+K 液态玻璃命令面板 */
+    /* Ctrl+K Spotlight + Ask AI 命令面板 */
     .modal-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(10, 12, 18, 0.28);
-      backdrop-filter: blur(6px);
-      display: grid;
-      place-items: start center;
-      padding-top: 96px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 200ms ease;
-      z-index: 50;
+      position: absolute; inset: 0; background: rgba(10, 12, 18, 0.28); backdrop-filter: blur(6px);
+      display: grid; place-items: start center; padding-top: 86px;
+      opacity: 0; pointer-events: none; transition: opacity 200ms ease; z-index: 50;
     }
     .modal-backdrop.open { opacity: 1; pointer-events: auto; }
     .cmd-palette {
-      width: min(500px, calc(100% - 32px));
-      border-radius: 22px;
-      padding: 10px;
-      background: var(--glass-strong);
-      backdrop-filter: blur(32px) saturate(200%);
+      width: min(540px, calc(100% - 32px)); border-radius: 22px; padding: 10px;
+      background: var(--glass-strong); backdrop-filter: blur(32px) saturate(200%);
       border: 1px solid var(--glass-outer-stroke);
       box-shadow: var(--glass-specular), 0 30px 70px rgba(0, 0, 0, 0.34);
-      transform: scale(0.93) translateY(-10px);
-      transition: transform 280ms var(--spring-snappy);
+      transform: scale(0.93) translateY(-10px); transition: transform 280ms var(--spring-snappy);
     }
     .modal-backdrop.open .cmd-palette { transform: scale(1) translateY(0); }
-    .cmd-input-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--glass-outer-stroke);
-    }
-    .cmd-input {
-      flex: 1;
-      border: none;
-      background: transparent;
-      color: var(--text-primary);
-      font-family: inherit;
-      font-size: 14.5px;
-      outline: none;
-    }
+    .cmd-input-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-bottom: 1px solid var(--glass-outer-stroke); }
+    .cmd-input { flex: 1; border: none; background: transparent; color: var(--text-primary); font-family: inherit; font-size: 14px; outline: none; }
     .cmd-list { padding: 6px 0 2px; display: flex; flex-direction: column; gap: 3px; }
     .cmd-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 9px 12px;
-      border-radius: 12px;
-      border: none;
-      background: transparent;
-      color: var(--text-primary);
-      font-family: inherit;
-      font-size: 13px;
-      cursor: pointer;
-      text-align: left;
+      display: flex; align-items: center; justify-content: space-between; padding: 9px 12px;
+      border-radius: 12px; border: none; background: transparent; color: var(--text-primary);
+      font-family: inherit; font-size: 13px; cursor: pointer; text-align: left;
       transition: background 120ms ease;
     }
     .cmd-item:hover { background: var(--accent-soft); color: var(--accent); }
+    .cmd-ai-answer {
+      margin-top: 8px; padding: 12px 14px; border-radius: 14px; background: var(--surface-subtle);
+      font-size: 12.5px; line-height: 1.6; color: var(--text-secondary); display: none;
+    }
+    .cmd-ai-answer.show { display: block; }
 
-    /* 参数展示表 */
-    .spec-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-    .spec-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 9px 0;
-      border-bottom: 1px solid var(--glass-outer-stroke);
-      font-size: 13px;
-    }
+    /* 参数表 */
+    .spec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .spec-row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--glass-outer-stroke); font-size: 12.5px; }
     .spec-row:last-child { border-bottom: none; }
     .spec-key { color: var(--text-secondary); }
-    .spec-val { font-weight: 500; font-variant-numeric: tabular-nums; }
+    .spec-val { font-weight: 500; font-variant-numeric: tabular-nums; text-align: right; }
 
-    @media (max-width: 860px) {
-      .grid-2, .grid-3, .spec-grid { grid-template-columns: 1fr; }
-      .brand-sub { display: none; }
+    @media (max-width: 960px) {
+      .grid-2, .grid-3, .vision-zones, .spec-grid { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      [data-layout="sidebar"] .floating-dock-wrap { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -888,287 +789,474 @@
       <div class="ambient-orb orb-3"></div>
     </div>
 
-    <!-- 一体化融合顶栏 -->
-    <header class="titlebar">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="4" y="4" width="16" height="16" rx="5"></rect>
-            <path d="M9 12h6M12 9v6"></path>
-          </svg>
-        </div>
-        <span class="brand-title">WinForge Studio</span>
-        <span class="brand-sub">Apple 液态玻璃样板间</span>
-      </div>
-
-      <!-- 居中灵动岛胶囊 -->
-      <div class="dynamic-pill-wrap">
-        <button class="dynamic-pill" id="islandTrigger" type="button" aria-expanded="false">
-          <span class="status-dot" id="islandDot"></span>
-          <span id="islandSummary">已就绪 · 点击展开灵动胶囊</span>
-        </button>
-        <div class="island-popover" id="islandPopover" role="dialog" aria-label="灵动状态面板">
-          <div class="island-row">
-            <strong style="font-size: 13.5px;">离线安装包构建引擎</strong>
-            <span id="islandPct" style="font-size: 12px; color: var(--island-muted); font-variant-numeric: tabular-nums;">74%</span>
+    <!-- macOS 27 Golden Gate 通边液态玻璃侧边栏 -->
+    <aside class="sidebar" aria-label="主导航侧栏">
+      <div>
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+              <path d="M9 12h6M12 9v6"></path>
+            </svg>
           </div>
-          <p style="font-size: 12px; color: var(--island-muted); line-height: 1.45;">
-            字体、图标与运行环境已内嵌，目标新电脑安装后零下载即可运行。
-          </p>
-          <div class="island-bar"><div class="island-bar-fill" id="islandBarFill"></div></div>
-          <div class="island-actions">
-            <button class="island-btn primary" type="button" id="simulateTaskBtn">模拟完成</button>
-            <button class="island-btn" type="button" id="closeIslandBtn">收起胶囊</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 右侧：浅/深切换、材质档位、精修 Windows 窗口按钮 -->
-      <div class="titlebar-right">
-        <div class="top-chip-group" role="group" aria-label="外观切换">
-          <button class="chip-btn active" data-set-theme="light" type="button">浅色</button>
-          <button class="chip-btn" data-set-theme="dark" type="button">深色</button>
-        </div>
-        <div class="top-chip-group" role="group" aria-label="玻璃通透度">
-          <button class="chip-btn active" data-set-glass="liquid" type="button">标准玻璃</button>
-          <button class="chip-btn" data-set-glass="clear" type="button">超清透</button>
-        </div>
-        <div class="win-controls" aria-label="精修 Windows 窗口控制按钮">
-          <button class="win-btn" type="button" title="最小化（示例）" data-win-tip="已模拟窗口最小化反馈">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg>
-          </button>
-          <button class="win-btn" type="button" title="最大化（示例）" data-win-tip="已模拟窗口全屏切换反馈">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="4"/></svg>
-          </button>
-          <button class="win-btn close" type="button" title="关闭（示例）" data-win-tip="优雅保存状态并干净退出">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <!-- 主内容区 -->
-    <main class="workspace">
-      <!-- 页面 1：总览工作台 -->
-      <section class="page active" id="page-overview">
-        <div class="page-header">
           <div>
-            <h1>Apple / iOS 液态玻璃基准</h1>
-            <p>试着点击按钮、按住开关、拖动滑块，或按下 Ctrl+K / Space 感受真实手感</p>
+            <div class="brand-title">WinForge OS 27</div>
+            <div class="brand-sub">Apple 全生态液态玻璃</div>
           </div>
-          <button class="btn btn-primary" type="button" id="openCmdBtn">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-            <span>打开命令浮层</span>
+        </div>
+
+        <div class="side-section-label">工作区视图</div>
+        <nav class="side-nav">
+          <button class="side-item active" type="button" data-page="overview">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+            <span>控件与材质</span>
+          </button>
+          <button class="side-item" type="button" data-page="ecosystem">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+            <span>五平台范式</span>
+            <span class="side-pill-tag">27</span>
+          </button>
+          <button class="side-item" type="button" data-page="ai">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 3v3M12 18v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M3 12h3M18 12h3"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>情景与分层</span>
+          </button>
+          <button class="side-item" type="button" data-page="specs">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M2 14h4M10 8h4M18 16h4"/></svg>
+            <span>OS 27 参数</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- 侧栏底部快捷透度指示 -->
+      <div class="side-foot">
+        <div class="side-foot-title">
+          <span>Liquid Glass 透度</span>
+          <span id="sideTintLabel" style="color: var(--accent);">均衡 50%</span>
+        </div>
+        <input class="apple-slider" id="tintSliderSide" type="range" min="0" max="100" value="50" aria-label="液态玻璃透度" />
+        <div class="slider-scale" style="margin-top: 5px;">
+          <span>极透</span><span>标准</span><span>染色实底</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 主内容壳层 -->
+    <div class="main-shell">
+      <!-- 一体化融合顶栏 + 统一规范工具条 -->
+      <header class="titlebar">
+        <div class="toolbar-left">
+          <button class="tool-icon-btn" id="toggleLayoutBtn" type="button" title="切换 macOS 通边侧栏 / iOS 底部悬浮胶囊">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 4v16"/></svg>
+            <span id="layoutBtnText">切悬浮胶囊</span>
+          </button>
+          <button class="tool-icon-btn" id="openCmdTopBtn" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <span>Ask AI · Ctrl+K</span>
           </button>
         </div>
 
-        <div class="grid-2">
-          <!-- 卡片 1：按钮与按压手感 -->
-          <article class="glass-card specular-card">
-            <div class="card-head">
-              <span class="card-title">按钮全状态与按压回弹</span>
-              <span class="card-badge">scale(0.962) · 弹簧回正</span>
+        <!-- 居中灵动岛胶囊 -->
+        <div class="dynamic-pill-wrap">
+          <button class="dynamic-pill" id="islandTrigger" type="button" aria-expanded="false">
+            <span class="status-dot" id="islandDot"></span>
+            <span id="islandSummary">已就绪 · 点击展开灵动胶囊</span>
+          </button>
+          <div class="island-popover" id="islandPopover" role="dialog" aria-label="灵动状态面板">
+            <div class="island-row">
+              <strong style="font-size: 13.5px;">离线安装包构建引擎</strong>
+              <span id="islandPct" style="font-size: 12px; color: var(--island-muted); font-variant-numeric: tabular-nums;">76%</span>
             </div>
-            <div class="btn-row">
-              <button class="btn btn-primary" type="button" data-toast="主操作已触发 · 利落回弹">主操作按钮</button>
-              <button class="btn btn-glass" type="button" data-toast="液态玻璃次按钮已触发">液态玻璃按钮</button>
-              <button class="btn btn-tinted" type="button" data-toast="轻着色按钮已触发">柔和着色</button>
-              <button class="btn btn-danger" type="button" data-toast="高危操作会先弹出柔和确认">删除确认</button>
-            </div>
-            <div class="btn-row" style="margin-bottom: 16px;">
-              <button class="btn btn-glass" type="button" id="loadingBtn">点击体验加载态</button>
-              <button class="btn btn-glass" type="button" disabled>禁用状态</button>
-            </div>
-
-            <div class="card-head" style="margin-bottom: 10px;">
-              <span class="card-title" style="font-size: 13.5px;">分段控制器（Segmented Control）</span>
-              <span class="card-badge" id="segResult">当前：均衡通透</span>
-            </div>
-            <div class="segmented" id="segmentedControl">
-              <div class="seg-indicator" id="segIndicator"></div>
-              <button class="seg-btn active" type="button" data-seg="0" data-label="均衡通透">均衡通透</button>
-              <button class="seg-btn" type="button" data-seg="1" data-label="极致轻盈">极致轻盈</button>
-              <button class="seg-btn" type="button" data-seg="2" data-label="省电纯底">省电纯底</button>
-            </div>
-          </article>
-
-          <!-- 卡片 2：开关与滑块手感 -->
-          <article class="glass-card specular-card">
-            <div class="card-head">
-              <span class="card-title">开关与精致滑块</span>
-              <span class="card-badge">按住开关可见滑块拉长</span>
-            </div>
-            <div class="control-list">
-              <div class="control-row">
-                <div>
-                  <div class="control-label">液态边缘高光折射</div>
-                  <div class="control-sub">1px 内缘高光与光标跟手微光</div>
-                </div>
-                <button class="ios-switch" role="switch" aria-checked="true" type="button" data-switch="折射高光"><span class="thumb"></span></button>
-              </div>
-              <div class="control-row">
-                <div>
-                  <div class="control-label">自动跟随 Windows 深浅主题</div>
-                  <div class="control-sub">日间纯净白灰，夜间深邃炭黑</div>
-                </div>
-                <button class="ios-switch" role="switch" aria-checked="false" type="button" data-switch="跟随系统外观"><span class="thumb"></span></button>
-              </div>
-              <div class="slider-wrap">
-                <div class="slider-head">
-                  <span class="control-label">玻璃柔焦强度</span>
-                  <span class="slider-val" id="blurVal">24 px</span>
-                </div>
-                <input class="apple-slider" id="blurSlider" type="range" min="8" max="36" value="24" />
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- 底部三联：按键反馈 + 玻璃层级 + 打包标准 -->
-        <div class="grid-3">
-          <article class="glass-card specular-card">
-            <div class="card-head">
-              <span class="card-title">物理按键与快捷键</span>
-              <span class="card-badge">可真实按键</span>
-            </div>
-            <div class="control-list">
-              <div class="shortcut-item" id="scCmd">
-                <span style="font-size: 13px;">全局命令面板</span>
-                <span class="keycap-group"><kbd class="keycap" data-key="Control">Ctrl</kbd><kbd class="keycap" data-key="k">K</kbd></span>
-              </div>
-              <div class="shortcut-item" id="scSpace">
-                <span style="font-size: 13px;">快捷开关灵动岛</span>
-                <span class="keycap-group"><kbd class="keycap" data-key=" ">Space</kbd></span>
-              </div>
-              <div class="shortcut-item" id="scEsc">
-                <span style="font-size: 13px;">收起任意浮层</span>
-                <span class="keycap-group"><kbd class="keycap" data-key="Escape">Esc</kbd></span>
-              </div>
-            </div>
-          </article>
-
-          <article class="glass-card specular-card">
-            <div class="card-head">
-              <span class="card-title">光学四层结构</span>
-              <span class="card-badge">清晰不发灰</span>
-            </div>
-            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.65;">
-              1. 背景柔焦 + 高饱和度提亮<br />
-              2. 克制乳白 / 炭灰半透明薄膜<br />
-              3. 1px 顶部与内缘折射亮边<br />
-              4. 轻盈大半径环境阴影
+            <p style="font-size: 12px; color: var(--island-muted); line-height: 1.5;">
+              字体、图标与运行环境全部离线内嵌，新电脑装完 Setup.exe 零下载直接打开。
             </p>
-          </article>
-
-          <article class="glass-card specular-card">
-            <div class="card-head">
-              <span class="card-title">新电脑开箱即用</span>
-              <span class="card-badge">零额外下载</span>
+            <div class="island-bar"><div class="island-bar-fill" id="islandBarFill"></div></div>
+            <div class="island-actions">
+              <button class="island-btn primary" type="button" id="simulateTaskBtn">模拟完成</button>
+              <button class="island-btn" type="button" id="closeIslandBtn">收起胶囊</button>
             </div>
-            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.65;">
-              字体、圆润线性 SVG 图标与程序运行环境全部离线打包进 <strong style="color: var(--text-primary);">Setup.exe</strong>，任何全新 Windows 电脑安装完直接启动。
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- 页面 2：沉浸体验（检验玻璃盖在内容上的可读性） -->
-      <section class="page" id="page-layers">
-        <div class="page-header">
-          <div>
-            <h1>玻璃分层与可读性验证</h1>
-            <p>验证液态玻璃悬浮在明暗变化内容之上时，文字依然锐利清晰</p>
           </div>
         </div>
-        <div class="grid-2">
+
+        <!-- 右侧：浅/深切换 + 精修 Windows 窗口按钮 -->
+        <div class="titlebar-right">
+          <div class="top-chip-group" role="group" aria-label="外观切换">
+            <button class="chip-btn active" data-set-theme="light" type="button">浅色</button>
+            <button class="chip-btn" data-set-theme="dark" type="button">深色</button>
+          </div>
+          <div class="win-controls" aria-label="精修 Windows 窗口控制按钮">
+            <button class="win-btn" type="button" title="最小化（示例）" data-win-tip="已模拟窗口最小化反馈">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg>
+            </button>
+            <button class="win-btn" type="button" title="最大化（示例）" data-win-tip="已模拟窗口全屏切换反馈">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="4"/></svg>
+            </button>
+            <button class="win-btn close" type="button" title="关闭（示例）" data-win-tip="优雅保存状态并干净退出">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- 主工作区 -->
+      <main class="workspace">
+        <!-- 页面 1：控件与 Liquid Glass 27 材质 -->
+        <section class="page active" id="page-overview">
+          <div class="page-header">
+            <div>
+              <h1>Apple OS 27 液态玻璃基准</h1>
+              <p>拖动无级透度滑块体验 Ultraclear ↔ Fully Tinted，或按 Ctrl+K / Space 测试真实按键手感</p>
+            </div>
+            <button class="btn btn-primary" type="button" id="openCmdBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              <span>打开 Spotlight · Ask AI</span>
+            </button>
+          </div>
+
+          <div class="grid-2">
+            <!-- 按钮全 6 态 + 分段器 -->
+            <article class="glass-card specular-card">
+              <div class="card-head">
+                <span class="card-title">按钮全 6 态与按压回弹</span>
+                <span class="card-badge">scale(0.962) · 弹簧回正</span>
+              </div>
+              <div class="btn-row">
+                <button class="btn btn-primary" type="button" data-toast="主操作已触发 · 利落回弹">主操作按钮</button>
+                <button class="btn btn-glass" type="button" data-toast="液态玻璃次按钮已触发">液态玻璃按钮</button>
+                <button class="btn btn-tinted" type="button" data-toast="轻着色按钮已触发">柔和着色</button>
+                <button class="btn btn-danger" type="button" data-toast="高危操作前会给柔和确认">删除确认</button>
+              </div>
+              <div class="btn-row" style="margin-bottom: 14px;">
+                <button class="btn btn-glass" type="button" id="loadingBtn">点击体验加载态</button>
+                <button class="btn btn-glass" type="button" disabled>禁用状态</button>
+              </div>
+              <div class="card-head" style="margin-bottom: 8px;">
+                <span class="card-title" style="font-size: 13px;">分段控制器（Segmented Control）</span>
+                <span class="card-badge" id="segResult">当前：均衡通透</span>
+              </div>
+              <div class="segmented" id="segmentedControl">
+                <div class="seg-indicator" id="segIndicator"></div>
+                <button class="seg-btn active" type="button" data-seg="0" data-label="超清透" data-tint-preset="10">超清透</button>
+                <button class="seg-btn" type="button" data-seg="1" data-label="均衡通透" data-tint-preset="50">均衡标准</button>
+                <button class="seg-btn" type="button" data-seg="2" data-label="染色高实底" data-tint-preset="95">染色实底</button>
+              </div>
+            </article>
+
+            <!-- Liquid Glass 27 无级透度滑块 + iOS 开关 -->
+            <article class="glass-card specular-card">
+              <div class="card-head">
+                <span class="card-title">Liquid Glass 27 外观滑块与开关</span>
+                <span class="card-badge" id="mainTintBadge">均衡标准 50%</span>
+              </div>
+              <div class="control-list">
+                <div class="slider-wrap">
+                  <div class="slider-head">
+                    <span class="control-label">液态玻璃连续透度（27 代新特性）</span>
+                    <span class="slider-val" id="tintVal">50%</span>
+                  </div>
+                  <input class="apple-slider" id="tintSliderMain" type="range" min="0" max="100" value="50" />
+                  <div class="slider-scale">
+                    <span>Ultraclear 极透</span>
+                    <span>Standard 均衡</span>
+                    <span>Fully Tinted 高对比</span>
+                  </div>
+                </div>
+                <div class="control-row">
+                  <div>
+                    <div class="control-label">均匀折射高光（Uniform Refraction）</div>
+                    <div class="control-sub">按住开关可感受圆钮横向微拉长</div>
+                  </div>
+                  <button class="ios-switch" role="switch" aria-checked="true" type="button" data-switch="均匀折射高光"><span class="thumb"></span></button>
+                </div>
+                <div class="control-row">
+                  <div>
+                    <div class="control-label">高对比度文字保护</div>
+                    <div class="control-sub">正文对比度全程不低于 4.5:1</div>
+                  </div>
+                  <button class="ios-switch" role="switch" aria-checked="true" type="button" data-switch="高对比文字保护"><span class="thumb"></span></button>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="grid-3">
+            <article class="glass-card specular-card">
+              <div class="card-head">
+                <span class="card-title">物理按键与快捷键</span>
+                <span class="card-badge">可真实按键</span>
+              </div>
+              <div class="control-list">
+                <div class="shortcut-item" id="scCmd">
+                  <span style="font-size: 12.5px;">Spotlight · Ask AI</span>
+                  <span class="keycap-group"><kbd class="keycap" data-key="Control">Ctrl</kbd><kbd class="keycap" data-key="k">K</kbd></span>
+                </div>
+                <div class="shortcut-item" id="scSpace">
+                  <span style="font-size: 12.5px;">开关灵动岛</span>
+                  <span class="keycap-group"><kbd class="keycap" data-key=" ">Space</kbd></span>
+                </div>
+                <div class="shortcut-item" id="scEsc">
+                  <span style="font-size: 12.5px;">收起任意浮层</span>
+                  <span class="keycap-group"><kbd class="keycap" data-key="Escape">Esc</kbd></span>
+                </div>
+              </div>
+            </article>
+
+            <article class="glass-card specular-card">
+              <div class="card-head">
+                <span class="card-title">macOS 27 桌面布局</span>
+                <span class="card-badge">可一键切换</span>
+              </div>
+              <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.65;">
+                通顶通底的 <strong style="color: var(--text-primary);">Edge-to-Edge 通边侧栏</strong> 让背景环境光柔和透出；点左上角按钮即可在“桌面侧栏态”与“iOS 悬浮胶囊态”之间即时切换。
+              </p>
+            </article>
+
+            <article class="glass-card specular-card">
+              <div class="card-head">
+                <span class="card-title">新电脑开箱即用</span>
+                <span class="card-badge">零额外下载</span>
+              </div>
+              <p style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.65;">
+                字体、精细矢量 SVG 图标与程序运行环境全离线打包进 <strong style="color: var(--text-primary);">Setup.exe</strong>，断网新电脑安装完直接启动。
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- 页面 2：五平台生态范式（watchOS 27 + visionOS 27） -->
+        <section class="page" id="page-ecosystem">
+          <div class="page-header">
+            <div>
+              <h1>watchOS 27 + visionOS 27 桌面映射范式</h1>
+              <p>把迷你情景挂件、动态高频网格、三分区控制中心与悬停展开通知自然融进 Windows 桌面</p>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <!-- watchOS 27 Smart Stack 情景堆叠卡 -->
+            <article class="glass-card specular-card">
+              <div class="card-head">
+                <span class="card-title">Smart Stack 情景堆叠挂件（watchOS 27）</span>
+                <button class="btn btn-tinted" style="height:28px; padding:0 11px; font-size:11.5px;" type="button" id="nextStackBtn">下一张卡片</button>
+              </div>
+              <div class="stack-stage" id="stackStage" title="点击或滚动切换情景卡片">
+                <div class="stack-card" data-pos="0">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span class="card-badge" style="background: var(--accent-soft); color: var(--accent);">当下最相关</span>
+                    <span style="font-size:11.5px; color:var(--text-muted);">1 / 3 · 点击或滚轮切换</span>
+                  </div>
+                  <div>
+                    <div style="font-size:22px; font-weight:600; font-variant-numeric:tabular-nums;">24:30</div>
+                    <div style="font-size:12.5px; color:var(--text-secondary); margin-top:2px;">深度专注进行中 · 桌面迷你挂件首推形态</div>
+                  </div>
+                </div>
+                <div class="stack-card" data-pos="1">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span class="card-badge">剪贴板智能摘要</span>
+                    <span style="font-size:11.5px; color:var(--text-muted);">2 / 3</span>
+                  </div>
+                  <div>
+                    <div style="font-size:16px; font-weight:600;">已暂存 4 张近期截图</div>
+                    <div style="font-size:12.5px; color:var(--text-secondary); margin-top:4px;">轻点即可批量压缩并归档到今日文件夹</div>
+                  </div>
+                </div>
+                <div class="stack-card" data-pos="2">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span class="card-badge">日程提醒</span>
+                    <span style="font-size:11.5px; color:var(--text-muted);">3 / 3</span>
+                  </div>
+                  <div>
+                    <div style="font-size:16px; font-weight:600;">18:00 版本 Git 归档检查</div>
+                    <div style="font-size:12.5px; color:var(--text-secondary); margin-top:4px;">按时间与场景自动浮到 Smart Stack 顶层</div>
+                  </div>
+                </div>
+              </div>
+              <p style="font-size: 12px; color: var(--text-muted);">适合桌面角落迷你悬浮窗或系统托盘小面板，零冗余直达当下最重要的一件事。</p>
+            </article>
+
+            <!-- watchOS 27 Dynamic App Grid 动态高频网格 -->
+            <article class="glass-card specular-card">
+              <div class="card-head">
+                <span class="card-title">Dynamic App Grid 动态高频网格</span>
+                <span class="card-badge">常用入口自动聚拢突出</span>
+              </div>
+              <div class="watch-grid">
+                <button class="watch-orb hot" type="button" data-toast="高频核心功能 · 一键直达">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                  <span>快捷专注（最常用）</span>
+                </button>
+                <button class="watch-orb" type="button" data-toast="已打开文档快搜">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                  <span>快搜</span>
+                </button>
+                <button class="watch-orb" type="button" data-toast="已打开截图收纳">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="12" cy="12" r="3"/></svg>
+                  <span>截图</span>
+                </button>
+                <button class="watch-orb" type="button" data-toast="已打开笔记草稿">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                  <span>便签</span>
+                </button>
+                <button class="watch-orb" type="button" data-toast="已打开离线打包检查">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span>打包</span>
+                </button>
+                <button class="watch-orb hot" type="button" id="gridAskAiBtn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="3"/></svg>
+                  <span>Ask AI 助手</span>
+                </button>
+              </div>
+            </article>
+          </div>
+
+          <!-- visionOS 27 三分区控制中心 + 悬停聚焦自动展开 -->
           <article class="glass-card specular-card">
             <div class="card-head">
-              <span class="card-title">嵌套圆角对齐法则</span>
-              <span class="card-badge">外 22px = 内 14px + 距 8px</span>
+              <span class="card-title">三分区控制中心 & 悬停聚焦展开（visionOS 27）</span>
+              <span class="card-badge">通知播放 / 核心控制 / 氛围环境</span>
             </div>
-            <div style="padding: 8px; border-radius: 22px; background: var(--surface-subtle); border: 1px solid var(--glass-outer-stroke);">
-              <div style="padding: 16px; border-radius: 14px; background: var(--surface-solid); box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-                <div style="font-size: 14px; font-weight: 600; margin-bottom: 6px;">精准贴合的内嵌圆角</div>
-                <div style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.6;">
-                  内外圆角保持同心弧度，绝不出现外面大圆角、里面尖直角或圆角挤在一起的廉价感。
+            <div class="vision-zones">
+              <!-- 分区 1：通知与播放（支持悬停 380ms 自动展开） -->
+              <div class="vision-zone">
+                <div class="zone-label">① 通知与媒体（鼠标悬停 0.4s 自动展开）</div>
+                <div class="gaze-notice" id="gazeNotice">
+                  <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+                    <strong style="font-size: 13px;">离线安装包校验通过</strong>
+                    <span class="card-badge" style="color: var(--success);">悬停展开</span>
+                  </div>
+                  <div class="gaze-extra">
+                    <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 8px;">
+                      已核验无外部 CDN 字体、无本机硬编码路径，目标新电脑断网可直接安装运行。
+                    </p>
+                    <button class="btn btn-primary" style="height:28px; font-size:11.5px;" type="button" data-toast="已打开 release/ 交付目录">查看 release/</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 分区 2：核心快捷控制 -->
+              <div class="vision-zone">
+                <div class="zone-label">② 核心控制</div>
+                <div class="control-row" style="padding: 8px 11px;">
+                  <span class="control-label" style="font-size: 12.5px;">窗口置顶悬浮</span>
+                  <button class="ios-switch" role="switch" aria-checked="false" type="button" data-switch="窗口置顶悬浮"><span class="thumb"></span></button>
+                </div>
+                <div class="control-row" style="padding: 8px 11px;">
+                  <span class="control-label" style="font-size: 12.5px;">勿扰静默提醒</span>
+                  <button class="ios-switch" role="switch" aria-checked="true" type="button" data-switch="勿扰静默提醒"><span class="thumb"></span></button>
+                </div>
+              </div>
+
+              <!-- 分区 3：氛围与环境光切换 -->
+              <div class="vision-zone">
+                <div class="zone-label">③ 氛围环境（Environments）</div>
+                <div style="display: flex; flex-direction: column; gap: 7px;">
+                  <button class="btn btn-glass env-btn" style="height:30px; font-size:12px; justify-content:flex-start;" type="button" data-set-env="mist">晨雾晴蓝（默认克制）</button>
+                  <button class="btn btn-glass env-btn" style="height:30px; font-size:12px; justify-content:flex-start;" type="button" data-set-env="aurora">冰岛极光（Thórsmörk）</button>
+                  <button class="btn btn-glass env-btn" style="height:30px; font-size:12px; justify-content:flex-start;" type="button" data-set-env="warm">日落暖沙（护眼柔和）</button>
                 </div>
               </div>
             </div>
           </article>
+        </section>
 
-          <article class="glass-card specular-card">
-            <div class="card-head">
-              <span class="card-title">去“AI 廉价味”自查</span>
-              <span class="card-badge">全部通过</span>
+        <!-- 页面 3：情景建议与分层检验 -->
+        <section class="page" id="page-ai">
+          <div class="page-header">
+            <div>
+              <h1>情景建议、随处改写与分层检验</h1>
+              <p>还原 Apple OS 27 隐形融入的智能交互，同时验证嵌套圆角与去廉价红线</p>
             </div>
-            <div class="control-list">
-              <div class="control-row"><span class="control-label">无高饱和紫粉霓虹渐变</span><span style="color: var(--success); font-size: 12.5px; font-weight: 600;">已落实</span></div>
-              <div class="control-row"><span class="control-label">无 Emoji 充当系统图标</span><span style="color: var(--success); font-size: 12.5px; font-weight: 600;">已落实</span></div>
-              <div class="control-row"><span class="control-label">无原生白框弹窗与粗滚动条</span><span style="color: var(--success); font-size: 12.5px; font-weight: 600;">已落实</span></div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- 页面 3：关键参数速查 -->
-      <section class="page" id="page-specs">
-        <div class="page-header">
-          <div>
-            <h1>Apple 体系设计参数速查</h1>
-            <p>AI 开发软件时会直接按这套参数 1:1 落地，如果你想微调某一项，直接告诉我改这里的数字就行</p>
           </div>
-        </div>
-        <div class="spec-grid">
-          <article class="glass-card">
-            <div class="card-head"><span class="card-title">材质与圆角基准</span></div>
-            <div class="spec-row"><span class="spec-key">液态玻璃模糊</span><span class="spec-val">24–26 px · saturate(190%)</span></div>
-            <div class="spec-row"><span class="spec-key">卡片主圆角</span><span class="spec-val">22 px</span></div>
-            <div class="spec-row"><span class="spec-key">嵌套子块圆角</span><span class="spec-val">14 px（外圆角 - 内边距）</span></div>
-            <div class="spec-row"><span class="spec-key">悬浮栏与主按钮</span><span class="spec-val">999 px 全胶囊</span></div>
-          </article>
-          <article class="glass-card">
-            <div class="card-head"><span class="card-title">物理动效基准</span></div>
-            <div class="spec-row"><span class="spec-key">按钮按压缩放</span><span class="spec-val">scale(0.962) · 75 ms</span></div>
-            <div class="spec-row"><span class="spec-key">回弹弹簧曲线</span><span class="spec-val">cubic-bezier(0.32, 1.18, 0.42, 1)</span></div>
-            <div class="spec-row"><span class="spec-key">悬浮胶囊切换</span><span class="spec-val">340 ms · 横向轻拉伸 1.12x</span></div>
-            <div class="spec-row"><span class="spec-key">灵动岛展开</span><span class="spec-val">320 ms 锚点形变</span></div>
-          </article>
-        </div>
-      </section>
-    </main>
+          <div class="grid-2">
+            <article class="glass-card specular-card">
+              <div class="card-head">
+                <span class="card-title">Write Anywhere & Contextual Suggestions</span>
+                <span class="card-badge">按需启用</span>
+              </div>
+              <div style="padding: 14px; border-radius: 14px; background: var(--surface-subtle); font-size: 13px; line-height: 1.65;" id="rewriteSample">
+                本周五下午三点前，我们需要把新版 Windows 桌面客户端打包为离线 Setup.exe，并在一台全新断网电脑上确认字体与图标正常显示。
+              </div>
+              <div class="suggest-bar">
+                <button class="suggest-chip" type="button" data-rewrite="concise">精简为一句话</button>
+                <button class="suggest-chip" type="button" data-rewrite="todo">提取待办清单</button>
+                <button class="suggest-chip" type="button" data-rewrite="reset">恢复原文</button>
+              </div>
+            </article>
 
-    <!-- 底部悬浮液态玻璃导航胶囊 -->
-    <nav class="floating-dock-wrap" aria-label="主导航">
-      <div class="floating-dock" id="floatingDock">
-        <div class="dock-indicator" id="dockIndicator"></div>
-        <button class="dock-item active" type="button" data-page="overview">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
-          <span>手感总览</span>
-        </button>
-        <button class="dock-item" type="button" data-page="layers">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/><path d="m3 18 9 5 9-5"/></svg>
-          <span>分层检验</span>
-        </button>
-        <button class="dock-item" type="button" data-page="specs">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M2 14h4M10 8h4M18 16h4"/></svg>
-          <span>设计参数</span>
-        </button>
-      </div>
-    </nav>
+            <article class="glass-card specular-card">
+              <div class="card-head">
+                <span class="card-title">嵌套圆角对齐与去 AI 味红线</span>
+                <span class="card-badge">外 22px = 内 14px + 距 8px</span>
+              </div>
+              <div style="padding: 8px; border-radius: 22px; background: var(--surface-subtle); border: 1px solid var(--glass-outer-stroke); margin-bottom: 10px;">
+                <div style="padding: 14px; border-radius: 14px; background: var(--surface-solid); box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                  <div style="font-size: 13.5px; font-weight: 600; margin-bottom: 4px;">同心弧度贴合</div>
+                  <div style="font-size: 12px; color: var(--text-secondary); line-height: 1.55;">
+                    无紫粉霓虹、无 Emoji 图标、无嵌套重度模糊、无原生系统丑弹窗。
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
 
-    <!-- Ctrl+K 液态玻璃命令浮层 -->
-    <div class="modal-backdrop" id="cmdBackdrop" role="dialog" aria-modal="true" aria-label="快速命令">
+        <!-- 页面 4：OS 27 参数速查 -->
+        <section class="page" id="page-specs">
+          <div class="page-header">
+            <div>
+              <h1>Apple OS 27 全生态设计参数速查</h1>
+              <p>AI 开发软件时直接按这套基准 1:1 落地，随时可按需微调任何数值</p>
+            </div>
+          </div>
+          <div class="spec-grid">
+            <article class="glass-card">
+              <div class="card-head"><span class="card-title">Liquid Glass 27 材质区间</span></div>
+              <div class="spec-row"><span class="spec-key">Ultraclear（0%）</span><span class="spec-val">alpha 0.36 · blur 16px · sat 210%</span></div>
+              <div class="spec-row"><span class="spec-key">Standard（50%）</span><span class="spec-val">alpha 0.64 · blur 24px · sat 190%</span></div>
+              <div class="spec-row"><span class="spec-key">Fully Tinted（100%）</span><span class="spec-val">alpha 0.90 · blur 30px · sat 150%</span></div>
+              <div class="spec-row"><span class="spec-key">嵌套圆角公式</span><span class="spec-val">外圆角 = 内圆角 + 内边距</span></div>
+            </article>
+            <article class="glass-card">
+              <div class="card-head"><span class="card-title">五平台交互物理参数</span></div>
+              <div class="spec-row"><span class="spec-key">按钮按压 / 回弹</span><span class="spec-val">scale(0.962) · 75ms / 220ms 弹簧</span></div>
+              <div class="spec-row"><span class="spec-key">悬浮胶囊切换</span><span class="spec-val">340ms · 横向拉伸 1.12x</span></div>
+              <div class="spec-row"><span class="spec-key">visionOS 悬停展开延迟</span><span class="spec-val">380ms（防鼠标路过误触）</span></div>
+              <div class="spec-row"><span class="spec-key">Smart Stack 翻卡</span><span class="spec-val">320ms 弹性层级递进</span></div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <!-- 底部悬浮液态玻璃导航胶囊（切至“悬浮胶囊态”时出现） -->
+      <nav class="floating-dock-wrap" aria-label="悬浮导航">
+        <div class="floating-dock" id="floatingDock">
+          <div class="dock-indicator" id="dockIndicator"></div>
+          <button class="dock-item active" type="button" data-page="overview"><span>控件与材质</span></button>
+          <button class="dock-item" type="button" data-page="ecosystem"><span>五平台范式</span></button>
+          <button class="dock-item" type="button" data-page="ai"><span>情景与分层</span></button>
+          <button class="dock-item" type="button" data-page="specs"><span>OS 27 参数</span></button>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Ctrl+K Spotlight + Ask AI 命令面板 -->
+    <div class="modal-backdrop" id="cmdBackdrop" role="dialog" aria-modal="true" aria-label="Spotlight 命令面板">
       <div class="cmd-palette">
         <div class="cmd-input-row">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="color: var(--text-muted);"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <input class="cmd-input" id="cmdInput" type="text" placeholder="输入命令或切换外观……（按 Esc 优雅关闭）" />
+          <input class="cmd-input" id="cmdInput" type="text" placeholder="输入命令，或直接提问（如：怎么保证新电脑零下载打开？）" />
           <kbd class="keycap">Esc</kbd>
         </div>
-        <div class="cmd-list">
+        <div class="cmd-list" id="cmdList">
+          <button class="cmd-item" type="button" id="askAiRow" style="display:none;">
+            <span id="askAiText">向 AI 提问</span>
+            <span style="color: var(--accent); font-size: 11.5px; font-weight: 600;">Ask AI · Enter</span>
+          </button>
           <button class="cmd-item" type="button" data-cmd="toggle-theme"><span>切换浅色 / 深色外观</span><span style="color: var(--text-muted); font-size: 12px;">Theme</span></button>
-          <button class="cmd-item" type="button" data-cmd="toggle-glass"><span>切换标准玻璃 / 超清透玻璃</span><span style="color: var(--text-muted); font-size: 12px;">Material</span></button>
+          <button class="cmd-item" type="button" data-cmd="toggle-layout"><span>切换通边侧栏 / 悬浮胶囊布局</span><span style="color: var(--text-muted); font-size: 12px;">macOS 27</span></button>
+          <button class="cmd-item" type="button" data-cmd="preset-tinted"><span>切至高对比染色玻璃（Fully Tinted）</span><span style="color: var(--text-muted); font-size: 12px;">Liquid Glass 27</span></button>
           <button class="cmd-item" type="button" data-cmd="open-island"><span>展开顶部灵动岛胶囊</span><span style="color: var(--text-muted); font-size: 12px;">Dynamic Pill</span></button>
         </div>
+        <div class="cmd-ai-answer" id="cmdAiAnswer"></div>
       </div>
     </div>
   </div>
@@ -1202,105 +1290,81 @@
       islandPopover.classList.toggle("open", next);
       islandTrigger.setAttribute("aria-expanded", String(next));
     }
-
-    islandTrigger.addEventListener("click", (e) => {
-      e.stopPropagation();
-      toggleIsland();
-    });
+    islandTrigger.addEventListener("click", (e) => { e.stopPropagation(); toggleIsland(); });
     document.getElementById("closeIslandBtn").addEventListener("click", () => toggleIsland(false));
     document.getElementById("simulateTaskBtn").addEventListener("click", () => {
-      islandBarFill.style.width = "100%";
-      islandPct.textContent = "100%";
+      islandBarFill.style.width = "100%"; islandPct.textContent = "100%";
       setTimeout(() => {
         toggleIsland(false);
         notifyIsland("Setup.exe 离线包构建完成", "#30d158");
-        setTimeout(() => { islandBarFill.style.width = "74%"; islandPct.textContent = "74%"; }, 450);
+        setTimeout(() => { islandBarFill.style.width = "76%"; islandPct.textContent = "76%"; }, 450);
       }, 420);
     });
 
-    // 浅/深外观切换
+    // Liquid Glass 27 无级透度滑块（同步驱动侧栏与主卡片滑块）
+    const tintSliderMain = document.getElementById("tintSliderMain");
+    const tintSliderSide = document.getElementById("tintSliderSide");
+    const tintVal = document.getElementById("tintVal");
+    const mainTintBadge = document.getElementById("mainTintBadge");
+    const sideTintLabel = document.getElementById("sideTintLabel");
+
+    function applyGlassTint(pct) {
+      const t = Math.max(0, Math.min(100, Number(pct))) / 100;
+      const isDark = root.getAttribute("data-theme") === "dark";
+      const alpha = isDark ? (0.34 + t * 0.54) : (0.36 + t * 0.54);
+      const strongAlpha = Math.min(0.96, alpha + 0.14);
+      const blur = Math.round(16 + t * 14);
+      const sat = Math.round(210 - t * 60);
+      root.style.setProperty("--glass-alpha", alpha.toFixed(2));
+      root.style.setProperty("--glass-strong-alpha", strongAlpha.toFixed(2));
+      root.style.setProperty("--glass-blur", blur + "px");
+      root.style.setProperty("--glass-sat", sat + "%");
+
+      const stage = t < 0.33 ? "超清透" : t < 0.72 ? "均衡标准" : "染色高实底";
+      tintSliderMain.value = String(Math.round(t * 100));
+      tintSliderSide.value = String(Math.round(t * 100));
+      tintSliderMain.style.setProperty("--pct", Math.round(t * 100) + "%");
+      tintSliderSide.style.setProperty("--pct", Math.round(t * 100) + "%");
+      tintVal.textContent = Math.round(t * 100) + "%";
+      mainTintBadge.textContent = `${stage} ${Math.round(t * 100)}%`;
+      sideTintLabel.textContent = `${stage} ${Math.round(t * 100)}%`;
+    }
+    tintSliderMain.addEventListener("input", (e) => applyGlassTint(e.target.value));
+    tintSliderSide.addEventListener("input", (e) => applyGlassTint(e.target.value));
+    applyGlassTint(50);
+
+    // 浅/深切换
     document.querySelectorAll("[data-set-theme]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const theme = btn.dataset.setTheme;
         root.setAttribute("data-theme", theme);
         document.querySelectorAll("[data-set-theme]").forEach((b) => b.classList.toggle("active", b === btn));
-        notifyIsland(theme === "dark" ? "已切换深色液态玻璃" : "已切换浅色液态玻璃", "var(--accent)");
+        applyGlassTint(tintSliderMain.value);
+        notifyIsland(theme === "dark" ? "已切深色液态玻璃" : "已切浅色液态玻璃", "var(--accent)");
       });
     });
 
-    // 玻璃通透度切换
-    document.querySelectorAll("[data-set-glass]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const glass = btn.dataset.setGlass;
-        root.setAttribute("data-glass", glass);
-        document.querySelectorAll("[data-set-glass]").forEach((b) => b.classList.toggle("active", b === btn));
-        notifyIsland(glass === "clear" ? "已切换超清透玻璃" : "已切换标准液态玻璃", "var(--accent)");
+    // 通边侧栏 / 悬浮胶囊布局切换
+    const layoutBtnText = document.getElementById("layoutBtnText");
+    function toggleLayout() {
+      const next = root.getAttribute("data-layout") === "sidebar" ? "dock" : "sidebar";
+      root.setAttribute("data-layout", next);
+      layoutBtnText.textContent = next === "sidebar" ? "切悬浮胶囊" : "切通边侧栏";
+      notifyIsland(next === "sidebar" ? "macOS 27 通边液态侧栏" : "iOS 27 悬浮导航胶囊", "var(--accent)");
+      requestAnimationFrame(() => {
+        const activeDock = document.querySelector(".dock-item.active");
+        if (activeDock) moveDockIndicator(activeDock, false);
       });
-    });
-
-    // 窗口按钮示例反馈
-    document.querySelectorAll("[data-win-tip]").forEach((btn) => {
-      btn.addEventListener("click", () => notifyIsland(btn.dataset.winTip, "var(--accent)"));
-    });
-
-    // 普通按钮提示与加载态演示
-    document.querySelectorAll("[data-toast]").forEach((btn) => {
-      btn.addEventListener("click", () => notifyIsland(btn.dataset.toast, "var(--accent)"));
-    });
-    const loadingBtn = document.getElementById("loadingBtn");
-    loadingBtn.addEventListener("click", () => {
-      if (loadingBtn.disabled) return;
-      const originalWidth = loadingBtn.offsetWidth;
-      loadingBtn.style.minWidth = originalWidth + "px";
-      loadingBtn.disabled = true;
-      loadingBtn.innerHTML = '<span class="spinner"></span><span>处理中</span>';
-      setTimeout(() => {
-        loadingBtn.disabled = false;
-        loadingBtn.textContent = "点击体验加载态";
-        notifyIsland("任务执行完成，按钮宽度全程稳定", "var(--success)");
-      }, 1200);
-    });
-
-    // 分段控制器滑动指示器
-    const segIndicator = document.getElementById("segIndicator");
-    const segResult = document.getElementById("segResult");
-    document.querySelectorAll(".seg-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const idx = Number(btn.dataset.seg);
-        segIndicator.style.transform = `translateX(${idx * 100}%)`;
-        document.querySelectorAll(".seg-btn").forEach((b) => b.classList.toggle("active", b === btn));
-        segResult.textContent = "当前：" + btn.dataset.label;
-      });
-    });
-
-    // iOS 开关
-    document.querySelectorAll(".ios-switch").forEach((sw) => {
-      sw.addEventListener("click", () => {
-        const next = sw.getAttribute("aria-checked") !== "true";
-        sw.setAttribute("aria-checked", String(next));
-        notifyIsland(`${sw.dataset.switch}：${next ? "已开启" : "已关闭"}`, next ? "var(--success)" : "var(--text-muted)");
-      });
-    });
-
-    // 滑块实时调整玻璃模糊度
-    const blurSlider = document.getElementById("blurSlider");
-    const blurVal = document.getElementById("blurVal");
-    function syncSlider() {
-      const min = Number(blurSlider.min), max = Number(blurSlider.max), val = Number(blurSlider.value);
-      const pct = ((val - min) / (max - min)) * 100;
-      blurSlider.style.setProperty("--pct", pct + "%");
-      blurVal.textContent = val + " px";
-      root.style.setProperty("--glass-blur", val + "px");
     }
-    blurSlider.addEventListener("input", syncSlider);
-    syncSlider();
+    document.getElementById("toggleLayoutBtn").addEventListener("click", toggleLayout);
 
-    // 底部悬浮液态玻璃胶囊弹性滑动
+    // 统一页面导航切换（同步侧栏与底部悬浮胶囊）
     const dock = document.getElementById("floatingDock");
     const dockIndicator = document.getElementById("dockIndicator");
     const dockItems = [...dock.querySelectorAll(".dock-item")];
 
     function moveDockIndicator(target, withStretch) {
+      if (!target || target.offsetWidth === 0) return;
       const dx = target.offsetLeft - 6;
       dockIndicator.style.setProperty("--dx", dx + "px");
       dockIndicator.style.width = target.offsetWidth + "px";
@@ -1312,13 +1376,17 @@
       }
     }
 
-    dockItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        dockItems.forEach((b) => b.classList.toggle("active", b === item));
-        moveDockIndicator(item, true);
-        const pageId = "page-" + item.dataset.page;
-        document.querySelectorAll(".page").forEach((p) => p.classList.toggle("active", p.id === pageId));
+    function switchPage(pageKey, withStretch) {
+      document.querySelectorAll(".page").forEach((p) => p.classList.toggle("active", p.id === "page-" + pageKey));
+      document.querySelectorAll(".side-item").forEach((b) => b.classList.toggle("active", b.dataset.page === pageKey));
+      dockItems.forEach((b) => {
+        const active = b.dataset.page === pageKey;
+        b.classList.toggle("active", active);
+        if (active) moveDockIndicator(b, withStretch);
       });
+    }
+    document.querySelectorAll("[data-page]").forEach((btn) => {
+      btn.addEventListener("click", () => switchPage(btn.dataset.page, true));
     });
     window.addEventListener("resize", () => {
       const active = dock.querySelector(".dock-item.active");
@@ -1326,7 +1394,100 @@
     });
     requestAnimationFrame(() => moveDockIndicator(dockItems[0], false));
 
-    // 光标跟手微光（rAF 轻量化）
+    // 分段控制器联动玻璃预设
+    const segIndicator = document.getElementById("segIndicator");
+    const segResult = document.getElementById("segResult");
+    document.querySelectorAll(".seg-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = Number(btn.dataset.seg);
+        segIndicator.style.transform = `translateX(${idx * 100}%)`;
+        document.querySelectorAll(".seg-btn").forEach((b) => b.classList.toggle("active", b === btn));
+        segResult.textContent = "当前：" + btn.dataset.label;
+        applyGlassTint(btn.dataset.tintPreset);
+      });
+    });
+
+    // 按钮与加载态
+    document.querySelectorAll("[data-win-tip]").forEach((btn) => btn.addEventListener("click", () => notifyIsland(btn.dataset.winTip, "var(--accent)")));
+    document.querySelectorAll("[data-toast]").forEach((btn) => btn.addEventListener("click", () => notifyIsland(btn.dataset.toast, "var(--accent)")));
+    const loadingBtn = document.getElementById("loadingBtn");
+    loadingBtn.addEventListener("click", () => {
+      if (loadingBtn.disabled) return;
+      loadingBtn.style.minWidth = loadingBtn.offsetWidth + "px";
+      loadingBtn.disabled = true;
+      loadingBtn.innerHTML = '<span class="spinner"></span><span>处理中</span>';
+      setTimeout(() => {
+        loadingBtn.disabled = false;
+        loadingBtn.textContent = "点击体验加载态";
+        notifyIsland("任务完成，按钮宽度全程稳定", "var(--success)");
+      }, 1100);
+    });
+
+    // iOS 开关
+    document.querySelectorAll(".ios-switch").forEach((sw) => {
+      sw.addEventListener("click", () => {
+        const next = sw.getAttribute("aria-checked") !== "true";
+        sw.setAttribute("aria-checked", String(next));
+        notifyIsland(`${sw.dataset.switch}：${next ? "已开启" : "已关闭"}`, next ? "var(--success)" : "var(--text-muted)");
+      });
+    });
+
+    // watchOS 27 Smart Stack 翻卡
+    const stackStage = document.getElementById("stackStage");
+    const stackCards = [...stackStage.querySelectorAll(".stack-card")];
+    function cycleStack() {
+      stackCards.forEach((c) => {
+        const cur = Number(c.dataset.pos);
+        c.dataset.pos = String((cur + 2) % 3);
+      });
+    }
+    document.getElementById("nextStackBtn").addEventListener("click", cycleStack);
+    stackStage.addEventListener("click", cycleStack);
+    let wheelLock = false;
+    stackStage.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      if (wheelLock) return;
+      wheelLock = true;
+      cycleStack();
+      setTimeout(() => { wheelLock = false; }, 260);
+    }, { passive: false });
+
+    // visionOS 27 氛围切换
+    document.querySelectorAll("[data-set-env]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        root.setAttribute("data-env", btn.dataset.setEnv);
+        notifyIsland("环境光晕已切换：" + btn.textContent.split("（")[0], "var(--accent)");
+      });
+    });
+
+    // visionOS 27 悬停 380ms 聚焦自动展开通知
+    const gazeNotice = document.getElementById("gazeNotice");
+    let gazeTimer = null;
+    gazeNotice.addEventListener("mouseenter", () => {
+      clearTimeout(gazeTimer);
+      gazeTimer = setTimeout(() => gazeNotice.classList.add("expanded"), 380);
+    });
+    gazeNotice.addEventListener("mouseleave", () => {
+      clearTimeout(gazeTimer);
+      gazeNotice.classList.remove("expanded");
+    });
+
+    // Write Anywhere & Contextual Suggestions 演示
+    const rewriteSample = document.getElementById("rewriteSample");
+    const sampleTexts = {
+      reset: "本周五下午三点前，我们需要把新版 Windows 桌面客户端打包为离线 Setup.exe，并在一台全新断网电脑上确认字体与图标正常显示。",
+      concise: "周五 15:00 前完成离线 Setup.exe 打包，并在断网新机验证字体与图标渲染。",
+      todo: "1. 周五 15:00 前构建离线 Setup.exe\n2. 断网新机实测安装与启动\n3. 核验内置字体与 SVG 图标清晰度"
+    };
+    document.querySelectorAll("[data-rewrite]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        rewriteSample.style.whiteSpace = "pre-line";
+        rewriteSample.textContent = sampleTexts[btn.dataset.rewrite];
+        notifyIsland("情景建议已原地应用（支持随时撤销）", "var(--success)");
+      });
+    });
+
+    // 光标镜面微光
     document.querySelectorAll(".specular-card").forEach((card) => {
       card.addEventListener("pointermove", (e) => {
         const rect = card.getBoundingClientRect();
@@ -1335,19 +1496,47 @@
       });
     });
 
-    // 命令面板与物理按键联动
+    // Spotlight + Ask AI 命令面板
     const cmdBackdrop = document.getElementById("cmdBackdrop");
     const cmdInput = document.getElementById("cmdInput");
+    const askAiRow = document.getElementById("askAiRow");
+    const askAiText = document.getElementById("askAiText");
+    const cmdAiAnswer = document.getElementById("cmdAiAnswer");
+
     function setCmdOpen(open) {
       cmdBackdrop.classList.toggle("open", open);
       if (open) {
         toggleIsland(false);
+        cmdAiAnswer.classList.remove("show");
         setTimeout(() => cmdInput.focus(), 60);
       } else {
         cmdInput.value = "";
+        askAiRow.style.display = "none";
+        cmdAiAnswer.classList.remove("show");
       }
     }
+    function runAskAi() {
+      const q = cmdInput.value.trim();
+      if (!q) return;
+      cmdAiAnswer.innerHTML = `<strong style="color:var(--text-primary);">Ask AI 即时回答：</strong>针对“${q.replace(/</g, "&lt;")}”，WinForge 建议直接采用离线打包方案并遵循 Apple OS 27 液态玻璃规范——无需跳转整页即可原地获取解答与一键执行建议。`;
+      cmdAiAnswer.classList.add("show");
+    }
+    cmdInput.addEventListener("input", () => {
+      const q = cmdInput.value.trim();
+      if (q) {
+        askAiRow.style.display = "flex";
+        askAiText.textContent = `向 AI 提问：“${q}”`;
+      } else {
+        askAiRow.style.display = "none";
+        cmdAiAnswer.classList.remove("show");
+      }
+    });
+    cmdInput.addEventListener("keydown", (e) => { if (e.key === "Enter" && cmdInput.value.trim()) runAskAi(); });
+    askAiRow.addEventListener("click", runAskAi);
+
     document.getElementById("openCmdBtn").addEventListener("click", () => setCmdOpen(true));
+    document.getElementById("openCmdTopBtn").addEventListener("click", () => setCmdOpen(true));
+    document.getElementById("gridAskAiBtn").addEventListener("click", () => setCmdOpen(true));
     document.getElementById("scCmd").addEventListener("click", () => setCmdOpen(true));
     document.getElementById("scSpace").addEventListener("click", () => toggleIsland());
     document.getElementById("scEsc").addEventListener("click", () => { setCmdOpen(false); toggleIsland(false); });
@@ -1360,9 +1549,11 @@
         if (act === "toggle-theme") {
           const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
           document.querySelector(`[data-set-theme="${next}"]`).click();
-        } else if (act === "toggle-glass") {
-          const next = root.getAttribute("data-glass") === "clear" ? "liquid" : "clear";
-          document.querySelector(`[data-set-glass="${next}"]`).click();
+        } else if (act === "toggle-layout") {
+          toggleLayout();
+        } else if (act === "preset-tinted") {
+          applyGlassTint(96);
+          notifyIsland("已切至 Fully Tinted 染色高对比", "var(--accent)");
         } else if (act === "open-island") {
           toggleIsland(true);
         }
@@ -1375,27 +1566,20 @@
         setTimeout(() => el.classList.remove("pressed"), 180);
       });
     }
-
     document.addEventListener("keydown", (e) => {
       flashKeycap(e.key);
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        flashKeycap("Control");
-        flashKeycap("k");
+        flashKeycap("Control"); flashKeycap("k");
         setCmdOpen(!cmdBackdrop.classList.contains("open"));
       } else if (e.key === "Escape") {
-        setCmdOpen(false);
-        toggleIsland(false);
+        setCmdOpen(false); toggleIsland(false); gazeNotice.classList.remove("expanded");
       } else if (e.key === " " && document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "BUTTON") {
-        e.preventDefault();
-        toggleIsland();
+        e.preventDefault(); toggleIsland();
       }
     });
-
     document.addEventListener("click", (e) => {
-      if (!islandPopover.contains(e.target) && !islandTrigger.contains(e.target)) {
-        toggleIsland(false);
-      }
+      if (!islandPopover.contains(e.target) && !islandTrigger.contains(e.target)) toggleIsland(false);
     });
   </script>
 </body>

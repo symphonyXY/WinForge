@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN" data-theme="light" data-material="natural" data-glint="off">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WinForge 审美样板间 · OriginOS 光影原子</title>
+  <title>WinForge 审美样板间 · OriginOS 7 光影原子</title>
   <style>
     /* =========================================================================
-       最新 OriginOS 空间光影与原子交互设计令牌（离线零外链，1:1 手感基准）
+       OriginOS 7 空间光影与原子交互设计令牌（离线零外链，1:1 手感基准）
+       覆盖：Dynamic Translucent Material（Realistic/Natural/Soft 三档）·
+            Dynamic Glow 随手光晕 · Origin Workbench 多任务工作台 ·
+            Origin Island Snap & Go · 夜间护眼 4.0 · 可选 Glint/Wiggle 风味
        ========================================================================= */
     :root {
       --font-sans: "Plus Jakarta Sans", "Inter", "HarmonyOS Sans SC", "Segoe UI Variable", "Microsoft YaHei UI", sans-serif;
@@ -20,21 +23,26 @@
       --window-border: rgba(255, 255, 255, 0.78);
       --window-shadow: 0 32px 84px -18px rgba(31, 56, 100, 0.22), 0 4px 18px rgba(31, 56, 100, 0.06);
 
-      --light-1: rgba(132, 192, 255, 0.42);
+      --light-1: rgba(132, 192, 255, 0.44);
       --light-2: rgba(196, 178, 255, 0.34);
       --light-3: rgba(255, 214, 178, 0.36);
 
+      /* Natural 默认材质 */
       --card-bg: rgba(255, 255, 255, 0.78);
-      --card-strong: rgba(255, 255, 255, 0.92);
-      --card-subtle: rgba(31, 56, 100, 0.05);
-      --card-hover: rgba(31, 56, 100, 0.085);
-      --card-border: rgba(255, 255, 255, 0.85);
+      --card-blur: 22px;
+      --card-sat: 165%;
+      --card-strong: rgba(255, 255, 255, 0.94);
+      --card-subtle: rgba(31, 56, 100, 0.052);
+      --card-hover: rgba(31, 56, 100, 0.09);
+      --card-border: rgba(255, 255, 255, 0.86);
       --card-shadow: 0 14px 36px -12px rgba(31, 56, 100, 0.12), 0 2px 8px rgba(31, 56, 100, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.96);
-      --card-shadow-hover: 0 20px 44px -12px rgba(31, 56, 100, 0.16), 0 4px 12px rgba(31, 56, 100, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
+      --card-shadow-hover: 0 20px 46px -12px rgba(31, 56, 100, 0.17), 0 4px 12px rgba(31, 56, 100, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
+      --glow-color: rgba(41, 112, 255, 0.16);
+      --glow-edge: rgba(255, 255, 255, 0.45);
 
-      --island-bg: rgba(20, 24, 34, 0.88);
+      --island-bg: rgba(20, 24, 34, 0.90);
       --island-text: #f5f7fc;
-      --island-muted: rgba(245, 247, 252, 0.66);
+      --island-muted: rgba(245, 247, 252, 0.68);
 
       --text-primary: #141923;
       --text-secondary: #5c6578;
@@ -47,31 +55,33 @@
       --coral: #f2555a;
       --amber: #f59e0b;
 
-      --pill-bg: rgba(255, 255, 255, 0.74);
+      --pill-bg: rgba(255, 255, 255, 0.76);
       --pill-active: #ffffff;
       --pill-shadow: 0 16px 40px -10px rgba(31, 56, 100, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95);
     }
 
+    /* 深空柔光（Dark） */
     [data-theme="dark"] {
       --stage-bg: #05070c;
       --window-bg: #0d1018;
       --window-border: rgba(255, 255, 255, 0.10);
       --window-shadow: 0 36px 96px -16px rgba(0, 0, 0, 0.80), 0 0 0 1px rgba(255, 255, 255, 0.06);
 
-      --light-1: rgba(41, 112, 255, 0.25);
-      --light-2: rgba(114, 88, 224, 0.22);
-      --light-3: rgba(20, 184, 166, 0.16);
+      --light-1: rgba(41, 112, 255, 0.28);
+      --light-2: rgba(114, 88, 224, 0.24);
+      --light-3: rgba(20, 184, 166, 0.18);
 
       --card-bg: rgba(26, 31, 43, 0.74);
-      --card-strong: rgba(31, 37, 52, 0.94);
-      --card-subtle: rgba(255, 255, 255, 0.065);
-      --card-hover: rgba(255, 255, 255, 0.11);
-      --card-border: rgba(255, 255, 255, 0.10);
-      --card-shadow: 0 18px 42px -12px rgba(0, 0, 0, 0.56), inset 0 1px 0 rgba(255, 255, 255, 0.13);
-      --card-shadow-hover: 0 24px 52px -12px rgba(0, 0, 0, 0.68), inset 0 1px 0 rgba(255, 255, 255, 0.20);
+      --card-strong: rgba(31, 37, 52, 0.95);
+      --card-subtle: rgba(255, 255, 255, 0.068);
+      --card-hover: rgba(255, 255, 255, 0.115);
+      --card-border: rgba(255, 255, 255, 0.11);
+      --card-shadow: 0 18px 42px -12px rgba(0, 0, 0, 0.56), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      --card-shadow-hover: 0 24px 52px -12px rgba(0, 0, 0, 0.68), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      --glow-color: rgba(77, 139, 255, 0.20);
+      --glow-edge: rgba(255, 255, 255, 0.10);
 
       --island-bg: rgba(16, 19, 28, 0.94);
-
       --text-primary: #f3f6fc;
       --text-secondary: #9aa5b8;
       --text-muted: #667085;
@@ -83,218 +93,167 @@
       --coral: #fb7185;
       --amber: #fbbf24;
 
-      --pill-bg: rgba(26, 31, 43, 0.78);
-      --pill-active: rgba(255, 255, 255, 0.14);
+      --pill-bg: rgba(26, 31, 43, 0.80);
+      --pill-active: rgba(255, 255, 255, 0.15);
       --pill-shadow: 0 18px 46px -10px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    }
+
+    /* 夜间护眼 4.0（Nighttime Eye Protection 4.0：柔化刺眼亮色，拉清暗部层级） */
+    [data-theme="eyecare"] {
+      --stage-bg: #080a0f;
+      --window-bg: #101319;
+      --window-border: rgba(235, 224, 206, 0.10);
+      --window-shadow: 0 36px 96px -16px rgba(0, 0, 0, 0.82);
+
+      --light-1: rgba(96, 128, 178, 0.15);
+      --light-2: rgba(132, 118, 152, 0.13);
+      --light-3: rgba(176, 146, 112, 0.12);
+
+      --card-bg: rgba(28, 31, 39, 0.86);
+      --card-strong: rgba(34, 38, 47, 0.96);
+      --card-subtle: rgba(242, 234, 220, 0.065);
+      --card-hover: rgba(242, 234, 220, 0.105);
+      --card-border: rgba(242, 234, 220, 0.12);
+      --card-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.54), inset 0 1px 0 rgba(242, 234, 220, 0.11);
+      --card-shadow-hover: 0 22px 46px -12px rgba(0, 0, 0, 0.64), inset 0 1px 0 rgba(242, 234, 220, 0.16);
+      --glow-color: rgba(120, 156, 214, 0.14);
+      --glow-edge: rgba(242, 234, 220, 0.08);
+
+      --island-bg: rgba(22, 24, 31, 0.95);
+      --text-primary: #e6e4de;
+      --text-secondary: #a8aebc;
+      --text-muted: #788192;
+
+      --accent: #6897e8;
+      --accent-2: #84acee;
+      --accent-soft: rgba(104, 151, 232, 0.16);
+      --teal: #4ab8aa;
+      --coral: #d9777f;
+      --amber: #d8a75c;
+
+      --pill-bg: rgba(28, 31, 39, 0.88);
+      --pill-active: rgba(242, 234, 220, 0.13);
+      --pill-shadow: 0 18px 46px -10px rgba(0, 0, 0, 0.60), inset 0 1px 0 rgba(242, 234, 220, 0.12);
+    }
+
+    /* Dynamic Translucent Material 三档动态半透明材质 */
+    [data-material="realistic"] {
+      --card-bg: rgba(255, 255, 255, 0.50);
+      --card-blur: 15px;
+      --card-sat: 198%;
+      --card-border: rgba(255, 255, 255, 0.95);
+    }
+    [data-theme="dark"][data-material="realistic"] {
+      --card-bg: rgba(26, 32, 46, 0.46);
+      --card-border: rgba(255, 255, 255, 0.22);
+    }
+    [data-theme="eyecare"][data-material="realistic"] {
+      --card-bg: rgba(28, 31, 39, 0.62);
+    }
+
+    [data-material="soft"] {
+      --card-bg: rgba(250, 251, 254, 0.92);
+      --card-blur: 30px;
+      --card-sat: 135%;
+      --card-border: rgba(255, 255, 255, 0.72);
+    }
+    [data-theme="dark"][data-material="soft"] {
+      --card-bg: rgba(25, 29, 40, 0.90);
+      --card-border: rgba(255, 255, 255, 0.08);
+    }
+    [data-theme="eyecare"][data-material="soft"] {
+      --card-bg: rgba(30, 33, 42, 0.94);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
-      height: 100%;
-      font-family: var(--font-sans);
-      color: var(--text-primary);
-      background: var(--stage-bg);
-      -webkit-font-smoothing: antialiased;
+      height: 100%; font-family: var(--font-sans); color: var(--text-primary);
+      background: var(--stage-bg); -webkit-font-smoothing: antialiased;
       transition: background 280ms ease, color 220ms ease;
     }
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      overflow: hidden;
-    }
+    body { display: flex; align-items: center; justify-content: center; padding: 20px; overflow: hidden; }
 
-    /* Windows 全景光影无边框窗口 */
+    /* 全景光影无边框窗口 */
     .app-window {
-      position: relative;
-      width: min(1140px, 100%);
-      height: min(740px, calc(100vh - 48px));
-      border-radius: 26px;
-      background: var(--window-bg);
-      border: 1px solid var(--window-border);
-      box-shadow: var(--window-shadow);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      isolation: isolate;
-      transition: background 280ms ease, border-color 280ms ease;
+      position: relative; width: min(1180px, 100%); height: min(770px, calc(100vh - 40px));
+      border-radius: 26px; background: var(--window-bg); border: 1px solid var(--window-border);
+      box-shadow: var(--window-shadow); overflow: hidden; display: flex; flex-direction: column;
+      isolation: isolate; transition: background 280ms ease, border-color 280ms ease;
     }
 
-    /* 柔和自然弥散光影层 */
-    .sky-lights {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .glow-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(88px);
-      animation: breathe 16s ease-in-out infinite alternate;
-    }
-    .g1 { width: 480px; height: 480px; top: -160px; left: -60px; background: var(--light-1); }
-    .g2 { width: 440px; height: 440px; top: 40px; right: -120px; background: var(--light-2); animation-delay: -4s; }
-    .g3 { width: 420px; height: 420px; bottom: -180px; left: 28%; background: var(--light-3); animation-delay: -8s; }
-    @keyframes breathe {
-      from { transform: translate3d(0, 0, 0) scale(1); }
-      to   { transform: translate3d(24px, -16px, 0) scale(1.08); }
-    }
+    /* 自然弥散光影层 */
+    .sky-lights { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; transition: opacity 320ms ease; }
+    .glow-blob { position: absolute; border-radius: 50%; filter: blur(88px); animation: breathe 16s ease-in-out infinite alternate; transition: background 360ms ease; }
+    .g1 { width: 500px; height: 500px; top: -160px; left: -60px; background: var(--light-1); }
+    .g2 { width: 450px; height: 450px; top: 40px; right: -120px; background: var(--light-2); animation-delay: -4s; }
+    .g3 { width: 430px; height: 430px; bottom: -180px; left: 28%; background: var(--light-3); animation-delay: -8s; }
+    @keyframes breathe { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(24px, -16px, 0) scale(1.08); } }
 
     /* 全景融合顶栏 */
     .titlebar {
-      height: 58px;
-      padding: 0 16px 0 22px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      position: relative;
-      z-index: 20;
-      flex-shrink: 0;
+      height: 58px; padding: 0 16px 0 22px; display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; position: relative; z-index: 20; flex-shrink: 0;
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      user-select: none;
-    }
+    .brand { display: flex; align-items: center; gap: 10px; user-select: none; }
     .origin-logo {
-      width: 30px;
-      height: 30px;
-      border-radius: 11px;
-      background: linear-gradient(135deg, var(--accent) 0%, #63a4ff 100%);
+      width: 30px; height: 30px; border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
       box-shadow: 0 6px 16px rgba(41, 112, 255, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.45);
-      display: grid;
-      place-items: center;
-      color: #fff;
+      display: grid; place-items: center; color: #fff;
     }
     .brand-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
-    .brand-tag { font-size: 11.5px; color: var(--text-muted); }
+    .brand-tag { font-size: 11px; color: var(--text-muted); }
 
-    /* 原子岛（Atomic Island） */
-    .atomic-island-wrap {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
+    /* Origin Island 原子岛 + Snap & Go */
+    .atomic-island-wrap { position: relative; display: flex; justify-content: center; }
     .atomic-island {
-      height: 34px;
-      padding: 0 15px;
-      border-radius: 999px;
-      background: var(--island-bg);
-      color: var(--island-text);
+      height: 34px; padding: 0 15px; border-radius: 999px;
+      background: var(--island-bg); color: var(--island-text);
       border: 1px solid rgba(255, 255, 255, 0.14);
       box-shadow: 0 10px 26px rgba(15, 23, 42, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.14);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: inherit;
-      font-size: 12.5px;
-      font-weight: 500;
-      cursor: pointer;
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: inherit; font-size: 12.5px; font-weight: 500; cursor: pointer;
       transition: transform 320ms var(--spring-bouncy), box-shadow 220ms ease;
     }
     .atomic-island:hover { transform: scale(1.04); }
-    .atomic-island:active { transform: scale(0.94); transition-duration: 90ms; }
-    .pulse-ring {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--teal);
-      position: relative;
-    }
+    .atomic-island:active { transform: scale(0.94); transition-duration: 85ms; }
+    .pulse-ring { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); position: relative; flex-shrink: 0; }
     .pulse-ring::after {
-      content: "";
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      border: 2px solid var(--teal);
-      opacity: 0.45;
-      animation: pulse 2s ease-out infinite;
+      content: ""; position: absolute; inset: -4px; border-radius: 50%;
+      border: 2px solid var(--teal); opacity: 0.45; animation: pulse 2s ease-out infinite;
     }
-    @keyframes pulse {
-      0%   { transform: scale(0.75); opacity: 0.65; }
-      100% { transform: scale(1.65); opacity: 0; }
-    }
+    @keyframes pulse { 0% { transform: scale(0.75); opacity: 0.65; } 100% { transform: scale(1.65); opacity: 0; } }
 
     .island-drawer {
-      position: absolute;
-      top: 44px;
-      left: 50%;
-      width: 340px;
-      padding: 18px;
-      border-radius: 26px;
-      background: var(--island-bg);
-      color: var(--island-text);
+      position: absolute; top: 44px; left: 50%; width: 356px; padding: 18px; border-radius: 26px;
+      background: var(--island-bg); color: var(--island-text);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 28px 64px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      box-shadow: 0 28px 64px rgba(0, 0, 0, 0.44), inset 0 1px 0 rgba(255, 255, 255, 0.16);
       backdrop-filter: blur(28px);
-      transform: translateX(-50%) scale(0.84) translateY(-10px);
-      transform-origin: top center;
-      opacity: 0;
-      pointer-events: none;
-      transition: transform 360ms var(--spring-atomic), opacity 200ms ease;
-      z-index: 40;
+      transform: translateX(-50%) scale(0.84) translateY(-10px); transform-origin: top center;
+      opacity: 0; pointer-events: none;
+      transition: transform 360ms var(--spring-atomic), opacity 200ms ease; z-index: 40;
     }
-    .island-drawer.open {
-      transform: translateX(-50%) scale(1) translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .island-drawer.open { transform: translateX(-50%) scale(1) translateY(0); opacity: 1; pointer-events: auto; }
 
     /* 顶栏右侧 */
-    .titlebar-right {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 10px;
-    }
+    .titlebar-right { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
     .theme-pill {
-      display: inline-flex;
-      padding: 3px;
-      border-radius: 999px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      box-shadow: var(--card-shadow);
+      display: inline-flex; padding: 3px; border-radius: 999px;
+      background: var(--card-bg); border: 1px solid var(--card-border); box-shadow: var(--card-shadow);
     }
     .theme-btn {
-      height: 26px;
-      padding: 0 12px;
-      border-radius: 999px;
-      border: none;
-      background: transparent;
-      color: var(--text-secondary);
-      font-family: inherit;
-      font-size: 11.5px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 180ms ease, color 180ms ease, transform 240ms var(--spring-bouncy);
+      height: 26px; padding: 0 10px; border-radius: 999px; border: none; background: transparent;
+      color: var(--text-secondary); font-family: inherit; font-size: 11px; font-weight: 500;
+      cursor: pointer; transition: background 180ms ease, color 180ms ease, transform 240ms var(--spring-bouncy);
     }
-    .theme-btn.active {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(41, 112, 255, 0.34);
-    }
+    .theme-btn.active { background: var(--accent); color: #fff; box-shadow: 0 4px 12px rgba(41, 112, 255, 0.34); }
     .theme-btn:active { transform: scale(0.92); }
 
-    .win-controls {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
+    .win-controls { display: flex; align-items: center; gap: 4px; }
     .win-btn {
-      width: 32px;
-      height: 28px;
-      border-radius: 10px;
-      border: none;
-      background: transparent;
-      color: var(--text-secondary);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
+      width: 32px; height: 28px; border-radius: 10px; border: none; background: transparent;
+      color: var(--text-secondary); display: grid; place-items: center; cursor: pointer;
       transition: background 150ms ease, color 150ms ease, transform 240ms var(--spring-bouncy);
     }
     .win-btn:hover { background: var(--card-hover); color: var(--text-primary); }
@@ -303,307 +262,217 @@
 
     /* 主工作区 */
     .workspace {
-      flex: 1;
-      overflow-y: auto;
-      padding: 8px 26px 96px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(130, 145, 170, 0.30) transparent;
+      flex: 1; overflow-y: auto; padding: 6px 24px 92px;
+      scrollbar-width: thin; scrollbar-color: rgba(130, 145, 170, 0.30) transparent;
     }
     .workspace::-webkit-scrollbar { width: 6px; }
     .workspace::-webkit-scrollbar-thumb { background: rgba(130, 145, 170, 0.28); border-radius: 999px; }
 
     .view { display: none; }
     .view.active { display: block; animation: viewIn 320ms var(--spring-fluid); }
-    @keyframes viewIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes viewIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-    .hero-bar {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 18px;
-    }
-    .hero-bar h1 {
-      font-size: 25px;
-      font-weight: 600;
-      letter-spacing: -0.025em;
-    }
-    .hero-bar p {
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin-top: 4px;
-    }
+    .hero-bar { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 14px; gap: 14px; flex-wrap: wrap; }
+    .hero-bar h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.025em; }
+    .hero-bar p { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
 
-    /* 原子化网格（Atomic Bento Grid） */
-    .atomic-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+    /* 材质三档切换条 */
+    .mat-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .mat-pill {
+      display: inline-flex; padding: 3px; border-radius: 999px;
+      background: var(--card-bg); border: 1px solid var(--card-border); box-shadow: var(--card-shadow);
     }
+    .mat-btn {
+      height: 28px; padding: 0 12px; border-radius: 999px; border: none; background: transparent;
+      color: var(--text-secondary); font-family: inherit; font-size: 12px; font-weight: 500;
+      cursor: pointer; transition: background 180ms ease, color 180ms ease, transform 240ms var(--spring-bouncy);
+    }
+    .mat-btn.active { background: var(--pill-active); color: var(--accent); font-weight: 600; box-shadow: 0 4px 12px rgba(31, 56, 100, 0.12); }
+
+    /* 原子网格与 Dynamic Glow 实时交互光晕 */
+    .atomic-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
     .span-2 { grid-column: span 2; }
+    .span-4 { grid-column: span 4; }
 
     .atomic-card {
-      position: relative;
-      border-radius: 26px;
-      padding: 20px;
+      position: relative; border-radius: 26px; padding: 19px 20px;
       background: var(--card-bg);
-      backdrop-filter: blur(22px) saturate(165%);
-      -webkit-backdrop-filter: blur(22px) saturate(165%);
-      border: 1px solid var(--card-border);
-      box-shadow: var(--card-shadow);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 184px;
-      transition: transform 320ms var(--spring-atomic), box-shadow 260ms ease, background 220ms ease;
+      backdrop-filter: blur(var(--card-blur)) saturate(var(--card-sat));
+      -webkit-backdrop-filter: blur(var(--card-blur)) saturate(var(--card-sat));
+      border: 1px solid var(--card-border); box-shadow: var(--card-shadow);
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 172px; overflow: hidden;
+      transition: transform 320ms var(--spring-atomic), box-shadow 260ms ease, background 220ms ease, border-color 220ms ease;
     }
-    .atomic-card.expandable { cursor: pointer; }
-    .atomic-card.expandable:hover {
-      transform: translateY(-3px) scale(1.008);
-      box-shadow: var(--card-shadow-hover);
+    /* Dynamic Glow 随手光晕层 */
+    .atomic-card::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background: radial-gradient(280px circle at var(--gx, 50%) var(--gy, 50%), var(--glow-color), transparent 64%);
+      opacity: 0; transition: opacity 220ms ease;
     }
-    .atomic-card.expandable:active {
-      transform: scale(0.97);
-      transition-duration: 90ms;
-    }
+    .atomic-card:hover::before { opacity: 1; }
 
-    .card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
+    /* 可选 Glint 视角微光（默认关闭，开启后极克制斜向光泽掠过） */
+    [data-glint="on"] .atomic-card::after {
+      content: ""; position: absolute; inset: -40%; pointer-events: none;
+      background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.16) 50%, rgba(165, 210, 255, 0.12) 54%, transparent 62%);
+      transform: translateX(var(--glint-x, -30%)) rotate(8deg);
+      transition: transform 280ms ease-out, opacity 240ms ease;
+      opacity: 0;
     }
-    .icon-badge {
-      width: 38px;
-      height: 38px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      font-weight: 600;
+    [data-glint="on"] .atomic-card:hover::after { opacity: 1; }
+
+    .atomic-card.expandable { cursor: pointer; }
+    .atomic-card.expandable:hover { transform: translateY(-3px) scale(1.008); box-shadow: var(--card-shadow-hover); }
+    .atomic-card.expandable:active { transform: scale(0.97); transition-duration: 85ms; }
+
+    /* 点击瞬间的克制光波脉冲 */
+    .glow-ripple {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
+      transform: translate(-50%, -50%) scale(0.1); opacity: 0.9;
+      animation: rippleOut 460ms ease-out forwards;
     }
+    @keyframes rippleOut { to { transform: translate(-50%, -50%) scale(2.8); opacity: 0; } }
+
+    /* 可选 Wiggle 轻流体果冻微弹 */
+    @keyframes wiggleSoft {
+      0% { transform: scale(1); }
+      35% { transform: scale(1.028, 0.975); }
+      68% { transform: scale(0.99, 1.012); }
+      100% { transform: scale(1); }
+    }
+    .wiggle-hit { animation: wiggleSoft 420ms var(--spring-bouncy); }
+
+    .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; position: relative; z-index: 1; }
+    .icon-badge { width: 38px; height: 38px; border-radius: 14px; display: grid; place-items: center; }
     .badge-blue { background: var(--accent-soft); color: var(--accent); }
     .badge-teal { background: rgba(20, 184, 166, 0.14); color: var(--teal); }
     .badge-amber { background: rgba(245, 158, 11, 0.15); color: var(--amber); }
     .badge-coral { background: rgba(242, 85, 90, 0.14); color: var(--coral); }
+    .expand-hint { font-size: 11px; color: var(--text-muted); padding: 4px 10px; border-radius: 999px; background: var(--card-subtle); }
 
-    .expand-hint {
-      font-size: 11.5px;
-      color: var(--text-muted);
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--card-subtle);
-    }
+    .big-num { font-size: 36px; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; line-height: 1.1; position: relative; z-index: 1; }
+    .card-label { font-size: 14.5px; font-weight: 600; margin-bottom: 4px; position: relative; z-index: 1; }
+    .card-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; position: relative; z-index: 1; }
 
-    .big-num {
-      font-size: 36px;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      font-variant-numeric: tabular-nums;
-      line-height: 1.1;
-    }
-    .card-label {
-      font-size: 14.5px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .card-desc {
-      font-size: 12.5px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    /* OriginOS Q 弹按钮 */
+    /* Q 弹按钮 */
     .o-btn {
-      height: 38px;
-      padding: 0 18px;
-      border-radius: 999px;
-      border: none;
-      font-family: inherit;
-      font-size: 13.5px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
+      height: 36px; padding: 0 16px; border-radius: 999px; border: none;
+      font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      position: relative; z-index: 1;
       transition: transform 320ms var(--spring-bouncy), background 160ms ease, box-shadow 200ms ease;
     }
-    .o-btn:active {
-      transform: scale(0.935);
-      transition-duration: 85ms;
-    }
+    .o-btn:active { transform: scale(0.935); transition-duration: 85ms; }
     .o-btn-primary {
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
-      color: #fff;
-      box-shadow: 0 8px 20px -4px rgba(41, 112, 255, 0.45);
+      color: #fff; box-shadow: 0 8px 20px -4px rgba(41, 112, 255, 0.42);
     }
     .o-btn-primary:hover { transform: translateY(-1px) scale(1.02); }
-    .o-btn-soft {
-      background: var(--card-subtle);
-      color: var(--text-primary);
-    }
+    .o-btn-soft { background: var(--card-subtle); color: var(--text-primary); }
     .o-btn-soft:hover { background: var(--card-hover); }
 
-    /* OriginOS 标志性厚胶囊阻尼滑块（仿系统亮度/音量胶囊推杆） */
+    /* 厚胶囊阻尼推杆 */
     .capsule-slider {
-      position: relative;
-      height: 44px;
-      border-radius: 16px;
-      background: var(--card-subtle);
-      overflow: hidden;
-      cursor: ew-resize;
-      user-select: none;
-      touch-action: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 14px;
+      position: relative; height: 44px; border-radius: 16px; background: var(--card-subtle);
+      overflow: hidden; cursor: ew-resize; user-select: none; touch-action: none;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 14px; z-index: 1;
     }
     .capsule-fill {
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 72%;
-      border-radius: 16px;
+      position: absolute; inset: 0 auto 0 0; width: 72%; border-radius: 16px;
       background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
-      transition: width 90ms ease-out;
-      pointer-events: none;
+      transition: width 90ms ease-out; pointer-events: none;
     }
     .capsule-slider.dragging .capsule-fill { transition: none; }
-    .capsule-slider span {
-      position: relative;
-      z-index: 1;
-      font-size: 13px;
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      mix-blend-mode: normal;
-    }
-    .capsule-slider .cap-title { color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.22); }
-    .capsule-slider .cap-val {
-      background: var(--card-strong);
-      color: var(--text-primary);
-      padding: 3px 9px;
-      border-radius: 999px;
-      font-size: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    }
+    .capsule-slider span { position: relative; z-index: 1; font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .capsule-slider .cap-title { color: #fff; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.22); }
+    .capsule-slider .cap-val { background: var(--card-strong); color: var(--text-primary); padding: 3px 9px; border-radius: 999px; font-size: 11.5px; }
 
-    /* OriginOS Q 弹开关 */
+    /* Q 弹开关 */
     .o-switch {
-      width: 48px;
-      height: 28px;
-      border-radius: 999px;
-      border: none;
-      padding: 3px;
-      background: rgba(130, 145, 170, 0.28);
-      cursor: pointer;
-      transition: background 240ms ease;
+      width: 48px; height: 28px; border-radius: 999px; border: none; padding: 3px;
+      background: rgba(130, 145, 170, 0.28); cursor: pointer; transition: background 240ms ease; position: relative; z-index: 1;
     }
     .o-switch[aria-checked="true"] { background: var(--accent); }
     .o-switch .dot {
-      display: block;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.20);
-      transition: transform 340ms var(--spring-bouncy);
+      display: block; width: 22px; height: 22px; border-radius: 50%; background: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.20); transition: transform 340ms var(--spring-bouncy);
     }
     .o-switch[aria-checked="true"] .dot { transform: translateX(20px); }
 
-    /* 原位放大展开的原子详情浮层（真实 FLIP 几何插值） */
+    /* Origin Workbench 多任务卡片工作台 */
+    .workbench-layout { display: grid; grid-template-columns: 260px 1fr; gap: 16px; align-items: start; }
+    .wb-slots { display: flex; flex-direction: column; gap: 10px; }
+    .wb-slot {
+      padding: 14px 16px; border-radius: 20px; border: 1px solid var(--card-border);
+      background: var(--card-bg); backdrop-filter: blur(var(--card-blur));
+      box-shadow: var(--card-shadow); cursor: pointer; text-align: left; color: var(--text-primary); font-family: inherit;
+      transition: transform 300ms var(--spring-atomic), border-color 180ms ease, box-shadow 220ms ease;
+    }
+    .wb-slot:hover { transform: translateX(3px); }
+    .wb-slot.active {
+      border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+      box-shadow: 0 12px 30px -8px rgba(41, 112, 255, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+    .wb-stage {
+      min-height: 360px; border-radius: 26px; padding: 22px;
+      background: var(--card-bg); backdrop-filter: blur(var(--card-blur)) saturate(var(--card-sat));
+      border: 1px solid var(--card-border); box-shadow: var(--card-shadow);
+    }
+    .reader-box {
+      margin-top: 12px; padding: 18px 20px; border-radius: 18px; background: var(--card-subtle);
+      font-size: 13.5px; line-height: 1.75; color: var(--text-secondary);
+      transition: max-width 320ms var(--spring-smooth), font-size 220ms ease, line-height 220ms ease;
+    }
+    .reader-box.ai-reader {
+      max-width: 540px; font-size: 15px; line-height: 1.9; color: var(--text-primary);
+      background: var(--card-strong); box-shadow: var(--card-shadow);
+    }
+
+    /* FLIP 原位展开详情浮层 */
     .detail-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(10, 14, 24, 0.24);
-      backdrop-filter: blur(10px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 260ms ease;
-      z-index: 45;
+      position: absolute; inset: 0; background: rgba(10, 14, 24, 0.24); backdrop-filter: blur(10px);
+      opacity: 0; pointer-events: none; transition: opacity 260ms ease; z-index: 45;
     }
     .detail-backdrop.open { opacity: 1; pointer-events: auto; }
-
     .detail-sheet {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: min(560px, calc(100% - 48px));
-      padding: 26px;
-      border-radius: 30px;
-      background: var(--card-strong);
+      position: absolute; left: 50%; top: 50%; width: min(560px, calc(100% - 48px));
+      padding: 26px; border-radius: 30px; background: var(--card-strong);
       border: 1px solid var(--card-border);
       box-shadow: 0 36px 86px rgba(15, 23, 42, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.45);
-      transform-origin: center center;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 50;
+      transform-origin: center center; opacity: 0; pointer-events: none; z-index: 50;
     }
-    .detail-sheet.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .detail-sheet.open { opacity: 1; pointer-events: auto; }
 
-    /* 底部悬浮光影导航胶囊 */
-    .dock-wrap {
-      position: absolute;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      z-index: 25;
-    }
+    /* 底部水滴悬浮导航胶囊 */
+    .dock-wrap { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 25; }
     .origin-dock {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 6px;
-      border-radius: 999px;
-      background: var(--pill-bg);
-      backdrop-filter: blur(26px) saturate(180%);
-      border: 1px solid var(--card-border);
+      position: relative; display: flex; align-items: center; gap: 4px; padding: 6px;
+      border-radius: 999px; background: var(--pill-bg);
+      backdrop-filter: blur(26px) saturate(180%); border: 1px solid var(--card-border);
       box-shadow: var(--pill-shadow);
     }
     .dock-bubble {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      height: 38px;
-      border-radius: 999px;
-      background: var(--pill-active);
-      box-shadow: 0 6px 18px rgba(31, 56, 100, 0.14);
+      position: absolute; top: 6px; left: 6px; height: 38px; border-radius: 999px;
+      background: var(--pill-active); box-shadow: 0 6px 18px rgba(31, 56, 100, 0.14);
       transition: transform 380ms var(--spring-bouncy), width 320ms var(--spring-atomic);
       pointer-events: none;
     }
+    .dock-bubble.droplet { transform: translateX(var(--bx, 0px)) scaleX(1.14) scaleY(0.92); }
     .dock-tab {
-      position: relative;
-      z-index: 1;
-      height: 38px;
-      padding: 0 18px;
-      border-radius: 999px;
-      border: none;
-      background: transparent;
-      color: var(--text-secondary);
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      transition: color 180ms ease;
+      position: relative; z-index: 1; height: 38px; padding: 0 17px; border-radius: 999px;
+      border: none; background: transparent; color: var(--text-secondary);
+      font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 7px; transition: color 180ms ease;
     }
     .dock-tab.active { color: var(--accent); font-weight: 600; }
     .dock-tab.active svg { animation: iconHop 360ms var(--spring-bouncy); }
-    @keyframes iconHop {
-      0%   { transform: translateY(0) scale(1); }
-      45%  { transform: translateY(-3px) scale(1.12); }
-      100% { transform: translateY(0) scale(1); }
-    }
+    @keyframes iconHop { 0% { transform: translateY(0) scale(1); } 45% { transform: translateY(-3px) scale(1.12); } 100% { transform: translateY(0) scale(1); } }
 
-    @media (max-width: 900px) {
+    @media (max-width: 920px) {
       .atomic-grid { grid-template-columns: repeat(2, 1fr); }
+      .workbench-layout { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -625,37 +494,38 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/></svg>
         </div>
         <div>
-          <div class="brand-name">Origin Studio</div>
-          <div class="brand-tag">OriginOS 光影原子样板间</div>
+          <div class="brand-name">OriginOS 7 Studio</div>
+          <div class="brand-tag">光影原子 · 三档动态材质样板间</div>
         </div>
       </div>
 
-      <!-- 原子岛 -->
+      <!-- Origin Island 原子岛 + Snap & Go -->
       <div class="atomic-island-wrap">
         <button class="atomic-island" id="islandBtn" type="button">
           <span class="pulse-ring"></span>
-          <span id="islandLabel">原子岛 · 专注模式运行中 24:59</span>
+          <span id="islandLabel">Origin Island · 专注运行中 24:59</span>
         </button>
         <div class="island-drawer" id="islandDrawer">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <strong style="font-size: 14px;">原子岛快捷控制</strong>
-            <span style="font-size: 12px; color: var(--island-muted);">自然回弹 · 按 Esc 收起</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <strong id="drawerTitle" style="font-size: 14px;">原子岛快捷控制</strong>
+            <span style="font-size: 11.5px; color: var(--island-muted);">按 Esc 收起</span>
           </div>
-          <p style="font-size: 12.5px; color: var(--island-muted); line-height: 1.55; margin-bottom: 14px;">
-            顶部原子岛承接下载、专注、剪贴板或文件批量处理状态，绝不弹出打断思路的丑陋提示框。
+          <p id="drawerDesc" style="font-size: 12.5px; color: var(--island-muted); line-height: 1.55; margin-bottom: 14px;">
+            承接专注计时、文件批处理与 Snap & Go 主动情景识别，不点 4 秒自动礼貌收回。
           </p>
-          <div style="display:flex; gap:8px;">
+          <div style="display:flex; gap:8px;" id="drawerActions">
             <button class="o-btn o-btn-primary" style="flex:1; height:34px; font-size:12.5px;" type="button" id="toggleTimerFromIsland">暂停 / 继续</button>
             <button class="o-btn" style="flex:1; height:34px; font-size:12.5px; background:rgba(255,255,255,0.12); color:#fff;" type="button" id="closeIslandBtn">收起</button>
           </div>
         </div>
       </div>
 
-      <!-- 右侧主题 + 精修 Windows 窗口按钮 -->
+      <!-- 右侧：晨光 / 深空 / 夜间护眼 4.0 + 精修 Windows 窗口按钮 -->
       <div class="titlebar-right">
-        <div class="theme-pill">
-          <button class="theme-btn active" data-theme-set="light" type="button">晨光浅色</button>
-          <button class="theme-btn" data-theme-set="dark" type="button">深空柔光</button>
+        <div class="theme-pill" role="group" aria-label="昼夜与护眼切换">
+          <button class="theme-btn active" data-theme-set="light" type="button">晨光</button>
+          <button class="theme-btn" data-theme-set="dark" type="button">深空</button>
+          <button class="theme-btn" data-theme-set="eyecare" type="button">护眼4.0</button>
         </div>
         <div class="win-controls">
           <button class="win-btn" type="button" title="最小化（示例）" data-say="已模拟最小化回弹">
@@ -677,15 +547,22 @@
       <section class="view active" id="view-atomic">
         <div class="hero-bar">
           <div>
-            <h1>OriginOS 空间光影与原子卡片</h1>
-            <p>点击任意带“点击展开”的原子卡片，感受原位放大与沿原路弹回的丝滑物理动画</p>
+            <h1>OriginOS 7 光影材质与原子卡片</h1>
+            <p>移动鼠标体验 Dynamic Glow 随手光晕，切换三档动态半透明材质，或点击卡片感受原位放大</p>
           </div>
-          <button class="o-btn o-btn-primary" type="button" id="bounceDemoBtn">点击感受 Q 弹按钮</button>
+          <div class="mat-bar">
+            <div class="mat-pill" role="group" aria-label="Dynamic Translucent Material 三档材质">
+              <button class="mat-btn" data-mat-set="realistic" type="button">Realistic 拟真</button>
+              <button class="mat-btn active" data-mat-set="natural" type="button">Natural 自然</button>
+              <button class="mat-btn" data-mat-set="soft" type="button">Soft 柔和</button>
+            </div>
+            <button class="o-btn o-btn-primary" type="button" id="snapGoDemoBtn">触发 Snap & Go</button>
+          </div>
         </div>
 
         <div class="atomic-grid">
-          <!-- 2×1 主原子卡：专注计时（可原位放大） -->
-          <article class="atomic-card span-2 expandable" data-detail-title="专注原子时钟" data-detail-desc="支持一键启动倒计时、桌面迷你悬浮与自然光影提醒。点击窗口外部或按 Esc 键，卡片会沿原路丝滑弹回原网格位置。">
+          <!-- 2×1 主原子卡：专注计时 -->
+          <article class="atomic-card span-2 expandable glow-card" data-detail-title="专注原子时钟（FLIP 原位放大）" data-detail-desc="支持一键启动倒计时、桌面迷你悬浮与自然光影提醒。点击窗口外部或按 Esc 键，卡片会沿原路丝滑弹回原网格位置。">
             <div class="card-top">
               <div class="icon-badge badge-blue">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2"/><path d="M9 2h6"/></svg>
@@ -694,12 +571,12 @@
             </div>
             <div>
               <div class="big-num" id="timerDisplay">24:59</div>
-              <div class="card-desc" style="margin-top: 6px;">实时状态一目了然，信息干净不拥挤（按 Space 可暂停/继续）</div>
+              <div class="card-desc" style="margin-top: 6px;">实时状态一眼直达，按 Space 快捷暂停/继续</div>
             </div>
           </article>
 
           <!-- 1×1 原子卡：一键整理 -->
-          <article class="atomic-card expandable" data-detail-title="智能桌面整理" data-detail-desc="自动把图片、安装包、文档归类到规范目录，操作前先列清晰预览清单，绝不私自误删个人文件。">
+          <article class="atomic-card expandable glow-card" data-detail-title="智能桌面整理与隐私活动日志" data-detail-desc="自动把图片、安装包、文档归类到规范目录；每次 AI 或批量整理都会写入大白话中文活动日志并支持一键撤销，绝不私自误删个人文件。">
             <div class="card-top">
               <div class="icon-badge badge-teal">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
@@ -712,37 +589,37 @@
             </div>
           </article>
 
-          <!-- 1×1 原子卡：快速开关 -->
-          <article class="atomic-card">
+          <!-- 1×1 原子卡：可选趣味风味开关（Glint & Wiggle） -->
+          <article class="atomic-card glow-card" id="flavorCard">
             <div class="card-top">
               <div class="icon-badge badge-amber">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v3M12 18v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M3 12h3M18 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/><circle cx="12" cy="12" r="4"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v3M12 18v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/></svg>
               </div>
-              <button class="o-switch" role="switch" aria-checked="true" type="button" id="ambientSwitch"><span class="dot"></span></button>
+              <button class="o-switch" role="switch" aria-checked="false" type="button" id="glintSwitch"><span class="dot"></span></button>
             </div>
             <div>
-              <div class="card-label">自然环境柔光</div>
-              <div class="card-desc">轻柔光晕随时间缓慢呼吸</div>
+              <div class="card-label">可选趣味风味</div>
+              <div class="card-desc">默认克制关闭；开启可体验 Glint 微光与 Wiggle 轻弹</div>
             </div>
           </article>
 
           <!-- 2×1 厚胶囊阻尼推杆 -->
-          <article class="atomic-card span-2">
+          <article class="atomic-card span-2 glow-card">
             <div class="card-top">
               <div>
-                <div class="card-label">阻尼胶囊推杆（左右拖动体验）</div>
-                <div class="card-desc">还原 OriginOS 系统级厚胶囊滑块，指哪跟哪、饱满圆润</div>
+                <div class="card-label">阻尼胶囊推杆（左右拖动实时调环境光）</div>
+                <div class="card-desc">还原 OriginOS 7 系统级厚胶囊滑块，指哪跟哪、饱满圆润</div>
               </div>
             </div>
-            <div class="capsule-slider" id="capsuleSlider" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72" tabindex="0">
+            <div class="capsule-slider" id="capsuleSlider" role="slider" aria-valuemin="15" aria-valuemax="100" aria-valuenow="72" tabindex="0">
               <div class="capsule-fill" id="capsuleFill"></div>
-              <span class="cap-title">空间通透度</span>
+              <span class="cap-title">环境光影呼吸强度</span>
               <span class="cap-val" id="capsuleVal">72%</span>
             </div>
           </article>
 
           <!-- 2×1 离线打包状态卡 -->
-          <article class="atomic-card span-2 expandable" data-detail-title="新电脑开箱即用标准" data-detail-desc="默认交付离线一键安装版 Setup.exe，内置全部字体、图标与运行环境。断网状态的新 Windows 电脑安装完直接双击就能打开，绝不弹窗提示下载运行库。">
+          <article class="atomic-card span-2 expandable glow-card" data-detail-title="新电脑开箱即用标准" data-detail-desc="默认交付离线一键安装版 Setup.exe，内置全部字体、图标与运行环境。断网状态的新 Windows 电脑安装完直接双击就能打开，绝不弹窗提示下载运行库。">
             <div class="card-top">
               <div class="icon-badge badge-coral">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -752,7 +629,7 @@
             <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:12px;">
               <div>
                 <div class="card-label">离线 Setup.exe 交付标准</div>
-                <div class="card-desc">零额外下载 · 可选安装路径 · 支持控制面板干净卸载</div>
+                <div class="card-desc">零额外下载 · 可选安装路径 · 控制面板干净卸载</div>
               </div>
               <span style="font-size: 13px; font-weight: 600; color: var(--teal); white-space: nowrap;">100% 离线</span>
             </div>
@@ -760,34 +637,90 @@
         </div>
       </section>
 
-      <!-- 视图 2：动效与参数 -->
+      <!-- 视图 2：Origin Workbench 多任务工作台 + AI 阅读与多模板摘要 -->
+      <section class="view" id="view-workbench">
+        <div class="hero-bar">
+          <div>
+            <h1>Origin Workbench 多任务卡片工作台</h1>
+            <p>同屏挂起多个活跃任务，一键丝滑切换互不打扰，内置 AI 舒适阅读与多模板摘要范式</p>
+          </div>
+          <button class="o-btn o-btn-soft" type="button" id="toggleReaderBtn">切换 AI 舒适阅读模式</button>
+        </div>
+
+        <div class="workbench-layout">
+          <div class="wb-slots" id="wbSlots">
+            <button class="wb-slot active" type="button" data-wb="summary">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <strong style="font-size: 13.5px;">多模板文档摘要</strong>
+                <span class="expand-hint" style="color:var(--accent);">活跃中</span>
+              </div>
+              <div class="card-desc">要点清单 / 行动项一键切换</div>
+            </button>
+            <button class="wb-slot" type="button" data-wb="batch">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <strong style="font-size: 13.5px;">批量截图归档任务</strong>
+                <span class="expand-hint">后台保活</span>
+              </div>
+              <div class="card-desc">待整理 18 张截图 · 随时切回</div>
+            </button>
+            <button class="wb-slot" type="button" data-wb="audit">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <strong style="font-size: 13.5px;">代理隐私活动日志</strong>
+                <span class="expand-hint">可审计</span>
+              </div>
+              <div class="card-desc">清晰记录每一步本地文件操作</div>
+            </button>
+          </div>
+
+          <div class="wb-stage glow-card" id="wbStage">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div class="card-label" id="wbTitle" style="font-size:17px;">多模板文档摘要（Highlights View）</div>
+                <div class="card-desc" id="wbSub">切换视角模板查看不同提炼结果，开启 AI 阅读模式体验宽屏舒适排版</div>
+              </div>
+              <div class="mat-pill" id="tplSwitch">
+                <button class="mat-btn active" type="button" data-tpl="points">核心要点</button>
+                <button class="mat-btn" type="button" data-tpl="actions">行动清单</button>
+                <button class="mat-btn" type="button" data-tpl="log">操作核验</button>
+              </div>
+            </div>
+            <div class="reader-box" id="wbContent">
+              • <strong>三档动态半透明材质</strong>：支持 Realistic（拟真）、Natural（自然）与 Soft（柔和磨砂）实时切换，兼顾空气感与长文护眼。<br />
+              • <strong>Dynamic Glow 光随手走</strong>：指针划过原子卡片与点击瞬间泛起克制柔光，杜绝刺眼霓虹。<br />
+              • <strong>无缝打断物理动效</strong>：快速切换干脆利落，慢速拖动阻尼温润，动画中途反向操作绝不瞬移。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 视图 3：OriginOS 7 动效与参数速查 -->
       <section class="view" id="view-motion">
         <div class="hero-bar">
           <div>
-            <h1>OriginOS 动效与空间参数速查</h1>
-            <p>AI 开发 OriginOS 风格软件时，直接沿用这组饱满圆角与 Q 弹弹簧参数</p>
+            <h1>OriginOS 7 光影材质与物理参数速查</h1>
+            <p>AI 开发 OriginOS 7 风格桌面软件时，直接沿用这组饱满圆角、三档材质与 Q 弹参数</p>
           </div>
         </div>
         <div class="atomic-grid">
-          <article class="atomic-card span-2">
+          <article class="atomic-card span-2 glow-card">
             <div>
-              <div class="card-label" style="margin-bottom: 12px;">空间与圆角基因</div>
+              <div class="card-label" style="margin-bottom: 10px;">三档动态材质与空间基因</div>
               <div class="card-desc" style="line-height: 2;">
-                原子卡片主圆角：<strong style="color: var(--text-primary);">26 px</strong><br />
-                嵌套图标块 / 推杆圆角：<strong style="color: var(--text-primary);">14–16 px</strong><br />
-                原子岛 / 主按钮 / 悬浮导航：<strong style="color: var(--text-primary);">999 px 全胶囊</strong><br />
-                卡片模糊材质：<strong style="color: var(--text-primary);">blur(22px) saturate(165%)</strong>
+                Realistic 拟真：<strong style="color: var(--text-primary);">alpha 0.50 · blur 15px · sat 198%</strong><br />
+                Natural 自然默认：<strong style="color: var(--text-primary);">alpha 0.78 · blur 22px · sat 165%</strong><br />
+                Soft 柔和磨砂：<strong style="color: var(--text-primary);">alpha 0.92 · blur 30px · sat 135%</strong><br />
+                原子卡主圆角 / 内嵌块：<strong style="color: var(--text-primary);">26 px / 14–16 px</strong>
               </div>
             </div>
           </article>
-          <article class="atomic-card span-2">
+          <article class="atomic-card span-2 glow-card">
             <div>
-              <div class="card-label" style="margin-bottom: 12px;">Q 弹物理曲线</div>
+              <div class="card-label" style="margin-bottom: 10px;">Fluid Motion 与 Q 弹物理曲线</div>
               <div class="card-desc" style="line-height: 2;">
                 按钮按压缩放：<strong style="color: var(--text-primary);">scale(0.935) · 85 ms</strong><br />
-                弹跳回正曲线：<strong style="color: var(--text-primary);">cubic-bezier(0.34, 1.45, 0.64, 1)</strong><br />
+                Q 弹回正曲线：<strong style="color: var(--text-primary);">cubic-bezier(0.34, 1.45, 0.64, 1)</strong><br />
                 原子卡原位放大：<strong style="color: var(--text-primary);">380 ms · cubic-bezier(0.22, 1.12, 0.36, 1)</strong><br />
-                原子岛形变展开：<strong style="color: var(--text-primary);">360 ms 锚点弹性展开</strong>
+                水滴胶囊滑移：<strong style="color: var(--text-primary);">380 ms · scaleX(1.14) 液滴微拉伸</strong>
               </div>
             </div>
           </article>
@@ -795,17 +728,21 @@
       </section>
     </main>
 
-    <!-- 底部悬浮光影胶囊导航 -->
+    <!-- 底部水滴悬浮光影导航胶囊 -->
     <nav class="dock-wrap" aria-label="主导航">
       <div class="origin-dock" id="originDock">
         <div class="dock-bubble" id="dockBubble"></div>
         <button class="dock-tab active" type="button" data-view="atomic">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2.5"/><rect x="14" y="3" width="7" height="7" rx="2.5"/><rect x="3" y="14" width="7" height="7" rx="2.5"/><rect x="14" y="14" width="7" height="7" rx="2.5"/></svg>
-          <span>原子工作台</span>
+          <span>原子卡片</span>
+        </button>
+        <button class="dock-tab" type="button" data-view="workbench">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 4v16"/></svg>
+          <span>Workbench</span>
         </button>
         <button class="dock-tab" type="button" data-view="motion">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M12 8v1"/></svg>
-          <span>光影与参数</span>
+          <span>光影参数</span>
         </button>
       </div>
     </nav>
@@ -829,23 +766,25 @@
     const islandBtn = document.getElementById("islandBtn");
     const islandDrawer = document.getElementById("islandDrawer");
     const islandLabel = document.getElementById("islandLabel");
+    const drawerTitle = document.getElementById("drawerTitle");
+    const drawerDesc = document.getElementById("drawerDesc");
+    const toggleTimerFromIsland = document.getElementById("toggleTimerFromIsland");
     const timerDisplay = document.getElementById("timerDisplay");
     let running = true;
     let seconds = 24 * 60 + 59;
     let tipReset = null;
+    let snapAutoClose = null;
+    let isSnapMode = false;
 
     function formatTime(sec) {
-      const m = String(Math.floor(sec / 60)).padStart(2, "0");
-      const s = String(sec % 60).padStart(2, "0");
-      return `${m}:${s}`;
+      return `${String(Math.floor(sec / 60)).padStart(2, "0")}:${String(sec % 60).padStart(2, "0")}`;
     }
-
     setInterval(() => {
       if (!running) return;
       seconds = seconds > 0 ? seconds - 1 : 25 * 60;
       const t = formatTime(seconds);
       timerDisplay.textContent = t;
-      if (!tipReset) islandLabel.textContent = `原子岛 · 专注模式运行中 ${t}`;
+      if (!tipReset) islandLabel.textContent = `Origin Island · 专注运行中 ${t}`;
     }, 1000);
 
     function sayIsland(msg) {
@@ -857,77 +796,135 @@
       clearTimeout(tipReset);
       tipReset = setTimeout(() => {
         tipReset = null;
-        islandLabel.textContent = running ? `原子岛 · 专注模式运行中 ${formatTime(seconds)}` : "原子岛 · 专注已暂停";
-      }, 2400);
+        islandLabel.textContent = running ? `Origin Island · 专注运行中 ${formatTime(seconds)}` : "Origin Island · 专注已暂停";
+      }, 2600);
+    }
+
+    function resetDrawerToNormal() {
+      isSnapMode = false;
+      drawerTitle.textContent = "原子岛快捷控制";
+      drawerDesc.textContent = "承接专注计时、文件批处理与 Snap & Go 主动情景识别，不点 4 秒自动礼貌收回。";
+      toggleTimerFromIsland.textContent = "暂停 / 继续";
     }
 
     function toggleIsland(force) {
       const open = typeof force === "boolean" ? force : !islandDrawer.classList.contains("open");
+      if (!open) { clearTimeout(snapAutoClose); resetDrawerToNormal(); }
       islandDrawer.classList.toggle("open", open);
     }
     islandBtn.addEventListener("click", (e) => { e.stopPropagation(); toggleIsland(); });
     document.getElementById("closeIslandBtn").addEventListener("click", () => toggleIsland(false));
-    document.getElementById("toggleTimerFromIsland").addEventListener("click", () => {
+    toggleTimerFromIsland.addEventListener("click", () => {
+      if (isSnapMode) {
+        toggleIsland(false);
+        sayIsland("Snap & Go · 已一键添加到今日日程");
+        return;
+      }
       running = !running;
       toggleIsland(false);
       sayIsland(running ? "原子计时已继续" : "原子计时已暂停");
     });
 
-    // 主题切换
+    // Snap & Go 主动情景演示（不操作 4 秒自动静默收回）
+    document.getElementById("snapGoDemoBtn").addEventListener("click", (e) => {
+      e.stopPropagation();
+      isSnapMode = true;
+      drawerTitle.textContent = "Snap & Go · 识别到会议截图";
+      drawerDesc.textContent = "提取到“周五 15:00 · WinForge 离线打包验收”，是否一键加入日程提醒？（4 秒无操作自动收起）";
+      toggleTimerFromIsland.textContent = "一键加入日程";
+      sayIsland("Snap & Go · 已识别日程信息");
+      islandDrawer.classList.add("open");
+      clearTimeout(snapAutoClose);
+      snapAutoClose = setTimeout(() => toggleIsland(false), 4200);
+    });
+
+    // 昼夜与夜间护眼 4.0 切换
     document.querySelectorAll("[data-theme-set]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const theme = btn.dataset.themeSet;
         root.setAttribute("data-theme", theme);
         document.querySelectorAll("[data-theme-set]").forEach((b) => b.classList.toggle("active", b === btn));
-        sayIsland(theme === "dark" ? "已切换深空柔光主题" : "已切换晨光通透主题");
+        const names = { light: "晨光通透主题", dark: "深空柔光主题", eyecare: "夜间护眼 4.0（暗部清晰防刺眼）" };
+        sayIsland("已切换：" + names[theme]);
       });
     });
 
-    document.querySelectorAll("[data-say]").forEach((btn) => {
-      btn.addEventListener("click", () => sayIsland(btn.dataset.say));
+    // Dynamic Translucent Material 三档切换（Realistic / Natural / Soft）
+    document.querySelectorAll("[data-mat-set]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const mat = btn.dataset.matSet;
+        root.setAttribute("data-material", mat);
+        document.querySelectorAll("[data-mat-set]").forEach((b) => b.classList.toggle("active", b === btn));
+        const names = { realistic: "Realistic 拟真通透材质", natural: "Natural 自然平衡材质", soft: "Soft 柔和磨砂材质" };
+        sayIsland("已切换：" + names[mat]);
+      });
     });
 
-    document.getElementById("bounceDemoBtn").addEventListener("click", () => {
-      sayIsland("Q 弹物理回弹已触发 · 阻尼顺滑");
+    // 可选趣味风味开关（Glint 微光 + Wiggle 轻弹）
+    const glintSwitch = document.getElementById("glintSwitch");
+    const flavorCard = document.getElementById("flavorCard");
+    glintSwitch.addEventListener("click", () => {
+      const on = glintSwitch.getAttribute("aria-checked") !== "true";
+      glintSwitch.setAttribute("aria-checked", String(on));
+      root.setAttribute("data-glint", on ? "on" : "off");
+      if (on) {
+        flavorCard.classList.remove("wiggle-hit");
+        void flavorCard.offsetWidth;
+        flavorCard.classList.add("wiggle-hit");
+      }
+      sayIsland(on ? "已开启可选趣味风味（Glint 微光 + Wiggle 轻弹）" : "已恢复纯净克制模式");
     });
 
-    // 环境柔光开关
-    const ambientSwitch = document.getElementById("ambientSwitch");
-    const skyLights = document.querySelector(".sky-lights");
-    ambientSwitch.addEventListener("click", () => {
-      const next = ambientSwitch.getAttribute("aria-checked") !== "true";
-      ambientSwitch.setAttribute("aria-checked", String(next));
-      skyLights.style.opacity = next ? "1" : "0.18";
-      sayIsland(next ? "自然弥散光影已开启" : "已切为极简低光模式");
+    // Dynamic Glow 实时交互光晕 + 触点克制光波
+    document.querySelectorAll(".glow-card").forEach((card) => {
+      card.addEventListener("pointermove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty("--gx", x + "px");
+        card.style.setProperty("--gy", y + "px");
+        const glintOffset = ((x / rect.width) * 60 - 30).toFixed(1) + "%";
+        card.style.setProperty("--glint-x", glintOffset);
+      });
+      card.addEventListener("pointerdown", (e) => {
+        if (e.target.closest("button") || e.target.closest(".capsule-slider")) return;
+        const rect = card.getBoundingClientRect();
+        const ripple = document.createElement("span");
+        ripple.className = "glow-ripple";
+        const size = Math.max(rect.width, rect.height) * 0.45;
+        ripple.style.width = size + "px";
+        ripple.style.height = size + "px";
+        ripple.style.left = (e.clientX - rect.left) + "px";
+        ripple.style.top = (e.clientY - rect.top) + "px";
+        card.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 480);
+      });
     });
 
-    // OriginOS 厚胶囊阻尼推杆
+    document.querySelectorAll("[data-say]").forEach((btn) => btn.addEventListener("click", () => sayIsland(btn.dataset.say)));
+
+    // 厚胶囊阻尼推杆（实时联动背景弥散光强度）
     const capsuleSlider = document.getElementById("capsuleSlider");
     const capsuleFill = document.getElementById("capsuleFill");
     const capsuleVal = document.getElementById("capsuleVal");
+    const skyLights = document.querySelector(".sky-lights");
     let sliderDragging = false;
-
     function updateCapsule(clientX) {
       const rect = capsuleSlider.getBoundingClientRect();
-      const pct = Math.max(8, Math.min(100, Math.round(((clientX - rect.left) / rect.width) * 100)));
+      const pct = Math.max(15, Math.min(100, Math.round(((clientX - rect.left) / rect.width) * 100)));
       capsuleFill.style.width = pct + "%";
       capsuleVal.textContent = pct + "%";
       capsuleSlider.setAttribute("aria-valuenow", String(pct));
+      skyLights.style.opacity = String((pct / 100).toFixed(2));
     }
     capsuleSlider.addEventListener("pointerdown", (e) => {
-      sliderDragging = true;
-      capsuleSlider.classList.add("dragging");
-      capsuleSlider.setPointerCapture(e.pointerId);
-      updateCapsule(e.clientX);
+      sliderDragging = true; capsuleSlider.classList.add("dragging");
+      capsuleSlider.setPointerCapture(e.pointerId); updateCapsule(e.clientX);
     });
     capsuleSlider.addEventListener("pointermove", (e) => { if (sliderDragging) updateCapsule(e.clientX); });
-    capsuleSlider.addEventListener("pointerup", () => {
-      if (!sliderDragging) return;
-      sliderDragging = false;
-      capsuleSlider.classList.remove("dragging");
-    });
+    capsuleSlider.addEventListener("pointerup", () => { sliderDragging = false; capsuleSlider.classList.remove("dragging"); });
 
-    // 真实 FLIP 原子卡片原位放大与沿原路弹回
+    // FLIP 原子卡片原位放大与弹回
     const detailBackdrop = document.getElementById("detailBackdrop");
     const detailSheet = document.getElementById("detailSheet");
     const detailTitle = document.getElementById("detailTitle");
@@ -938,28 +935,23 @@
       activeCard = card;
       detailTitle.textContent = card.dataset.detailTitle;
       detailDesc.textContent = card.dataset.detailDesc;
-
       const cardRect = card.getBoundingClientRect();
       detailBackdrop.classList.add("open");
       detailSheet.style.transition = "none";
       detailSheet.style.transform = "translate(-50%, -50%)";
       detailSheet.classList.add("open");
-
       const targetRect = detailSheet.getBoundingClientRect();
       const dx = (cardRect.left + cardRect.width / 2) - (targetRect.left + targetRect.width / 2);
       const dy = (cardRect.top + cardRect.height / 2) - (targetRect.top + targetRect.height / 2);
       const sx = cardRect.width / targetRect.width;
       const sy = cardRect.height / targetRect.height;
-
       detailSheet.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${sx}, ${sy})`;
       detailSheet.style.opacity = "0.4";
-      detailSheet.offsetHeight; // 触发一次布局采样
-
+      detailSheet.offsetHeight;
       detailSheet.style.transition = "transform 380ms cubic-bezier(0.22, 1.12, 0.36, 1), opacity 220ms ease";
       detailSheet.style.transform = "translate(-50%, -50%) scale(1, 1)";
       detailSheet.style.opacity = "1";
     }
-
     function closeCardDetail() {
       if (!activeCard) return;
       const cardRect = activeCard.getBoundingClientRect();
@@ -968,58 +960,107 @@
       const dy = (cardRect.top + cardRect.height / 2) - (targetRect.top + targetRect.height / 2);
       const sx = cardRect.width / targetRect.width;
       const sy = cardRect.height / targetRect.height;
-
       detailBackdrop.classList.remove("open");
       detailSheet.style.transition = "transform 300ms cubic-bezier(0.24, 1.04, 0.36, 1), opacity 200ms ease";
       detailSheet.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${sx}, ${sy})`;
       detailSheet.style.opacity = "0";
-      setTimeout(() => {
-        detailSheet.classList.remove("open");
-        activeCard = null;
-      }, 280);
+      setTimeout(() => { detailSheet.classList.remove("open"); activeCard = null; }, 280);
     }
-
-    document.querySelectorAll(".atomic-card.expandable").forEach((card) => {
-      card.addEventListener("click", () => openCardDetail(card));
-    });
+    document.querySelectorAll(".atomic-card.expandable").forEach((card) => card.addEventListener("click", () => openCardDetail(card)));
     detailBackdrop.addEventListener("click", closeCardDetail);
     document.getElementById("closeDetailBtn").addEventListener("click", closeCardDetail);
-    document.getElementById("detailActionBtn").addEventListener("click", () => {
-      closeCardDetail();
-      sayIsland("原子卡片已丝滑归位");
+    document.getElementById("detailActionBtn").addEventListener("click", () => { closeCardDetail(); sayIsland("原子卡片已丝滑归位"); });
+
+    // Origin Workbench 多任务切换 + 多模板摘要 + AI 阅读模式
+    const wbTitle = document.getElementById("wbTitle");
+    const wbSub = document.getElementById("wbSub");
+    const wbContent = document.getElementById("wbContent");
+    const tplSwitch = document.getElementById("tplSwitch");
+    const wbData = {
+      summary: {
+        title: "多模板文档摘要（Highlights View）",
+        sub: "切换视角模板查看不同提炼结果，开启 AI 阅读模式体验宽屏舒适排版",
+        showTpl: true,
+        tpls: {
+          points: "• <strong>三档动态半透明材质</strong>：支持 Realistic（拟真）、Natural（自然）与 Soft（柔和磨砂）实时切换，兼顾空气感与长文护眼。<br />• <strong>Dynamic Glow 光随手走</strong>：指针划过原子卡片与点击瞬间泛起克制柔光，杜绝刺眼霓虹。<br />• <strong>无缝打断物理动效</strong>：快速切换干脆利落，慢速拖动阻尼温润，动画中途反向操作绝不瞬移。",
+          actions: "1. 确认目标桌面工具是否需要 AI 阅读或摘要模块（按需加载）<br />2. 默认启用 Natural 材质 + 夜间护眼 4.0 选项<br />3. 打包输出离线 Setup.exe 到 release/ 并断网新机实测",
+          log: "17:42 · 已读取项目风格手册（只读）· 正常<br />17:45 · 已对比三档材质文字对比度（≥ 4.5:1）· 通过<br />17:48 · 零外部字体外链核验 · 通过"
+        }
+      },
+      batch: {
+        title: "批量截图归档任务（后台保活中）",
+        sub: "切换到此任务无需重新加载，状态实时保留",
+        showTpl: false,
+        html: "已扫描 <strong>18 张近期截图</strong>，准备按 <code>2026-11/</code> 目录自动归类并无损压缩（预计节省 64% 空间）。<br /><br />执行前将先展示预览清单，保留原图回退开关，绝不静默覆盖。"
+      },
+      audit: {
+        title: "代理隐私活动日志（Agent Privacy Activity Logs）",
+        sub: "所有 AI 自动操作透明留痕，零基础用户随时可查、可一键撤销",
+        showTpl: false,
+        html: "• <strong>17:30:12</strong> — 读取 <code>Documents/会议纪要.pdf</code>（只读摘要）· 已完成<br />• <strong>17:36:04</strong> — 生成整理预览清单（未改动磁盘文件）· 等待确认<br />• <strong>17:40:22</strong> — 创建 Git 安全存档 <code>style: 升级 OriginOS 7 光影材质</code> · 可随时回退"
+      }
+    };
+
+    document.querySelectorAll("[data-wb]").forEach((slot) => {
+      slot.addEventListener("click", () => {
+        const key = slot.dataset.wb;
+        document.querySelectorAll("[data-wb]").forEach((s) => s.classList.toggle("active", s === slot));
+        const item = wbData[key];
+        wbTitle.textContent = item.title;
+        wbSub.textContent = item.sub;
+        tplSwitch.style.display = item.showTpl ? "inline-flex" : "none";
+        wbContent.innerHTML = item.showTpl ? item.tpls.points : item.html;
+        if (item.showTpl) {
+          document.querySelectorAll("[data-tpl]").forEach((b, i) => b.classList.toggle("active", i === 0));
+        }
+        sayIsland("Workbench 已切换：" + slot.querySelector("strong").textContent);
+      });
+    });
+    document.querySelectorAll("[data-tpl]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-tpl]").forEach((b) => b.classList.toggle("active", b === btn));
+        wbContent.innerHTML = wbData.summary.tpls[btn.dataset.tpl];
+      });
+    });
+    document.getElementById("toggleReaderBtn").addEventListener("click", () => {
+      const on = wbContent.classList.toggle("ai-reader");
+      sayIsland(on ? "AI 舒适阅读模式已开启" : "已切回标准工作台视图");
     });
 
-    // 底部悬浮光影导航气泡
+    // 底部水滴悬浮导航胶囊（Fluid Motion 液滴拉伸）
     const dock = document.getElementById("originDock");
     const dockBubble = document.getElementById("dockBubble");
     const dockTabs = [...dock.querySelectorAll(".dock-tab")];
-
-    function syncDock(tab) {
+    function syncDock(tab, withDroplet) {
+      const bx = tab.offsetLeft - 6;
+      dockBubble.style.setProperty("--bx", bx + "px");
       dockBubble.style.width = tab.offsetWidth + "px";
-      dockBubble.style.transform = `translateX(${tab.offsetLeft - 6}px)`;
+      dockBubble.style.transform = `translateX(${bx}px)`;
+      if (withDroplet) {
+        dockBubble.classList.add("droplet");
+        clearTimeout(dockBubble._t);
+        dockBubble._t = setTimeout(() => dockBubble.classList.remove("droplet"), 150);
+      }
     }
     dockTabs.forEach((tab) => {
       tab.addEventListener("click", () => {
         dockTabs.forEach((t) => t.classList.toggle("active", t === tab));
-        syncDock(tab);
+        syncDock(tab, true);
         const viewId = "view-" + tab.dataset.view;
         document.querySelectorAll(".view").forEach((v) => v.classList.toggle("active", v.id === viewId));
       });
     });
     window.addEventListener("resize", () => {
       const cur = dock.querySelector(".dock-tab.active");
-      if (cur) syncDock(cur);
+      if (cur) syncDock(cur, false);
     });
-    requestAnimationFrame(() => syncDock(dockTabs[0]));
+    requestAnimationFrame(() => syncDock(dockTabs[0], false));
 
-    // 键盘交互：Esc 收起浮层，Space 暂停/继续计时
+    // 键盘交互
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeCardDetail();
-        toggleIsland(false);
-      } else if (e.key === " " && document.activeElement.tagName !== "BUTTON") {
-        e.preventDefault();
-        running = !running;
+      if (e.key === "Escape") { closeCardDetail(); toggleIsland(false); }
+      else if (e.key === " " && document.activeElement.tagName !== "BUTTON") {
+        e.preventDefault(); running = !running;
         sayIsland(running ? "空格快捷继续专注" : "空格快捷暂停专注");
       }
     });
