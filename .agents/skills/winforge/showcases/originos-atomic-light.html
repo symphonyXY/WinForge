@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WinForge 审美样板间 · OriginOS 光影原子</title>
+  <style>
+    /* =========================================================================
+       最新 OriginOS 空间光影与原子交互设计令牌（离线零外链，1:1 手感基准）
+       ========================================================================= */
+    :root {
+      --font-sans: "Plus Jakarta Sans", "Inter", "HarmonyOS Sans SC", "Segoe UI Variable", "Microsoft YaHei UI", sans-serif;
+      --spring-bouncy: cubic-bezier(0.34, 1.45, 0.64, 1);
+      --spring-atomic: cubic-bezier(0.22, 1.12, 0.36, 1);
+      --spring-fluid: cubic-bezier(0.24, 1.04, 0.36, 1);
+
+      /* 晨光通透浅色（Light） */
+      --stage-bg: #e5ebf5;
+      --window-bg: #f2f4f9;
+      --window-border: rgba(255, 255, 255, 0.78);
+      --window-shadow: 0 32px 84px -18px rgba(31, 56, 100, 0.22), 0 4px 18px rgba(31, 56, 100, 0.06);
+
+      --light-1: rgba(132, 192, 255, 0.42);
+      --light-2: rgba(196, 178, 255, 0.34);
+      --light-3: rgba(255, 214, 178, 0.36);
+
+      --card-bg: rgba(255, 255, 255, 0.78);
+      --card-strong: rgba(255, 255, 255, 0.92);
+      --card-subtle: rgba(31, 56, 100, 0.05);
+      --card-hover: rgba(31, 56, 100, 0.085);
+      --card-border: rgba(255, 255, 255, 0.85);
+      --card-shadow: 0 14px 36px -12px rgba(31, 56, 100, 0.12), 0 2px 8px rgba(31, 56, 100, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.96);
+      --card-shadow-hover: 0 20px 44px -12px rgba(31, 56, 100, 0.16), 0 4px 12px rgba(31, 56, 100, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
+
+      --island-bg: rgba(20, 24, 34, 0.88);
+      --island-text: #f5f7fc;
+      --island-muted: rgba(245, 247, 252, 0.66);
+
+      --text-primary: #141923;
+      --text-secondary: #5c6578;
+      --text-muted: #8c95a6;
+
+      --accent: #2970ff;
+      --accent-2: #5b94ff;
+      --accent-soft: rgba(41, 112, 255, 0.12);
+      --teal: #14b8a6;
+      --coral: #f2555a;
+      --amber: #f59e0b;
+
+      --pill-bg: rgba(255, 255, 255, 0.74);
+      --pill-active: #ffffff;
+      --pill-shadow: 0 16px 40px -10px rgba(31, 56, 100, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    }
+
+    [data-theme="dark"] {
+      --stage-bg: #05070c;
+      --window-bg: #0d1018;
+      --window-border: rgba(255, 255, 255, 0.10);
+      --window-shadow: 0 36px 96px -16px rgba(0, 0, 0, 0.80), 0 0 0 1px rgba(255, 255, 255, 0.06);
+
+      --light-1: rgba(41, 112, 255, 0.25);
+      --light-2: rgba(114, 88, 224, 0.22);
+      --light-3: rgba(20, 184, 166, 0.16);
+
+      --card-bg: rgba(26, 31, 43, 0.74);
+      --card-strong: rgba(31, 37, 52, 0.94);
+      --card-subtle: rgba(255, 255, 255, 0.065);
+      --card-hover: rgba(255, 255, 255, 0.11);
+      --card-border: rgba(255, 255, 255, 0.10);
+      --card-shadow: 0 18px 42px -12px rgba(0, 0, 0, 0.56), inset 0 1px 0 rgba(255, 255, 255, 0.13);
+      --card-shadow-hover: 0 24px 52px -12px rgba(0, 0, 0, 0.68), inset 0 1px 0 rgba(255, 255, 255, 0.20);
+
+      --island-bg: rgba(16, 19, 28, 0.94);
+
+      --text-primary: #f3f6fc;
+      --text-secondary: #9aa5b8;
+      --text-muted: #667085;
+
+      --accent: #4d8bff;
+      --accent-2: #75a7ff;
+      --accent-soft: rgba(77, 139, 255, 0.18);
+      --teal: #2dd4bf;
+      --coral: #fb7185;
+      --amber: #fbbf24;
+
+      --pill-bg: rgba(26, 31, 43, 0.78);
+      --pill-active: rgba(255, 255, 255, 0.14);
+      --pill-shadow: 0 18px 46px -10px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      font-family: var(--font-sans);
+      color: var(--text-primary);
+      background: var(--stage-bg);
+      -webkit-font-smoothing: antialiased;
+      transition: background 280ms ease, color 220ms ease;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    /* Windows 全景光影无边框窗口 */
+    .app-window {
+      position: relative;
+      width: min(1140px, 100%);
+      height: min(740px, calc(100vh - 48px));
+      border-radius: 26px;
+      background: var(--window-bg);
+      border: 1px solid var(--window-border);
+      box-shadow: var(--window-shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      isolation: isolate;
+      transition: background 280ms ease, border-color 280ms ease;
+    }
+
+    /* 柔和自然弥散光影层 */
+    .sky-lights {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .glow-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(88px);
+      animation: breathe 16s ease-in-out infinite alternate;
+    }
+    .g1 { width: 480px; height: 480px; top: -160px; left: -60px; background: var(--light-1); }
+    .g2 { width: 440px; height: 440px; top: 40px; right: -120px; background: var(--light-2); animation-delay: -4s; }
+    .g3 { width: 420px; height: 420px; bottom: -180px; left: 28%; background: var(--light-3); animation-delay: -8s; }
+    @keyframes breathe {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to   { transform: translate3d(24px, -16px, 0) scale(1.08); }
+    }
+
+    /* 全景融合顶栏 */
+    .titlebar {
+      height: 58px;
+      padding: 0 16px 0 22px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      position: relative;
+      z-index: 20;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+    }
+    .origin-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent) 0%, #63a4ff 100%);
+      box-shadow: 0 6px 16px rgba(41, 112, 255, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+      display: grid;
+      place-items: center;
+      color: #fff;
+    }
+    .brand-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+    .brand-tag { font-size: 11.5px; color: var(--text-muted); }
+
+    /* 原子岛（Atomic Island） */
+    .atomic-island-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .atomic-island {
+      height: 34px;
+      padding: 0 15px;
+      border-radius: 999px;
+      background: var(--island-bg);
+      color: var(--island-text);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 320ms var(--spring-bouncy), box-shadow 220ms ease;
+    }
+    .atomic-island:hover { transform: scale(1.04); }
+    .atomic-island:active { transform: scale(0.94); transition-duration: 90ms; }
+    .pulse-ring {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      position: relative;
+    }
+    .pulse-ring::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid var(--teal);
+      opacity: 0.45;
+      animation: pulse 2s ease-out infinite;
+    }
+    @keyframes pulse {
+      0%   { transform: scale(0.75); opacity: 0.65; }
+      100% { transform: scale(1.65); opacity: 0; }
+    }
+
+    .island-drawer {
+      position: absolute;
+      top: 44px;
+      left: 50%;
+      width: 340px;
+      padding: 18px;
+      border-radius: 26px;
+      background: var(--island-bg);
+      color: var(--island-text);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 28px 64px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(28px);
+      transform: translateX(-50%) scale(0.84) translateY(-10px);
+      transform-origin: top center;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 360ms var(--spring-atomic), opacity 200ms ease;
+      z-index: 40;
+    }
+    .island-drawer.open {
+      transform: translateX(-50%) scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* 顶栏右侧 */
+    .titlebar-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .theme-pill {
+      display: inline-flex;
+      padding: 3px;
+      border-radius: 999px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+    }
+    .theme-btn {
+      height: 26px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 180ms ease, color 180ms ease, transform 240ms var(--spring-bouncy);
+    }
+    .theme-btn.active {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(41, 112, 255, 0.34);
+    }
+    .theme-btn:active { transform: scale(0.92); }
+
+    .win-controls {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .win-btn {
+      width: 32px;
+      height: 28px;
+      border-radius: 10px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background 150ms ease, color 150ms ease, transform 240ms var(--spring-bouncy);
+    }
+    .win-btn:hover { background: var(--card-hover); color: var(--text-primary); }
+    .win-btn.close:hover { background: var(--coral); color: #fff; }
+    .win-btn:active { transform: scale(0.88); }
+
+    /* 主工作区 */
+    .workspace {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 26px 96px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(130, 145, 170, 0.30) transparent;
+    }
+    .workspace::-webkit-scrollbar { width: 6px; }
+    .workspace::-webkit-scrollbar-thumb { background: rgba(130, 145, 170, 0.28); border-radius: 999px; }
+
+    .view { display: none; }
+    .view.active { display: block; animation: viewIn 320ms var(--spring-fluid); }
+    @keyframes viewIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-bar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .hero-bar h1 {
+      font-size: 25px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+    .hero-bar p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* 原子化网格（Atomic Bento Grid） */
+    .atomic-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .span-2 { grid-column: span 2; }
+
+    .atomic-card {
+      position: relative;
+      border-radius: 26px;
+      padding: 20px;
+      background: var(--card-bg);
+      backdrop-filter: blur(22px) saturate(165%);
+      -webkit-backdrop-filter: blur(22px) saturate(165%);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 184px;
+      transition: transform 320ms var(--spring-atomic), box-shadow 260ms ease, background 220ms ease;
+    }
+    .atomic-card.expandable { cursor: pointer; }
+    .atomic-card.expandable:hover {
+      transform: translateY(-3px) scale(1.008);
+      box-shadow: var(--card-shadow-hover);
+    }
+    .atomic-card.expandable:active {
+      transform: scale(0.97);
+      transition-duration: 90ms;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .icon-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 600;
+    }
+    .badge-blue { background: var(--accent-soft); color: var(--accent); }
+    .badge-teal { background: rgba(20, 184, 166, 0.14); color: var(--teal); }
+    .badge-amber { background: rgba(245, 158, 11, 0.15); color: var(--amber); }
+    .badge-coral { background: rgba(242, 85, 90, 0.14); color: var(--coral); }
+
+    .expand-hint {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--card-subtle);
+    }
+
+    .big-num {
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+    .card-label {
+      font-size: 14.5px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .card-desc {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* OriginOS Q 弹按钮 */
+    .o-btn {
+      height: 38px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: none;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: transform 320ms var(--spring-bouncy), background 160ms ease, box-shadow 200ms ease;
+    }
+    .o-btn:active {
+      transform: scale(0.935);
+      transition-duration: 85ms;
+    }
+    .o-btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: #fff;
+      box-shadow: 0 8px 20px -4px rgba(41, 112, 255, 0.45);
+    }
+    .o-btn-primary:hover { transform: translateY(-1px) scale(1.02); }
+    .o-btn-soft {
+      background: var(--card-subtle);
+      color: var(--text-primary);
+    }
+    .o-btn-soft:hover { background: var(--card-hover); }
+
+    /* OriginOS 标志性厚胶囊阻尼滑块（仿系统亮度/音量胶囊推杆） */
+    .capsule-slider {
+      position: relative;
+      height: 44px;
+      border-radius: 16px;
+      background: var(--card-subtle);
+      overflow: hidden;
+      cursor: ew-resize;
+      user-select: none;
+      touch-action: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+    }
+    .capsule-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 72%;
+      border-radius: 16px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+      transition: width 90ms ease-out;
+      pointer-events: none;
+    }
+    .capsule-slider.dragging .capsule-fill { transition: none; }
+    .capsule-slider span {
+      position: relative;
+      z-index: 1;
+      font-size: 13px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      mix-blend-mode: normal;
+    }
+    .capsule-slider .cap-title { color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.22); }
+    .capsule-slider .cap-val {
+      background: var(--card-strong);
+      color: var(--text-primary);
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    /* OriginOS Q 弹开关 */
+    .o-switch {
+      width: 48px;
+      height: 28px;
+      border-radius: 999px;
+      border: none;
+      padding: 3px;
+      background: rgba(130, 145, 170, 0.28);
+      cursor: pointer;
+      transition: background 240ms ease;
+    }
+    .o-switch[aria-checked="true"] { background: var(--accent); }
+    .o-switch .dot {
+      display: block;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.20);
+      transition: transform 340ms var(--spring-bouncy);
+    }
+    .o-switch[aria-checked="true"] .dot { transform: translateX(20px); }
+
+    /* 原位放大展开的原子详情浮层（真实 FLIP 几何插值） */
+    .detail-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 14, 24, 0.24);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 260ms ease;
+      z-index: 45;
+    }
+    .detail-backdrop.open { opacity: 1; pointer-events: auto; }
+
+    .detail-sheet {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(560px, calc(100% - 48px));
+      padding: 26px;
+      border-radius: 30px;
+      background: var(--card-strong);
+      border: 1px solid var(--card-border);
+      box-shadow: 0 36px 86px rgba(15, 23, 42, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+      transform-origin: center center;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 50;
+    }
+    .detail-sheet.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* 底部悬浮光影导航胶囊 */
+    .dock-wrap {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      z-index: 25;
+    }
+    .origin-dock {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      backdrop-filter: blur(26px) saturate(180%);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--pill-shadow);
+    }
+    .dock-bubble {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      height: 38px;
+      border-radius: 999px;
+      background: var(--pill-active);
+      box-shadow: 0 6px 18px rgba(31, 56, 100, 0.14);
+      transition: transform 380ms var(--spring-bouncy), width 320ms var(--spring-atomic);
+      pointer-events: none;
+    }
+    .dock-tab {
+      position: relative;
+      z-index: 1;
+      height: 38px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: color 180ms ease;
+    }
+    .dock-tab.active { color: var(--accent); font-weight: 600; }
+    .dock-tab.active svg { animation: iconHop 360ms var(--spring-bouncy); }
+    @keyframes iconHop {
+      0%   { transform: translateY(0) scale(1); }
+      45%  { transform: translateY(-3px) scale(1.12); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    @media (max-width: 900px) {
+      .atomic-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-window" id="appWindow">
+    <div class="sky-lights" aria-hidden="true">
+      <div class="glow-blob g1"></div>
+      <div class="glow-blob g2"></div>
+      <div class="glow-blob g3"></div>
+    </div>
+
+    <!-- 全景融合顶栏 -->
+    <header class="titlebar">
+      <div class="brand">
+        <div class="origin-logo" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/></svg>
+        </div>
+        <div>
+          <div class="brand-name">Origin Studio</div>
+          <div class="brand-tag">OriginOS 光影原子样板间</div>
+        </div>
+      </div>
+
+      <!-- 原子岛 -->
+      <div class="atomic-island-wrap">
+        <button class="atomic-island" id="islandBtn" type="button">
+          <span class="pulse-ring"></span>
+          <span id="islandLabel">原子岛 · 专注模式运行中 24:59</span>
+        </button>
+        <div class="island-drawer" id="islandDrawer">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <strong style="font-size: 14px;">原子岛快捷控制</strong>
+            <span style="font-size: 12px; color: var(--island-muted);">自然回弹 · 按 Esc 收起</span>
+          </div>
+          <p style="font-size: 12.5px; color: var(--island-muted); line-height: 1.55; margin-bottom: 14px;">
+            顶部原子岛承接下载、专注、剪贴板或文件批量处理状态，绝不弹出打断思路的丑陋提示框。
+          </p>
+          <div style="display:flex; gap:8px;">
+            <button class="o-btn o-btn-primary" style="flex:1; height:34px; font-size:12.5px;" type="button" id="toggleTimerFromIsland">暂停 / 继续</button>
+            <button class="o-btn" style="flex:1; height:34px; font-size:12.5px; background:rgba(255,255,255,0.12); color:#fff;" type="button" id="closeIslandBtn">收起</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧主题 + 精修 Windows 窗口按钮 -->
+      <div class="titlebar-right">
+        <div class="theme-pill">
+          <button class="theme-btn active" data-theme-set="light" type="button">晨光浅色</button>
+          <button class="theme-btn" data-theme-set="dark" type="button">深空柔光</button>
+        </div>
+        <div class="win-controls">
+          <button class="win-btn" type="button" title="最小化（示例）" data-say="已模拟最小化回弹">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg>
+          </button>
+          <button class="win-btn" type="button" title="最大化（示例）" data-say="已模拟窗口展开">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="4"/></svg>
+          </button>
+          <button class="win-btn close" type="button" title="关闭（示例）" data-say="安全保存并干净退出">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="workspace">
+      <!-- 视图 1：原子工作台 -->
+      <section class="view active" id="view-atomic">
+        <div class="hero-bar">
+          <div>
+            <h1>OriginOS 空间光影与原子卡片</h1>
+            <p>点击任意带“点击展开”的原子卡片，感受原位放大与沿原路弹回的丝滑物理动画</p>
+          </div>
+          <button class="o-btn o-btn-primary" type="button" id="bounceDemoBtn">点击感受 Q 弹按钮</button>
+        </div>
+
+        <div class="atomic-grid">
+          <!-- 2×1 主原子卡：专注计时（可原位放大） -->
+          <article class="atomic-card span-2 expandable" data-detail-title="专注原子时钟" data-detail-desc="支持一键启动倒计时、桌面迷你悬浮与自然光影提醒。点击窗口外部或按 Esc 键，卡片会沿原路丝滑弹回原网格位置。">
+            <div class="card-top">
+              <div class="icon-badge badge-blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2"/><path d="M9 2h6"/></svg>
+              </div>
+              <span class="expand-hint">点击原位展开</span>
+            </div>
+            <div>
+              <div class="big-num" id="timerDisplay">24:59</div>
+              <div class="card-desc" style="margin-top: 6px;">实时状态一目了然，信息干净不拥挤（按 Space 可暂停/继续）</div>
+            </div>
+          </article>
+
+          <!-- 1×1 原子卡：一键整理 -->
+          <article class="atomic-card expandable" data-detail-title="智能桌面整理" data-detail-desc="自动把图片、安装包、文档归类到规范目录，操作前先列清晰预览清单，绝不私自误删个人文件。">
+            <div class="card-top">
+              <div class="icon-badge badge-teal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+              </div>
+              <span class="expand-hint">点击展开</span>
+            </div>
+            <div>
+              <div class="card-label">文件夹洁癖整理</div>
+              <div class="card-desc">已归档 128 个文件</div>
+            </div>
+          </article>
+
+          <!-- 1×1 原子卡：快速开关 -->
+          <article class="atomic-card">
+            <div class="card-top">
+              <div class="icon-badge badge-amber">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v3M12 18v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M3 12h3M18 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/><circle cx="12" cy="12" r="4"/></svg>
+              </div>
+              <button class="o-switch" role="switch" aria-checked="true" type="button" id="ambientSwitch"><span class="dot"></span></button>
+            </div>
+            <div>
+              <div class="card-label">自然环境柔光</div>
+              <div class="card-desc">轻柔光晕随时间缓慢呼吸</div>
+            </div>
+          </article>
+
+          <!-- 2×1 厚胶囊阻尼推杆 -->
+          <article class="atomic-card span-2">
+            <div class="card-top">
+              <div>
+                <div class="card-label">阻尼胶囊推杆（左右拖动体验）</div>
+                <div class="card-desc">还原 OriginOS 系统级厚胶囊滑块，指哪跟哪、饱满圆润</div>
+              </div>
+            </div>
+            <div class="capsule-slider" id="capsuleSlider" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72" tabindex="0">
+              <div class="capsule-fill" id="capsuleFill"></div>
+              <span class="cap-title">空间通透度</span>
+              <span class="cap-val" id="capsuleVal">72%</span>
+            </div>
+          </article>
+
+          <!-- 2×1 离线打包状态卡 -->
+          <article class="atomic-card span-2 expandable" data-detail-title="新电脑开箱即用标准" data-detail-desc="默认交付离线一键安装版 Setup.exe，内置全部字体、图标与运行环境。断网状态的新 Windows 电脑安装完直接双击就能打开，绝不弹窗提示下载运行库。">
+            <div class="card-top">
+              <div class="icon-badge badge-coral">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </div>
+              <span class="expand-hint">点击展开说明</span>
+            </div>
+            <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:12px;">
+              <div>
+                <div class="card-label">离线 Setup.exe 交付标准</div>
+                <div class="card-desc">零额外下载 · 可选安装路径 · 支持控制面板干净卸载</div>
+              </div>
+              <span style="font-size: 13px; font-weight: 600; color: var(--teal); white-space: nowrap;">100% 离线</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 视图 2：动效与参数 -->
+      <section class="view" id="view-motion">
+        <div class="hero-bar">
+          <div>
+            <h1>OriginOS 动效与空间参数速查</h1>
+            <p>AI 开发 OriginOS 风格软件时，直接沿用这组饱满圆角与 Q 弹弹簧参数</p>
+          </div>
+        </div>
+        <div class="atomic-grid">
+          <article class="atomic-card span-2">
+            <div>
+              <div class="card-label" style="margin-bottom: 12px;">空间与圆角基因</div>
+              <div class="card-desc" style="line-height: 2;">
+                原子卡片主圆角：<strong style="color: var(--text-primary);">26 px</strong><br />
+                嵌套图标块 / 推杆圆角：<strong style="color: var(--text-primary);">14–16 px</strong><br />
+                原子岛 / 主按钮 / 悬浮导航：<strong style="color: var(--text-primary);">999 px 全胶囊</strong><br />
+                卡片模糊材质：<strong style="color: var(--text-primary);">blur(22px) saturate(165%)</strong>
+              </div>
+            </div>
+          </article>
+          <article class="atomic-card span-2">
+            <div>
+              <div class="card-label" style="margin-bottom: 12px;">Q 弹物理曲线</div>
+              <div class="card-desc" style="line-height: 2;">
+                按钮按压缩放：<strong style="color: var(--text-primary);">scale(0.935) · 85 ms</strong><br />
+                弹跳回正曲线：<strong style="color: var(--text-primary);">cubic-bezier(0.34, 1.45, 0.64, 1)</strong><br />
+                原子卡原位放大：<strong style="color: var(--text-primary);">380 ms · cubic-bezier(0.22, 1.12, 0.36, 1)</strong><br />
+                原子岛形变展开：<strong style="color: var(--text-primary);">360 ms 锚点弹性展开</strong>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- 底部悬浮光影胶囊导航 -->
+    <nav class="dock-wrap" aria-label="主导航">
+      <div class="origin-dock" id="originDock">
+        <div class="dock-bubble" id="dockBubble"></div>
+        <button class="dock-tab active" type="button" data-view="atomic">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2.5"/><rect x="14" y="3" width="7" height="7" rx="2.5"/><rect x="3" y="14" width="7" height="7" rx="2.5"/><rect x="14" y="14" width="7" height="7" rx="2.5"/></svg>
+          <span>原子工作台</span>
+        </button>
+        <button class="dock-tab" type="button" data-view="motion">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M12 8v1"/></svg>
+          <span>光影与参数</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- 原子卡原位放大详情层 -->
+    <div class="detail-backdrop" id="detailBackdrop"></div>
+    <div class="detail-sheet" id="detailSheet" role="dialog" aria-modal="true">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+        <h2 id="detailTitle" style="font-size:20px; font-weight:600;">原子详情</h2>
+        <button class="o-btn o-btn-soft" type="button" id="closeDetailBtn" style="height:32px; padding:0 14px; font-size:12.5px;">收起回位 (Esc)</button>
+      </div>
+      <p id="detailDesc" style="font-size:14px; color:var(--text-secondary); line-height:1.7; margin-bottom:20px;"></p>
+      <div style="display:flex; gap:10px; justify-content:flex-end;">
+        <button class="o-btn o-btn-primary" type="button" id="detailActionBtn">确认并丝滑弹回</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const islandBtn = document.getElementById("islandBtn");
+    const islandDrawer = document.getElementById("islandDrawer");
+    const islandLabel = document.getElementById("islandLabel");
+    const timerDisplay = document.getElementById("timerDisplay");
+    let running = true;
+    let seconds = 24 * 60 + 59;
+    let tipReset = null;
+
+    function formatTime(sec) {
+      const m = String(Math.floor(sec / 60)).padStart(2, "0");
+      const s = String(sec % 60).padStart(2, "0");
+      return `${m}:${s}`;
+    }
+
+    setInterval(() => {
+      if (!running) return;
+      seconds = seconds > 0 ? seconds - 1 : 25 * 60;
+      const t = formatTime(seconds);
+      timerDisplay.textContent = t;
+      if (!tipReset) islandLabel.textContent = `原子岛 · 专注模式运行中 ${t}`;
+    }, 1000);
+
+    function sayIsland(msg) {
+      islandLabel.textContent = msg;
+      islandBtn.animate(
+        [{ transform: "scale(1)" }, { transform: "scale(1.07)" }, { transform: "scale(1)" }],
+        { duration: 340, easing: "cubic-bezier(0.34, 1.45, 0.64, 1)" }
+      );
+      clearTimeout(tipReset);
+      tipReset = setTimeout(() => {
+        tipReset = null;
+        islandLabel.textContent = running ? `原子岛 · 专注模式运行中 ${formatTime(seconds)}` : "原子岛 · 专注已暂停";
+      }, 2400);
+    }
+
+    function toggleIsland(force) {
+      const open = typeof force === "boolean" ? force : !islandDrawer.classList.contains("open");
+      islandDrawer.classList.toggle("open", open);
+    }
+    islandBtn.addEventListener("click", (e) => { e.stopPropagation(); toggleIsland(); });
+    document.getElementById("closeIslandBtn").addEventListener("click", () => toggleIsland(false));
+    document.getElementById("toggleTimerFromIsland").addEventListener("click", () => {
+      running = !running;
+      toggleIsland(false);
+      sayIsland(running ? "原子计时已继续" : "原子计时已暂停");
+    });
+
+    // 主题切换
+    document.querySelectorAll("[data-theme-set]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const theme = btn.dataset.themeSet;
+        root.setAttribute("data-theme", theme);
+        document.querySelectorAll("[data-theme-set]").forEach((b) => b.classList.toggle("active", b === btn));
+        sayIsland(theme === "dark" ? "已切换深空柔光主题" : "已切换晨光通透主题");
+      });
+    });
+
+    document.querySelectorAll("[data-say]").forEach((btn) => {
+      btn.addEventListener("click", () => sayIsland(btn.dataset.say));
+    });
+
+    document.getElementById("bounceDemoBtn").addEventListener("click", () => {
+      sayIsland("Q 弹物理回弹已触发 · 阻尼顺滑");
+    });
+
+    // 环境柔光开关
+    const ambientSwitch = document.getElementById("ambientSwitch");
+    const skyLights = document.querySelector(".sky-lights");
+    ambientSwitch.addEventListener("click", () => {
+      const next = ambientSwitch.getAttribute("aria-checked") !== "true";
+      ambientSwitch.setAttribute("aria-checked", String(next));
+      skyLights.style.opacity = next ? "1" : "0.18";
+      sayIsland(next ? "自然弥散光影已开启" : "已切为极简低光模式");
+    });
+
+    // OriginOS 厚胶囊阻尼推杆
+    const capsuleSlider = document.getElementById("capsuleSlider");
+    const capsuleFill = document.getElementById("capsuleFill");
+    const capsuleVal = document.getElementById("capsuleVal");
+    let sliderDragging = false;
+
+    function updateCapsule(clientX) {
+      const rect = capsuleSlider.getBoundingClientRect();
+      const pct = Math.max(8, Math.min(100, Math.round(((clientX - rect.left) / rect.width) * 100)));
+      capsuleFill.style.width = pct + "%";
+      capsuleVal.textContent = pct + "%";
+      capsuleSlider.setAttribute("aria-valuenow", String(pct));
+    }
+    capsuleSlider.addEventListener("pointerdown", (e) => {
+      sliderDragging = true;
+      capsuleSlider.classList.add("dragging");
+      capsuleSlider.setPointerCapture(e.pointerId);
+      updateCapsule(e.clientX);
+    });
+    capsuleSlider.addEventListener("pointermove", (e) => { if (sliderDragging) updateCapsule(e.clientX); });
+    capsuleSlider.addEventListener("pointerup", () => {
+      if (!sliderDragging) return;
+      sliderDragging = false;
+      capsuleSlider.classList.remove("dragging");
+    });
+
+    // 真实 FLIP 原子卡片原位放大与沿原路弹回
+    const detailBackdrop = document.getElementById("detailBackdrop");
+    const detailSheet = document.getElementById("detailSheet");
+    const detailTitle = document.getElementById("detailTitle");
+    const detailDesc = document.getElementById("detailDesc");
+    let activeCard = null;
+
+    function openCardDetail(card) {
+      activeCard = card;
+      detailTitle.textContent = card.dataset.detailTitle;
+      detailDesc.textContent = card.dataset.detailDesc;
+
+      const cardRect = card.getBoundingClientRect();
+      detailBackdrop.classList.add("open");
+      detailSheet.style.transition = "none";
+      detailSheet.style.transform = "translate(-50%, -50%)";
+      detailSheet.classList.add("open");
+
+      const targetRect = detailSheet.getBoundingClientRect();
+      const dx = (cardRect.left + cardRect.width / 2) - (targetRect.left + targetRect.width / 2);
+      const dy = (cardRect.top + cardRect.height / 2) - (targetRect.top + targetRect.height / 2);
+      const sx = cardRect.width / targetRect.width;
+      const sy = cardRect.height / targetRect.height;
+
+      detailSheet.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${sx}, ${sy})`;
+      detailSheet.style.opacity = "0.4";
+      detailSheet.offsetHeight; // 触发一次布局采样
+
+      detailSheet.style.transition = "transform 380ms cubic-bezier(0.22, 1.12, 0.36, 1), opacity 220ms ease";
+      detailSheet.style.transform = "translate(-50%, -50%) scale(1, 1)";
+      detailSheet.style.opacity = "1";
+    }
+
+    function closeCardDetail() {
+      if (!activeCard) return;
+      const cardRect = activeCard.getBoundingClientRect();
+      const targetRect = detailSheet.getBoundingClientRect();
+      const dx = (cardRect.left + cardRect.width / 2) - (targetRect.left + targetRect.width / 2);
+      const dy = (cardRect.top + cardRect.height / 2) - (targetRect.top + targetRect.height / 2);
+      const sx = cardRect.width / targetRect.width;
+      const sy = cardRect.height / targetRect.height;
+
+      detailBackdrop.classList.remove("open");
+      detailSheet.style.transition = "transform 300ms cubic-bezier(0.24, 1.04, 0.36, 1), opacity 200ms ease";
+      detailSheet.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${sx}, ${sy})`;
+      detailSheet.style.opacity = "0";
+      setTimeout(() => {
+        detailSheet.classList.remove("open");
+        activeCard = null;
+      }, 280);
+    }
+
+    document.querySelectorAll(".atomic-card.expandable").forEach((card) => {
+      card.addEventListener("click", () => openCardDetail(card));
+    });
+    detailBackdrop.addEventListener("click", closeCardDetail);
+    document.getElementById("closeDetailBtn").addEventListener("click", closeCardDetail);
+    document.getElementById("detailActionBtn").addEventListener("click", () => {
+      closeCardDetail();
+      sayIsland("原子卡片已丝滑归位");
+    });
+
+    // 底部悬浮光影导航气泡
+    const dock = document.getElementById("originDock");
+    const dockBubble = document.getElementById("dockBubble");
+    const dockTabs = [...dock.querySelectorAll(".dock-tab")];
+
+    function syncDock(tab) {
+      dockBubble.style.width = tab.offsetWidth + "px";
+      dockBubble.style.transform = `translateX(${tab.offsetLeft - 6}px)`;
+    }
+    dockTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        dockTabs.forEach((t) => t.classList.toggle("active", t === tab));
+        syncDock(tab);
+        const viewId = "view-" + tab.dataset.view;
+        document.querySelectorAll(".view").forEach((v) => v.classList.toggle("active", v.id === viewId));
+      });
+    });
+    window.addEventListener("resize", () => {
+      const cur = dock.querySelector(".dock-tab.active");
+      if (cur) syncDock(cur);
+    });
+    requestAnimationFrame(() => syncDock(dockTabs[0]));
+
+    // 键盘交互：Esc 收起浮层，Space 暂停/继续计时
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeCardDetail();
+        toggleIsland(false);
+      } else if (e.key === " " && document.activeElement.tagName !== "BUTTON") {
+        e.preventDefault();
+        running = !running;
+        sayIsland(running ? "空格快捷继续专注" : "空格快捷暂停专注");
+      }
+    });
+    document.addEventListener("click", (e) => {
+      if (!islandDrawer.contains(e.target) && !islandBtn.contains(e.target)) toggleIsland(false);
+    });
+  </script>
+</body>
+</html>
